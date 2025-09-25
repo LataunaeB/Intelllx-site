@@ -81,31 +81,17 @@ export default function WhyLeadFlowBand() {
 
           {/* Desktop/Tablet: process strip */}
           <div className="hidden md:block relative px-6 md:px-8 py-6 md:py-8">
-            {/* Connector line */}
+            {/* Subtle background pattern instead of connector line */}
             <div
               aria-hidden="true"
-              className="absolute left-10 right-10 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
-              style={{ zIndex: -10 }}
-            >
-              {!reduce && (
-                <div
-                  className="h-full w-full"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
-                    backgroundSize: "200% 100%",
-                    animation: "shimmer 6s linear infinite",
-                  }}
-                />
-              )}
-            </div>
-
-            <style>{`
-              @keyframes shimmer {
-                0% { background-position: 200% 0; }
-                100% { background-position: -200% 0; }
-              }
-            `}</style>
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `radial-gradient(circle at 25% 50%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                                radial-gradient(circle at 75% 50%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                backgroundSize: '40px 40px',
+                backgroundPosition: '0 0, 20px 20px'
+              }}
+            />
 
             <motion.div
               variants={container}
