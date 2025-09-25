@@ -18,7 +18,7 @@ export default function LeadFlowChatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello! I'm your INTELLLX AI assistant. I'm here to help with LeadFlow Chatbot and Website Development services. Ask me about pricing, features, how it works, or anything else! What can I help you with today?",
+      text: "Welcome—I'm the INTELLLX assistant for LeadFlow Chatbots & Web Development. Ask about pricing, features, or how it works.",
       isUser: false,
       timestamp: new Date()
     }
@@ -812,7 +812,7 @@ export default function LeadFlowChatbot() {
           )}
 
           {/* Modern Messages Area */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-gray-50/50 to-white">
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
             {messages.map((message, index) => (
               <motion.div
                 key={message.id}
@@ -821,19 +821,19 @@ export default function LeadFlowChatbot() {
                 transition={{ delay: index * 0.1, duration: 0.3 }}
                 className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`flex items-start space-x-3 max-w-[80%] ${message.isUser ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                <div className={`flex items-start gap-3 max-w-[75%] ${message.isUser ? 'flex-row-reverse gap-reverse' : ''}`}>
                   {/* Bot Avatar for AI messages */}
                   {!message.isUser && (
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-xl flex items-center justify-center shadow-sm">
                       <Bot className="w-4 h-4 text-white" />
                     </div>
                   )}
                   
                   <div
-                    className={`px-5 py-4 rounded-3xl shadow-lg backdrop-blur-sm ${
+                    className={`px-4 py-3 rounded-xl shadow-sm ${
                     message.isUser
-                        ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white ml-auto'
-                        : 'bg-white/80 text-gray-800 border border-white/50'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-50 text-gray-900 border border-gray-200'
                   }`}
                 >
                     <div className="flex items-start justify-between gap-3">
@@ -876,29 +876,29 @@ export default function LeadFlowChatbot() {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-xl flex items-center justify-center shadow-sm">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
-                  <div className="bg-white/80 text-gray-800 px-5 py-4 rounded-3xl shadow-lg backdrop-blur-sm border border-white/50">
-                    <div className="flex space-x-2">
+                  <div className="bg-gray-50 text-gray-900 px-4 py-3 rounded-xl shadow-sm border border-gray-200">
+                    <div className="flex gap-1">
                       <motion.div
-                        className="w-2 h-2 bg-indigo-400 rounded-full"
+                        className="w-2 h-2 bg-blue-400 rounded-full"
                         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 1, repeat: Infinity, delay: 0 }}
+                        transition={{ duration: 1.2, repeat: Infinity, delay: 0 }}
                       />
                       <motion.div
-                        className="w-2 h-2 bg-purple-400 rounded-full"
+                        className="w-2 h-2 bg-blue-400 rounded-full"
                         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+                        transition={{ duration: 1.2, repeat: Infinity, delay: 0.2 }}
                       />
                       <motion.div
-                        className="w-2 h-2 bg-pink-400 rounded-full"
+                        className="w-2 h-2 bg-blue-400 rounded-full"
                         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
+                        transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
                       />
-                </div>
-              </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -907,14 +907,14 @@ export default function LeadFlowChatbot() {
 
           {/* Lead Form */}
           {showLeadForm && (
-            <div className="p-4 border-t bg-gray-50">
-              <form onSubmit={handleLeadSubmit} className="space-y-3">
+            <div className="p-6 border-t border-gray-200 bg-gray-50">
+              <form onSubmit={handleLeadSubmit} className="space-y-4">
                 <input
                   type="text"
                   placeholder="Your name"
                   value={leadData.name}
                   onChange={(e) => setLeadData({ ...leadData, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
                   required
                 />
                 <input
@@ -922,7 +922,7 @@ export default function LeadFlowChatbot() {
                   placeholder="Your email"
                   value={leadData.email}
                   onChange={(e) => setLeadData({ ...leadData, email: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
                   required
                 />
                 <input
@@ -930,12 +930,12 @@ export default function LeadFlowChatbot() {
                   placeholder="Your phone"
                   value={leadData.phone}
                   onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
                   required
                 />
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700"
+                  className="w-full bg-blue-600 text-white py-3 rounded-xl text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[44px] transition-colors duration-200"
                 >
                   Book Discovery Call
                 </button>
@@ -945,41 +945,38 @@ export default function LeadFlowChatbot() {
 
           {/* Modern Input Area */}
           {!showLeadForm && (
-            <div className="p-6 border-t border-white/20 bg-gradient-to-r from-gray-50/50 to-white/50 backdrop-blur-sm">
+            <div className="p-6 border-t border-gray-200 bg-white">
               <div className="flex space-x-3">
-                <div className="flex-1 relative">
+                <div className="flex-1">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder="Ask me anything about LeadFlow..."
-                    className="w-full px-5 py-4 border border-white/30 rounded-3xl text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-200 placeholder-gray-500"
-                  />
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <MessageCircle className="w-5 h-5 text-gray-400" />
-                  </div>
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Type your question…"
+                  className="w-full px-6 py-4 border border-gray-200 rounded-xl text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white shadow-sm transition-all duration-200 placeholder-gray-400 min-h-[44px]"
+                />
                 </div>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={handleSendMessage}
-                  className="bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white px-6 py-4 rounded-3xl text-sm shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-xl text-sm shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   <Send className="w-5 h-5" />
                 </motion.button>
               </div>
               
               {/* Quick suggestions */}
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {['Pricing', 'How it works', 'Book a call', 'Features'].map((suggestion) => (
                   <button
                     key={suggestion}
                     onClick={() => setInputValue(suggestion)}
-                    className="px-3 py-1 bg-white/60 text-gray-600 text-xs rounded-full hover:bg-white/80 transition-colors duration-200 border border-white/30"
+                    className="px-3 py-2 bg-gray-100 text-gray-700 text-sm rounded-lg hover:bg-gray-200 transition-colors duration-200 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
                   >
                     {suggestion}
-                </button>
+                  </button>
                 ))}
               </div>
             </div>
