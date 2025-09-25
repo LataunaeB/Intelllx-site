@@ -10,6 +10,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Sparkles, Zap, Shield, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
+import HeroMockup from "@/components/ui/HeroMockup";
+import ProcessDiagram from "@/components/ui/ProcessDiagram";
+import WorksWithStrip from "@/components/ui/WorksWithStrip";
 
 export default function Home() {
   const [currentValueProp, setCurrentValueProp] = useState(0);
@@ -410,6 +413,17 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          {/* Process Diagram */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="mt-16"
+          >
+            <ProcessDiagram reduceMotion={reduceMotion} />
+          </motion.div>
         </div>
       </section>
 
@@ -854,6 +868,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* UI Mockup */}
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+        animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+        className="relative py-12 px-6"
+      >
+        <div className="max-w-6xl mx-auto flex justify-center">
+          <HeroMockup reduceMotion={reduceMotion} />
+        </div>
+      </motion.div>
+
       {/* Premium Trust Indicators */}
       <section className="relative py-24 px-6">
         <div className="max-w-8xl mx-auto">
@@ -902,6 +928,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Works With Integration Strip */}
+      <WorksWithStrip reduceMotion={reduceMotion} />
 
       {/* Premium Trust & Credibility */}
       <section className="relative py-24 px-6">
