@@ -420,7 +420,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
             className="mt-16"
           >
-            <ProcessDiagram reduceMotion={reduceMotion} />
+            <ProcessDiagram reduceMotion={!!reduceMotion} />
           </motion.div>
         </div>
       </section>
@@ -874,7 +874,7 @@ export default function Home() {
         className="relative py-12 px-6"
       >
         <div className="max-w-6xl mx-auto flex justify-center">
-          <HeroMockup reduceMotion={reduceMotion} />
+          <HeroMockup reduceMotion={!!reduceMotion} />
         </div>
       </motion.div>
 
@@ -928,7 +928,7 @@ export default function Home() {
       </section>
 
       {/* Works With Integration Strip */}
-      <WorksWithStrip reduceMotion={reduceMotion} />
+      <WorksWithStrip reduceMotion={!!reduceMotion} />
 
       {/* Premium Trust & Credibility */}
       <section className="relative py-24 px-6">
