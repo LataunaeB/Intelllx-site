@@ -279,9 +279,9 @@ export default function Home() {
                   <Image
                     src="/images/logo/Intelllxherologo.png"
                     alt="INTELLLX Logo"
-                    width={320}
-                    height={320}
-                    className="w-full max-w-[320px] aspect-square object-contain drop-shadow-2xl"
+                    width={360}
+                    height={360}
+                    className="w-full max-w-[360px] md:max-w-[380px] aspect-square object-contain drop-shadow-2xl"
                     priority
                   />
                 </motion.div>
@@ -330,13 +330,17 @@ export default function Home() {
 
               {/* UI Mockup - Positioned to "speak" to headline */}
               <motion.div
-                initial={reduceMotion ? false : { opacity: 0, y: 20, rotateX: 2 }}
-                animate={reduceMotion ? {} : { opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-                className="relative w-full max-w-[280px] mx-auto md:ml-8"
+                initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.95 }}
+                animate={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
+                className="relative w-full max-w-[320px] md:max-w-[340px] mx-auto md:ml-8"
+                whileHover={reduceMotion ? {} : { 
+                  y: -4,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
                 style={{ 
                   transform: 'perspective(1000px) rotateX(1deg) rotateY(-1deg)',
-                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))'
+                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.12))'
                 }}
               >
                 <HeroMockup reduceMotion={!!reduceMotion} />
