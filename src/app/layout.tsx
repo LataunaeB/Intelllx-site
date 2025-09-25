@@ -61,12 +61,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-8 text-sm">
+            <nav className="hidden md:flex items-center gap-8 text-sm relative z-10">
               {site.nav.map((item) => (
                 <Link 
                   key={item.href} 
                   href={item.href} 
-                  className="relative text-black hover:text-purple-600 font-semibold transition-all duration-300 hover:scale-105 transform group"
+                  className="relative text-gray-800 hover:text-purple-600 font-semibold transition-all duration-300 hover:scale-105 transform group"
                 >
                   {item.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 transition-all duration-300 group-hover:w-full"></span>
