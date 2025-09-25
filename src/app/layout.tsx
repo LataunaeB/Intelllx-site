@@ -66,7 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link 
                   key={item.href} 
                   href={item.href} 
-                  className="relative text-gray-900 hover:text-purple-600 font-bold text-base transition-all duration-300 hover:scale-105 transform group px-3 py-2"
+                  className="relative font-bold text-base transition-all duration-300 hover:scale-105 transform group px-3 py-2 bg-white rounded-lg border border-gray-300"
+                  style={{ color: '#000000' }}
                 >
                   {item.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 transition-all duration-300 group-hover:w-full"></span>
