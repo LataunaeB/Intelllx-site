@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, BarChart3, Users, Clock, CheckCircle } from "lucide-react";
+import { MessageCircle, BarChart3, Users } from "lucide-react";
 
 interface HeroMockupProps {
   reduceMotion?: boolean;
@@ -40,14 +40,14 @@ export default function HeroMockup({ reduceMotion = false }: HeroMockupProps) {
                 <MessageCircle className="w-3 h-3 text-blue-600" />
               </div>
               <div className="bg-gray-100 rounded-lg px-3 py-2 max-w-xs">
-                <p className="text-sm text-gray-800">Hi! I'm here to help you book a consultation. What's your business about?</p>
+                <p className="text-sm text-gray-800">Hi! I&apos;m here to help you book a consultation. What&apos;s your business about?</p>
               </div>
             </div>
 
             {/* User Message */}
             <div className="flex gap-2 justify-end">
               <div className="bg-blue-600 rounded-lg px-3 py-2 max-w-xs">
-                <p className="text-sm text-white">We're a digital marketing agency looking to scale our lead generation.</p>
+                <p className="text-sm text-white">We&apos;re a digital marketing agency looking to scale our lead generation.</p>
               </div>
             </div>
 
@@ -57,7 +57,7 @@ export default function HeroMockup({ reduceMotion = false }: HeroMockupProps) {
                 <MessageCircle className="w-3 h-3 text-blue-600" />
               </div>
               <div className="bg-gray-100 rounded-lg px-3 py-2 max-w-xs">
-                <p className="text-sm text-gray-800">Perfect! I can help you book a strategy call. What's your preferred time?</p>
+                <p className="text-sm text-gray-800">Perfect! I can help you book a strategy call. What&apos;s your preferred time?</p>
               </div>
             </div>
 
