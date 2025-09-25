@@ -14,8 +14,11 @@ export const copy = {
 
   hero: {
     title: "Custom AI That Actually Converts",
-    subhead_A: "We build custom AI conversations tailored to your business — so you wake up to always-on growth.",
+    subhead_A: "We build custom AI conversations tailored to your business — so you wake up with always-on growth.",
     subhead_B: "Professional setup included. Real AI that understands your customers and books qualified calls.",
+    // Alternative hierarchy approach:
+    // headline: "We build custom AI conversations tailored to your business.",
+    // subhead: "So your business is always-on growth.",
     ctas: {
       primary: "Get Started", 
       secondary: "See Pricing" 
