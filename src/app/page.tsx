@@ -139,7 +139,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-8xl mx-auto w-full">
-          <div className="min-h-[72vh] grid md:grid-cols-2 items-center gap-8 md:gap-12">
+          <div className="min-h-[72vh] grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
             {/* Left Side - Animated Text Content */}
             <motion.div 
               initial={reduceMotion ? false : { opacity: 0, x: -50 }}
@@ -251,13 +251,14 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right Side - Animated Logo */}
+            {/* Right Side - Visual Cluster (Logo + Mockup) */}
             <motion.div 
               initial={reduceMotion ? false : { opacity: 0, x: 50, scale: 0.9 }}
               animate={reduceMotion ? {} : { opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="flex items-center justify-center md:self-start md:justify-self-end md:-translate-y-8 lg:-translate-y-12 xl:-translate-y-16"
+              className="flex flex-col items-center justify-center md:self-start md:justify-self-end space-y-6 order-2 md:order-2 mt-12 md:mt-0"
             >
+              {/* Logo Section */}
               <div className="relative">
                 {/* Logo Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl scale-110"></div>
@@ -265,8 +266,8 @@ export default function Home() {
                 {/* Main Logo */}
                 <motion.div
                   animate={reduceMotion ? {} : { 
-                    y: [0, -10, 0],
-                    rotate: [0, 2, 0]
+                    y: [0, -8, 0],
+                    rotate: [0, 1, 0]
                   }}
                   transition={{ 
                     duration: 6, 
@@ -278,18 +279,18 @@ export default function Home() {
                   <Image
                     src="/images/logo/Intelllxherologo.png"
                     alt="INTELLLX Logo"
-                    width={420}
-                    height={420}
-                    className="w-full max-w-[420px] aspect-square object-contain drop-shadow-2xl"
+                    width={320}
+                    height={320}
+                    className="w-full max-w-[320px] aspect-square object-contain drop-shadow-2xl"
                     priority
                   />
                 </motion.div>
 
                 {/* Floating Elements Around Logo */}
                 <motion.div
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500/20 rounded-full"
+                  className="absolute -top-3 -right-3 w-6 h-6 bg-blue-500/20 rounded-full"
                   animate={reduceMotion ? {} : { 
-                    y: [0, -20, 0],
+                    y: [0, -15, 0],
                     opacity: [0.3, 0.8, 0.3]
                   }}
                   transition={{ 
@@ -300,9 +301,9 @@ export default function Home() {
                   }}
                 />
                 <motion.div
-                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500/20 rounded-full"
+                  className="absolute -bottom-3 -left-3 w-5 h-5 bg-purple-500/20 rounded-full"
                   animate={reduceMotion ? {} : { 
-                    y: [0, 20, 0],
+                    y: [0, 15, 0],
                     opacity: [0.3, 0.8, 0.3]
                   }}
                   transition={{ 
@@ -313,9 +314,9 @@ export default function Home() {
                   }}
                 />
                 <motion.div
-                  className="absolute top-1/2 -left-8 w-4 h-4 bg-indigo-500/20 rounded-full"
+                  className="absolute top-1/2 -left-6 w-3 h-3 bg-indigo-500/20 rounded-full"
                   animate={reduceMotion ? {} : { 
-                    x: [0, -15, 0],
+                    x: [0, -10, 0],
                     opacity: [0.3, 0.8, 0.3]
                   }}
                   transition={{ 
@@ -326,6 +327,20 @@ export default function Home() {
                   }}
                 />
               </div>
+
+              {/* UI Mockup - Positioned to "speak" to headline */}
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, y: 20, rotateX: 2 }}
+                animate={reduceMotion ? {} : { opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+                className="relative w-full max-w-[280px] mx-auto md:ml-8"
+                style={{ 
+                  transform: 'perspective(1000px) rotateX(1deg) rotateY(-1deg)',
+                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))'
+                }}
+              >
+                <HeroMockup reduceMotion={!!reduceMotion} />
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -866,17 +881,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UI Mockup */}
-      <motion.div
-        initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-        animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
-        className="relative py-12 px-6"
-      >
-        <div className="max-w-6xl mx-auto flex justify-center">
-          <HeroMockup reduceMotion={!!reduceMotion} />
-        </div>
-      </motion.div>
 
       {/* Premium Trust Indicators */}
       <section className="relative py-24 px-6">

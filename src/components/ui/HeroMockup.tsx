@@ -13,7 +13,7 @@ export default function HeroMockup({ reduceMotion = false }: HeroMockupProps) {
       initial={reduceMotion ? false : { opacity: 0, y: 20 }}
       animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-      className="relative w-full max-w-md mx-auto"
+      className="relative w-full max-w-sm mx-auto"
     >
       {/* Device Frame */}
       <div className="relative bg-gray-900 rounded-2xl p-4 shadow-2xl border border-gray-700">
@@ -33,7 +33,7 @@ export default function HeroMockup({ reduceMotion = false }: HeroMockupProps) {
           </div>
 
           {/* Chat Interface */}
-          <div className="p-4 space-y-3 h-48">
+          <div className="p-4 space-y-3 h-40">
             {/* Bot Message */}
             <div className="flex gap-2">
               <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
