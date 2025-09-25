@@ -139,13 +139,13 @@ export default function Home() {
         </div>
 
         <div className="max-w-8xl mx-auto w-full">
-          <div className="min-h-[72vh] grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
+          <div className="min-h-[72vh] grid grid-cols-1 md:grid-cols-2 items-center md:items-start gap-8 md:gap-12 pt-8 md:pt-16">
             {/* Left Side - Animated Text Content */}
             <motion.div 
               initial={reduceMotion ? false : { opacity: 0, x: -50 }}
               animate={reduceMotion ? {} : { opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="space-y-8"
+              className="space-y-6 md:space-y-8 md:-translate-y-6"
             >
               {/* Minimalist Eyebrow Label */}
               <motion.div 
@@ -163,7 +163,7 @@ export default function Home() {
                 initial={reduceMotion ? false : { opacity: 0, y: 30 }}
                 animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="space-y-4"
+                className="space-y-3"
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
                   <span className="text-white block">
@@ -222,7 +222,7 @@ export default function Home() {
                 initial={reduceMotion ? false : { opacity: 0, y: 30 }}
                 animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4 pt-4"
+                className="flex flex-col sm:flex-row gap-4 pt-2"
               >
                 <button 
                   onClick={() => {
@@ -256,7 +256,7 @@ export default function Home() {
               initial={reduceMotion ? false : { opacity: 0, x: 50, scale: 0.9 }}
               animate={reduceMotion ? {} : { opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              className="flex flex-col items-center justify-center md:self-start md:justify-self-end space-y-6 order-2 md:order-2 mt-12 md:mt-0"
+              className="flex flex-col items-center justify-center md:self-start md:justify-self-end space-y-6 order-2 md:order-2 mt-12 md:mt-0 md:-translate-y-3"
             >
               {/* Logo Section */}
               <div className="relative">
