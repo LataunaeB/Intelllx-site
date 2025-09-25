@@ -84,7 +84,8 @@ export default function WhyLeadFlowBand() {
             {/* Connector line */}
             <div
               aria-hidden="true"
-              className="absolute left-10 right-10 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent -z-10"
+              className="absolute left-10 right-10 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              style={{ zIndex: -1 }}
             >
               {!reduce && (
                 <div
@@ -115,7 +116,7 @@ export default function WhyLeadFlowBand() {
             >
               {STEPS.map(({ num, title, body, Icon }) => (
                 <motion.div key={num} variants={item}>
-                  <article className="relative z-10 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 hover:bg-white/10 transition-all duration-200 hover:shadow-lg">
+                  <article className="relative z-20 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 hover:bg-white/10 transition-all duration-200 hover:shadow-lg">
                     <header className="flex items-center gap-3">
                       <span className="text-xs font-mono opacity-70 text-white/60">{num}</span>
                       <IconChip Icon={Icon} reduce={!!reduce} />
