@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </Head>
       <body className="min-h-screen flex flex-col">
         <header className="sticky top-0 z-50 transition-all duration-300">
-          <div className="absolute inset-0 bg-white/90 backdrop-blur-md border-b border-white/20 shadow-lg"></div>
+          <div className="absolute inset-0 bg-white border-b border-gray-200 shadow-lg"></div>
           <div className="relative mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
             {/* brand link must use <Link /> for internal nav */}
             <Link href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link 
                   key={item.href} 
                   href={item.href} 
-                  className="relative text-gray-900 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105 transform group"
+                  className="relative text-black hover:text-purple-600 font-semibold transition-all duration-300 hover:scale-105 transform group"
                 >
                   {item.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 transition-all duration-300 group-hover:w-full"></span>
