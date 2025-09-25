@@ -11,7 +11,6 @@ export default function MicroNav() {
   const config = getScrollspyConfig(pathname);
   const [activeSection, setActiveSection] = useState(config.sections[0]?.id || '');
   const [isVisible, setIsVisible] = useState(false);
-  const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
   useEffect(() => {
     // Create intersection observer
@@ -29,7 +28,6 @@ export default function MicroNav() {
       }
     );
 
-    setObserver(newObserver);
 
     // Observe all sections
     config.sections.forEach((section) => {

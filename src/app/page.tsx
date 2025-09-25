@@ -5,7 +5,6 @@ import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 import Image from "next/image";
 import WhyLeadFlowBand from "@/components/marketing/WhyLeadFlowBand";
 import { copy } from "@/config/copy";
-import FancyScript from "@/components/typography/FancyScript";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Sparkles, Zap, Shield, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -16,7 +15,6 @@ import WorksWithStrip from "@/components/ui/WorksWithStrip";
 
 export default function Home() {
   const [currentValueProp, setCurrentValueProp] = useState(0);
-  const [imageLoading, setImageLoading] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

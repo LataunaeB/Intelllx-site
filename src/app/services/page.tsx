@@ -2,7 +2,7 @@
 import { site } from "@/config/site";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, Zap, Code, CheckCircle } from "lucide-react";
+import { Zap, Code, CheckCircle } from "lucide-react";
 
 export default function Services() {
 

@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { site } from '@/config/site';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, X, Minimize2, Maximize2, Bot, Sparkles, MessageCircle } from 'lucide-react';
+import { Send, X, Minimize2, Maximize2, Bot, MessageCircle } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -16,7 +15,6 @@ interface Message {
 export default function LeadFlowChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -535,7 +533,7 @@ export default function LeadFlowChatbot() {
 
     // Fix pronunciation of INTELLLX
     const processedText = text.replace(/INTELLLX/g, 'Intellix');
-    
+
     // Create a new speech synthesis utterance
     const utterance = new SpeechSynthesisUtterance(processedText);
     
@@ -601,8 +599,8 @@ export default function LeadFlowChatbot() {
     // If no exact match, try to find voices with quality indicators
     if (!selectedVoice) {
       selectedVoice = voices.find(voice => 
-        voice.name.includes('Google') || 
-        voice.name.includes('Microsoft') ||
+      voice.name.includes('Google') || 
+      voice.name.includes('Microsoft') || 
         voice.name.includes('Neural') ||
         voice.name.includes('Premium') ||
         voice.name.includes('Enhanced')
@@ -653,7 +651,7 @@ export default function LeadFlowChatbot() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
             className="fixed bottom-6 right-6 z-50 group"
             aria-label="Open INTELLLX AI Assistant"
           >
@@ -702,7 +700,7 @@ export default function LeadFlowChatbot() {
 
       {/* Modern 2025 Chat Window */}
       <AnimatePresence>
-        {isOpen && (
+      {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -726,29 +724,29 @@ export default function LeadFlowChatbot() {
                   <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
                 </div>
                 
-                <div>
+              <div>
                   <h3 className="font-bold text-xl">INTELLLX AI</h3>
                   <div className="flex items-center space-x-2">
                     <p className="text-sm opacity-90">Your AI Assistant</p>
-                    {detectedLanguage !== 'en' && (
+                  {detectedLanguage !== 'en' && (
                       <span className="px-2 py-1 bg-white/20 rounded-full text-xs font-medium">
-                        {detectedLanguage.toUpperCase()}
-                      </span>
-                    )}
-                  </div>
-                </div>
+                      {detectedLanguage.toUpperCase()}
+                    </span>
+                  )}
+              </div>
+            </div>
               </div>
               
               <div className="flex items-center space-x-2 relative z-10">
-                <button
-                  onClick={() => setShowLanguageSelector(!showLanguageSelector)}
+              <button
+                onClick={() => setShowLanguageSelector(!showLanguageSelector)}
                   className="text-white/80 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-lg"
-                  title="Change Language"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                  </svg>
-                </button>
+                title="Change Language"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+              </button>
                 <button
                   onClick={() => setIsMinimized(!isMinimized)}
                   className="text-white/80 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-lg"
@@ -756,14 +754,14 @@ export default function LeadFlowChatbot() {
                 >
                   {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
                 </button>
-                <button
-                  onClick={() => setIsOpen(false)}
+              <button
+                onClick={() => setIsOpen(false)}
                   className="text-white/80 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-lg"
-                >
+              >
                   <X className="w-4 h-4" />
-                </button>
-              </div>
+              </button>
             </div>
+          </div>
 
           {/* Language Selector */}
           {showLanguageSelector && (
@@ -833,43 +831,43 @@ export default function LeadFlowChatbot() {
                   
                   <div
                     className={`px-5 py-4 rounded-3xl shadow-lg backdrop-blur-sm ${
-                      message.isUser
+                    message.isUser
                         ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white ml-auto'
                         : 'bg-white/80 text-gray-800 border border-white/50'
-                    }`}
-                  >
+                  }`}
+                >
                     <div className="flex items-start justify-between gap-3">
                       <p className="text-sm leading-relaxed flex-1">{message.text}</p>
-                      {!message.isUser && (
-                        <button
-                          onClick={() => {
-                            if (speakingMessageId === message.id) {
-                              stopSpeaking();
-                            } else {
-                              speakText(message.text, message.id);
-                            }
-                          }}
-                          className={`flex-shrink-0 p-2 rounded-full transition-all duration-200 ${
-                            speakingMessageId === message.id
-                              ? 'bg-red-100 text-red-600 hover:bg-red-200 shadow-sm'
+                    {!message.isUser && (
+                      <button
+                        onClick={() => {
+                          if (speakingMessageId === message.id) {
+                            stopSpeaking();
+                          } else {
+                            speakText(message.text, message.id);
+                          }
+                        }}
+                        className={`flex-shrink-0 p-2 rounded-full transition-all duration-200 ${
+                          speakingMessageId === message.id
+                            ? 'bg-red-100 text-red-600 hover:bg-red-200 shadow-sm'
                               : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-indigo-600 shadow-sm'
-                          }`}
-                          title={speakingMessageId === message.id ? 'Stop speaking' : 'Listen to response'}
-                        >
-                          {speakingMessageId === message.id ? (
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1zm4 0a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                            </svg>
-                          ) : (
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 011.414 0A9.972 9.972 0 0119 12a9.972 9.972 0 01-1.929 5.657 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 12a7.971 7.971 0 00-1.343-4.243 1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                          )}
-                        </button>
-                      )}
-                    </div>
+                        }`}
+                        title={speakingMessageId === message.id ? 'Stop speaking' : 'Listen to response'}
+                      >
+                        {speakingMessageId === message.id ? (
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1zm4 0a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                        ) : (
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 011.414 0A9.972 9.972 0 0119 12a9.972 9.972 0 01-1.929 5.657 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 12a7.971 7.971 0 00-1.343-4.243 1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </div>
+              </div>
               </motion.div>
             ))}
             {isTyping && (
@@ -899,8 +897,8 @@ export default function LeadFlowChatbot() {
                         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
                       />
-                    </div>
-                  </div>
+                </div>
+              </div>
                 </div>
               </motion.div>
             )}
@@ -950,10 +948,10 @@ export default function LeadFlowChatbot() {
             <div className="p-6 border-t border-white/20 bg-gradient-to-r from-gray-50/50 to-white/50 backdrop-blur-sm">
               <div className="flex space-x-3">
                 <div className="flex-1 relative">
-                  <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                     placeholder="Ask me anything about LeadFlow..."
                     className="w-full px-5 py-4 border border-white/30 rounded-3xl text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-200 placeholder-gray-500"
@@ -981,13 +979,13 @@ export default function LeadFlowChatbot() {
                     className="px-3 py-1 bg-white/60 text-gray-600 text-xs rounded-full hover:bg-white/80 transition-colors duration-200 border border-white/30"
                   >
                     {suggestion}
-                  </button>
+                </button>
                 ))}
               </div>
             </div>
           )}
           </motion.div>
-        )}
+      )}
       </AnimatePresence>
     </>
   );
