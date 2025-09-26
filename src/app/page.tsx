@@ -350,60 +350,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Premium How It Works Section */}
+      {/* Simplified How It Works Section */}
       <section id="how-it-works" className="relative py-24 px-6 bg-gradient-to-br from-gray-800/50 via-slate-800/30 to-gray-900/50 backdrop-blur-sm">
-        {/* Visual Anchor - Diagonal Divider */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #3b82f6 2px, transparent 2px),
-                            radial-gradient(circle at 75% 75%, #8b5cf6 2px, transparent 2px)`,
-            backgroundSize: '60px 60px',
-            backgroundPosition: '0 0, 30px 30px'
-          }}></div>
-        </div>
-        <div className="max-w-8xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={reduceMotion ? false : { opacity: 0, y: 30 }}
             whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25 mb-8">
-              <span className="text-sm font-semibold tracking-wide">Simple Process</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
               <span className="text-white">How It</span>{' '}
               <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Works</span>
             </h2>
             
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
-              Three simple steps to transform your business with AI-powered lead generation
+              Three simple steps to get your AI sales assistant running
             </p>
           </motion.div>
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Discovery",
-                body: "We learn about your business, goals, and ideal customers to create the perfect chatbot strategy.",
-                icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-                color: "from-purple-500 to-pink-500"
+                title: "We Learn",
+                body: "Tell us about your business and goals in a 15-minute call.",
+                number: "1"
               },
               {
-                title: "Design & Deploy",
-                body: "We build and customize your LeadFlow chatbot with your brand voice and integrate it seamlessly.",
-                icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-                color: "from-blue-500 to-indigo-500"
+                title: "We Build",
+                body: "We create your custom AI chatbot and integrate it with your systems.",
+                number: "2"
               },
               {
-                title: "Optimize & Scale",
-                body: "We continuously monitor performance, optimize conversations, and help you scale your success.",
-                icon: "M13 10V3L4 14h7v7l9-11h-7z",
-                color: "from-emerald-500 to-teal-500"
+                title: "You Convert",
+                body: "Your AI captures leads 24/7 while you focus on closing deals.",
+                number: "3"
               }
             ].map((step, index) => (
               <motion.div 
@@ -412,509 +394,62 @@ export default function Home() {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
-                className="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 p-8"
+                className="text-center p-8"
               >
-                <div className="text-center">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 bg-gradient-to-r ${step.color}`}>
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={step.icon} />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300 font-medium">
-                    {step.body}
-                  </p>
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-black text-white">
+                  {step.number}
                 </div>
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed font-medium">
+                  {step.body}
+                </p>
               </motion.div>
             ))}
           </div>
-
-          {/* Process Diagram */}
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className="mt-16"
-          >
-            <ProcessDiagram reduceMotion={!!reduceMotion} />
-          </motion.div>
         </div>
       </section>
 
-      {/* Why LeadFlow Works */}
+      {/* Why LeadFlow Works - Simplified */}
       <WhyLeadFlowBand />
 
-      {/* Premium Services Section */}
-      <section id="services" className="relative py-24 px-6 bg-gradient-to-br from-slate-900/30 via-gray-900/20 to-slate-800/30">
-        {/* Visual Anchor - Diagonal Divider */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(45deg, #3b82f6 1px, transparent 1px),
-                            linear-gradient(-45deg, #8b5cf6 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-            backgroundPosition: '0 0, 20px 20px'
-          }}></div>
-        </div>
-        <div className="max-w-8xl mx-auto">
-          {/* Section Header */}
+      {/* Trust & Credibility Section - For New Company */}
+      <section className="relative py-24 px-6 bg-gradient-to-br from-slate-900/30 via-gray-900/20 to-slate-800/30">
+        <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={reduceMotion ? false : { opacity: 0, y: 30 }}
             whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 mb-8">
-              <span className="text-sm font-medium text-purple-300 tracking-wide">Our Services</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-              Two Powerful <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Solutions</span>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+              Why Choose <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">INTELLLX</span>?
             </h2>
             
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Choose the service that fits your needs, or combine both for maximum impact
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
+              We&apos;re new, but we bring decades of experience in AI and web development
             </p>
           </motion.div>
           
-          {/* Services Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* LeadFlow Chatbot */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="group relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="flex items-center gap-6 mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">LeadFlow Chatbot</h3>
-                    <p className="text-purple-300 font-semibold">$1,500 setup + $400/mo</p>
-                  </div>
-                </div>
-                
-                <p className="text-slate-300 mb-8 leading-relaxed">
-                  Your 24/7 AI sales assistant that captures leads, books calls, and nurtures prospects while you sleep.
-                </p>
-                
-                <div className="space-y-3 mb-8">
-                  {[
-                    "24/7 lead capture and qualification",
-                    "Automatic call booking and reminders", 
-                    "CRM integration and follow-up automation",
-                    "Multi-language support",
-                    "Weekly optimization and reporting"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <CheckCircle className="w-3 h-3 text-white" />
-                      </div>
-                      <span className="text-slate-300">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="flex gap-3">
-                  <StripeCheckoutButton className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-purple-500/25 transition-all duration-300">
-                    Get Started
-                  </StripeCheckoutButton>
-                  <Button 
-                    variant="ghost" 
-                    size="md"
-                    onClick={() => router.push('/contact')}
-                  >
-                    Contact Us
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Website Development */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-              className="group relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="flex items-center gap-6 mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Website Development</h3>
-                    <p className="text-blue-300 font-semibold">Starting at $2,000</p>
-                  </div>
-                </div>
-                
-                <p className="text-slate-300 mb-8 leading-relaxed">
-                  Custom websites built with modern technologies that convert visitors into customers.
-                </p>
-                
-                <div className="space-y-3 mb-8">
-                  {[
-                    "Responsive design for all devices",
-                    "SEO optimization and fast loading",
-                    "Modern animations and interactions",
-                    "LeadFlow Chatbot integration available",
-                    "Ongoing support and maintenance"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <CheckCircle className="w-3 h-3 text-white" />
-                      </div>
-                      <span className="text-slate-300">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="flex gap-3">
-                  <Link
-                    href="/services/website-development"
-                    className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-blue-500/25 transition-all duration-300 text-center"
-                  >
-                    View Packages
-                  </Link>
-                  <Button 
-                    variant="ghost" 
-                    size="md"
-                    onClick={() => router.push('/contact')}
-                  >
-                    Quote
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Features Showcase */}
-      <section id="features" className="relative py-24 px-6 bg-gradient-to-br from-gray-900/40 via-slate-900/20 to-gray-800/40">
-        {/* Visual Anchor - Diagonal Divider */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 20%, #10b981 1px, transparent 1px),
-                            radial-gradient(circle at 80% 80%, #3b82f6 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            backgroundPosition: '0 0, 25px 25px'
-          }}></div>
-        </div>
-        <div className="max-w-8xl mx-auto">
-          <motion.div 
-            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 backdrop-blur-sm border border-emerald-500/20 mb-8">
-              <span className="text-sm font-medium text-emerald-300 tracking-wide">Why Choose LeadFlow</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-              Advanced <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">AI Technology</span>
-            </h2>
-            
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Designed specifically for lead generation and sales conversion
-            </p>
-          </motion.div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: Clock,
-                title: "24/7 Availability",
-                description: "Never miss a lead again. Our AI works around the clock to capture and qualify prospects even while you sleep.",
-                color: "from-purple-500 to-pink-500"
+                icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                title: "Proven Technology",
+                description: "Built with Next.js, React, and cutting-edge AI that actually works in the real world."
               },
               {
-                icon: Shield,
-                title: "Smart Lead Capture",
-                description: "Intelligently captures contact information and qualifies leads before sending them to your CRM system.",
-                color: "from-blue-500 to-cyan-500"
+                icon: "M13 10V3L4 14h7v7l9-11h-7z",
+                title: "Fast Implementation",
+                description: "Get your AI chatbot running in 1-2 weeks, not months. We move fast and deliver results."
               },
               {
-                icon: Zap,
-                title: "Auto Booking",
-                description: "Seamlessly books discovery calls directly to your calendar with automatic reminders and follow-ups.",
-                color: "from-emerald-500 to-teal-500"
+                icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z",
+                title: "Risk-Free Trial",
+                description: "14-day trial period. If you&apos;re not satisfied, you only pay the setup fee."
               }
-            ].map((feature, index) => (
-              <motion.div 
-                key={index}
-                initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-                whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-                className="group relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color}/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                <div className="relative z-10">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-purple-300 transition-colors duration-300 leading-tight">
-                    {feature.title}
-                  </h3>
-                  
-                  <p className="text-slate-300 leading-relaxed group-hover:text-white transition-colors duration-300 font-light">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Portfolio Section */}
-      <section id="portfolio" className="relative py-24 px-6 bg-gradient-to-br from-slate-800/30 via-gray-900/20 to-slate-900/30">
-        {/* Visual Anchor - Diagonal Divider */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `conic-gradient(from 0deg at 50% 50%, #f59e0b 0deg, transparent 60deg, #3b82f6 120deg, transparent 180deg, #8b5cf6 240deg, transparent 300deg)`,
-            backgroundSize: '60px 60px'
-          }}></div>
-        </div>
-        <div className="max-w-8xl mx-auto">
-          <motion.div 
-            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/10 to-red-500/10 backdrop-blur-sm border border-orange-500/20 mb-8">
-              <span className="text-sm font-medium text-orange-300 tracking-wide">Our Work</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">What We</span> Build
-            </h2>
-            
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Examples of the types of solutions we create for businesses like yours
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Case Study 1 */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 overflow-hidden"
-            >
-              <div className="aspect-video bg-gradient-to-br from-purple-500/10 to-pink-500/10 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">E-commerce Store</h3>
-                  <p className="text-slate-400 text-sm">LeadFlow Chatbot Integration</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-lg font-bold text-white mb-3">E-commerce Solution</h4>
-                <p className="text-slate-300 mb-3 leading-relaxed text-sm">
-                  <strong className="text-white">Challenge:</strong> E-commerce stores often miss visitors who need help with products
-                </p>
-                <p className="text-slate-300 mb-3 leading-relaxed text-sm">
-                  <strong className="text-white">Our Solution:</strong> LeadFlow Chatbot with product recommendations and cart recovery
-                </p>
-                <p className="text-slate-300 mb-4 leading-relaxed text-sm">
-                  <strong className="text-white">Expected Impact:</strong> Higher conversion rates and reduced cart abandonment
-                </p>
-                <div className="flex items-center gap-2 text-purple-300 font-semibold text-sm">
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Case Study 2 */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 overflow-hidden"
-            >
-              <div className="aspect-video bg-gradient-to-br from-blue-500/10 to-indigo-500/10 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Service Business</h3>
-                  <p className="text-slate-400 text-sm">Complete Website Redesign</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-lg font-bold text-white mb-3">Service Business Solution</h4>
-                <p className="text-slate-300 mb-3 leading-relaxed text-sm">
-                  <strong className="text-white">Challenge:</strong> Service businesses need fast, professional websites that convert
-                </p>
-                <p className="text-slate-300 mb-3 leading-relaxed text-sm">
-                  <strong className="text-white">Our Solution:</strong> Modern Next.js website with LeadFlow integration
-                </p>
-                <p className="text-slate-300 mb-4 leading-relaxed text-sm">
-                  <strong className="text-white">Expected Impact:</strong> Faster loading, better user experience, more leads
-                </p>
-                <div className="flex items-center gap-2 text-blue-300 font-semibold text-sm">
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Case Study 3 */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 overflow-hidden"
-            >
-              <div className="aspect-video bg-gradient-to-br from-emerald-500/10 to-teal-500/10 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="w-14 h-14 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">SaaS Company</h3>
-                  <p className="text-slate-400 text-sm">Full Stack Solution</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-lg font-bold text-white mb-3">SaaS Solution</h4>
-                <p className="text-slate-300 mb-3 leading-relaxed text-sm">
-                  <strong className="text-white">Challenge:</strong> SaaS companies need to convert trial users to paid customers
-                </p>
-                <p className="text-slate-300 mb-3 leading-relaxed text-sm">
-                  <strong className="text-white">Our Solution:</strong> Website + LeadFlow for qualification & nurturing
-                </p>
-                <p className="text-slate-300 mb-4 leading-relaxed text-sm">
-                  <strong className="text-white">Expected Impact:</strong> Better trial qualification and higher conversion rates
-                </p>
-                <div className="flex items-center gap-2 text-emerald-300 font-semibold text-sm">
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Value Proposition */}
-      <section className="relative py-24 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.div 
-            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10"
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 mb-8">
-              <span className="text-sm font-medium text-purple-300 tracking-wide">Ready to Transform?</span>
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-8 leading-tight">
-              Transform Your Website Into a
-            </h2>
-            
-            <div className="text-4xl md:text-6xl font-black mb-12">
-              <motion.span 
-                key={currentValueProp}
-                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent inline-block"
-              >
-                {valueProps[currentValueProp]}
-              </motion.span>
-            </div>
-            
-            <p className="text-xl text-slate-300 mb-12 leading-relaxed font-light max-w-3xl mx-auto">
-              Experience the power of AI to automate lead generation, qualify prospects, and book more sales calls.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button
-                variant="secondary"
-                size="lg"
-                icon={<Zap className="w-5 h-5" />}
-                iconPosition="left"
-                onClick={() => router.push('/contact')}
-              >
-                Get Started
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-
-      {/* Premium Trust Indicators */}
-      <section className="relative py-24 px-6">
-        <div className="max-w-8xl mx-auto">
-          <motion.div 
-            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 backdrop-blur-sm border border-emerald-500/20 mb-8">
-              <span className="text-sm font-medium text-emerald-300 tracking-wide">Built for Success</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-              Why LeadFlow is the <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Smart Choice</span>
-            </h2>
-            
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Professional-grade AI technology designed to deliver real business results
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Shield, title: "Secure", description: "Enterprise-grade security and privacy protection" },
-              { icon: Zap, title: "Scalable", description: "Grows with your business needs and traffic" },
-              { icon: CheckCircle, title: "Reliable", description: "99.9% uptime with dedicated support" },
-              { icon: Clock, title: "Fast", description: "Lightning-fast responses and instant setup" }
             ].map((item, index) => (
               <motion.div 
                 key={index}
@@ -922,10 +457,12 @@ export default function Home() {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-                className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105"
+                className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500"
               >
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <item.icon className="w-8 h-8 text-white" />
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                  </svg>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-4 leading-tight">{item.title}</h3>
                 <p className="text-slate-300 leading-relaxed">{item.description}</p>
@@ -935,131 +472,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Works With Integration Strip */}
-      <WorksWithStrip reduceMotion={!!reduceMotion} />
-
-      {/* Premium Trust & Credibility */}
+      {/* Single CTA Section - Simplified */}
       <section className="relative py-24 px-6">
-        <div className="max-w-8xl mx-auto">
-          <motion.div 
-            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/10 to-red-500/10 backdrop-blur-sm border border-orange-500/20 mb-8">
-              <span className="text-sm font-medium text-orange-300 tracking-wide">Why Choose Us</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-              Built on <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Integrity</span> & Excellence
-            </h2>
-            
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              We&apos;re committed to honesty, transparency, and delivering real results for our clients
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Trust Factor 1 */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 p-6"
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
-                  <CheckCircle className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-white">100% Transparent</h4>
-                  <p className="text-purple-300 font-semibold text-sm">No Hidden Fees</p>
-                </div>
-              </div>
-              
-              <p className="text-slate-300 leading-relaxed mb-6">
-                Clear, upfront pricing with no surprises. What you see is what you pay, period.
-              </p>
-              
-              <div className="text-purple-300 font-semibold text-sm">
-                ✓ Honest pricing, clear contracts
-              </div>
-            </motion.div>
-
-            {/* Trust Factor 2 */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 p-6"
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mr-4">
-                  <Zap className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-white">Proven Technology</h4>
-                  <p className="text-blue-300 font-semibold text-sm">Modern Stack</p>
-                </div>
-              </div>
-              
-              <p className="text-slate-300 leading-relaxed mb-6">
-                Built with Next.js, React, and cutting-edge AI technology that actually works.
-              </p>
-              
-              <div className="text-blue-300 font-semibold text-sm">
-                ✓ Latest tech, reliable results
-              </div>
-            </motion.div>
-
-            {/* Trust Factor 3 */}
-            <motion.div 
-              initial={reduceMotion ? false : { opacity: 0, y: 30 }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 p-6"
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-14 h-14 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mr-4">
-                  <Shield className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-white">Dedicated Support</h4>
-                  <p className="text-emerald-300 font-semibold text-sm">7 Hours Monthly</p>
-                </div>
-              </div>
-              
-              <p className="text-slate-300 leading-relaxed mb-6">
-                Personal attention and ongoing optimization to ensure your success.
-              </p>
-              
-              <div className="text-emerald-300 font-semibold text-sm">
-                ✓ Real human support, not just software
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Final CTA */}
-      <section id="cta" className="relative py-24 px-6 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-indigo-900/20">
-        {/* Visual Anchor - Diagonal Divider */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(30deg, #3b82f6 1px, transparent 1px),
-                            linear-gradient(-30deg, #8b5cf6 1px, transparent 1px)`,
-            backgroundSize: '80px 80px',
-            backgroundPosition: '0 0, 40px 40px'
-          }}></div>
-        </div>
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div 
             initial={reduceMotion ? false : { opacity: 0, y: 30 }}
             whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
@@ -1067,28 +482,32 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-12 border border-purple-500/20"
           >
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-8">
-              Ready to Transform Your Business?
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+              Ready to Get Started?
             </h2>
             
-            <p className="text-xl text-slate-300 mb-12 leading-relaxed font-light max-w-3xl mx-auto">
-              Join the growing number of businesses using AI to accelerate growth and create lasting impact.
+            <p className="text-xl text-slate-300 mb-8 leading-relaxed font-medium max-w-2xl mx-auto">
+              Book a 15-minute discovery call. We&apos;ll learn about your business and show you exactly how LeadFlow can help.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button
-                variant="primary"
-                size="lg"
-                icon={<Sparkles className="w-5 h-5" />}
-                iconPosition="left"
-                onClick={() => router.push('/contact')}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button 
+                onClick={() => window.location.href = '/contact'}
+                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
               >
-                Get Started
-              </Button>
+                Book Discovery Call
+              </button>
+              <button 
+                onClick={() => window.location.href = '/pricing'}
+                className="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300"
+              >
+                View Pricing
+              </button>
             </div>
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 }
