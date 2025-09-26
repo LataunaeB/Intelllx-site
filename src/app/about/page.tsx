@@ -72,7 +72,7 @@ export default function About() {
               </h2>
               <p className="text-xl text-gray-200 leading-relaxed font-medium mb-8">
                 At INTELLLX, we believe that artificial intelligence should serve humanity&apos;s greatest needs. 
-                We&apos;re not just building chatbots and websites—we&apos;re creating tools that empower businesses 
+                We&apos;re not just building chatbots and websites, we&apos;re creating tools that empower businesses 
                 to thrive while maintaining the highest standards of ethical business practices.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed font-medium">
