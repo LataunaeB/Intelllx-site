@@ -447,8 +447,8 @@ export default function Home() {
               },
               {
                 icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z",
-                title: "Risk-Free Trial",
-                description: "14-day trial period. If you&apos;re not satisfied, you only pay the setup fee."
+                title: "Professional Setup",
+                description: "Expert implementation with custom conversation flows tailored to your business needs."
               }
             ].map((item, index) => (
               <motion.div 
@@ -487,7 +487,7 @@ export default function Home() {
             </h2>
             
             <p className="text-xl text-slate-300 mb-8 leading-relaxed font-medium max-w-2xl mx-auto">
-              Book a 15-minute discovery call. We&apos;ll learn about your business and show you exactly how LeadFlow can help.
+              Book a 15-minute discovery call. We&apos;ll learn about your business and show you exactly how LeadFlow will transform your lead generation.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

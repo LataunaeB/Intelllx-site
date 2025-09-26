@@ -33,7 +33,7 @@ export default function Pricing() {
             Founding Client Pricing
           </h2>
           <p className="text-lg text-gray-300 mb-6">
-            Get 40% off our regular rates for the first 3 months only
+            Premium AI development at accessible pricing - limited time offer
           </p>
           <CountdownTimer endDate={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)} />
         </div>

@@ -269,13 +269,13 @@ export const copy = {
         title: "SaaS",
         description: "Software companies, tech startups, and digital platforms",
         flows: [
-          "Trial qualification",
+          "Lead qualification",
           "Feature consultations",
           "Pricing inquiries",
           "Technical support"
         ],
         benefits: [
-          "Qualify trial users",
+          "Qualify prospects",
           "Reduce sales cycle",
           "Provide instant consultations",
           "Handle technical questions"
@@ -414,7 +414,7 @@ export const copy = {
       },
       {
         question: "Can I try LeadFlow before committing?",
-        answer: "Yes, we offer a 14-day trial period after setup. You can test the full functionality with your actual website traffic. If you're not satisfied, you only pay the setup fee."
+        answer: "We provide a comprehensive discovery call where we learn about your business and show you exactly how LeadFlow will work for your specific needs. Our professional setup ensures you get a custom solution that delivers results from day one."
       }
     ],
     cta: {
