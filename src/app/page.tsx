@@ -429,7 +429,7 @@ export default function Home() {
             </h2>
             
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
-              We&apos;re new, but we bring fresh perspective and cutting-edge AI expertise to solve your lead generation challenges
+              We bring cutting-edge AI expertise and proven technology to solve your lead generation challenges
             </p>
           </motion.div>
           
