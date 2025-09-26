@@ -40,7 +40,7 @@ export default function About() {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium mb-12">
-            We're a purpose-driven AI company dedicated to building sustainable business success through innovation, integrity, and impact.
+            We&apos;re a purpose-driven AI company dedicated to building sustainable business success through innovation, integrity, and impact.
           </p>
 
           {/* Hero Image */}
@@ -71,13 +71,13 @@ export default function About() {
                 Our <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Mission</span>
               </h2>
               <p className="text-xl text-gray-200 leading-relaxed font-medium mb-8">
-                At INTELLLX, we believe that artificial intelligence should serve humanity's greatest needs. 
-                We're not just building chatbots and websites—we're creating tools that empower businesses 
+                At INTELLLX, we believe that artificial intelligence should serve humanity&apos;s greatest needs. 
+                We&apos;re not just building chatbots and websites—we&apos;re creating tools that empower businesses 
                 to thrive while maintaining the highest standards of ethical business practices.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed font-medium">
                 Our mission is to democratize AI technology, making it accessible to businesses of all sizes 
-                while ensuring that every solution we create adds genuine value to our clients' success.
+                while ensuring that every solution we create adds genuine value to our clients&apos; success.
               </p>
             </div>
             <div className="relative">
@@ -118,7 +118,7 @@ export default function About() {
               {
                 icon: Lightbulb,
                 title: "Innovation",
-                description: "We constantly push the boundaries of what's possible with AI technology, always seeking better ways to solve business challenges."
+                description: "We constantly push the boundaries of what&apos;s possible with AI technology, always seeking better ways to solve business challenges."
               },
               {
                 icon: CheckCircle,
@@ -128,7 +128,7 @@ export default function About() {
               {
                 icon: Target,
                 title: "Impact",
-                description: "Every solution we create is designed to make a meaningful difference in our clients' success and growth."
+                description: "Every solution we create is designed to make a meaningful difference in our clients&apos; success and growth."
               }
             ].map((value, index) => (
               <div key={index} className="card p-8 group">
@@ -158,7 +158,7 @@ export default function About() {
                 <h3 className="text-3xl font-bold text-white mb-6">Our Story</h3>
                 <p className="text-lg text-gray-200 leading-relaxed font-medium mb-6">
                   INTELLLX was born from a simple observation: too many businesses were missing out on 
-                  opportunities because they couldn't be available 24/7 to capture leads and engage with prospects.
+                  opportunities because they couldn&apos;t be available 24/7 to capture leads and engage with prospects.
                 </p>
                 <p className="text-lg text-gray-200 leading-relaxed font-medium mb-6">
                   We saw the potential of AI to solve this problem, but we also saw that most AI solutions 
@@ -176,7 +176,7 @@ export default function About() {
               </h2>
               <p className="text-xl text-gray-200 leading-relaxed font-medium mb-8">
                 We believe that every business, regardless of size, should have access to the same 
-                powerful AI technology that's transforming the world's largest companies.
+                powerful AI technology that&apos;s transforming the world&apos;s largest companies.
               </p>
               <div className="space-y-4">
                 {[
@@ -229,7 +229,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </section>
+    </section>
     </div>
   );
 }

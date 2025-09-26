@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { site } from '@/config/site';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, X, Minimize2, Maximize2, Bot, MessageCircle } from 'lucide-react';
+import { Send, X, Minimize2, Maximize2, Bot } from 'lucide-react';
 
 interface Message {
   id: number;
