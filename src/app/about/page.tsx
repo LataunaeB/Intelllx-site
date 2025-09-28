@@ -22,9 +22,9 @@ export default function About() {
 
       {/* Hero Section */}
       <section className="relative container-max section-padding">
-        <div className="text-center">
+        <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Label */}
-          <div className="eyebrow-label mb-6">
+          <div className="eyebrow-label mb-8">
             <span className="h-1.5 w-1.5 rounded-full bg-[--accent]"></span>
             <span>About INTELLLX</span>
           </div>
@@ -39,24 +39,40 @@ export default function About() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium mb-12">
+          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-medium mb-16">
             We&apos;re a purpose-driven AI company dedicated to building sustainable business success through innovation, integrity, and impact.
           </p>
 
-          {/* Hero Image */}
-          <div className="relative max-w-5xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/about/ai-innovation.jpg"
-                alt="AI Innovation - Purpose-driven technology for business success"
-                width={1200}
-                height={600}
-                className="w-full h-auto transition-all duration-700 group-hover:scale-105"
-                priority={true}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          {/* Additional Value Proposition */}
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="space-y-2">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white">Fast Implementation</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">Get your AI chatbot running in 1-2 weeks, not months</p>
+            </div>
+            
+            <div className="space-y-2">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white">Proven Technology</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">Built with Next.js, React, and cutting-edge AI</p>
+            </div>
+            
+            <div className="space-y-2">
+              <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mx-auto">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white">Custom Solutions</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">Tailored specifically to your business needs</p>
             </div>
           </div>
         </div>
