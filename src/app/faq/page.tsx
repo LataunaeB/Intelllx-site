@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import { pricing } from "@/config/pricing";
 import { Button } from "@/components/ui/Button";
 import { HelpCircle, MessageCircle } from "lucide-react";
 
@@ -15,7 +16,7 @@ const faqs = [
       },
       {
         question: "How much does LeadFlow Chatbot cost?",
-        answer: "LeadFlow costs $1,500 for setup (one-time) plus $400/month for hosting and optimization. The setup includes custom conversation design, knowledge training, branding, CRM integration, and deployment. Monthly includes weekly optimization, reports, and up to 7 hours of support."
+        answer: `LeadFlow costs ${pricing.products.chatbot.pro.priceDisplay} for setup (one-time) plus ${pricing.products.chatbot.pro.monthlyService.priceDisplay} for hosting and optimization. The setup includes custom conversation design, knowledge training, branding, CRM integration, and deployment. Monthly includes weekly optimization, reports, and up to 7 hours of support.`
       },
       {
         question: "How long does it take to set up LeadFlow?",
@@ -61,7 +62,7 @@ const faqs = [
       },
       {
         question: "How much does website development cost?",
-        answer: "Website development starts at $2,000 for basic sites and can range up to $10,000+ for complex e-commerce or custom applications. Pricing depends on the number of pages, features, integrations, and design complexity. We provide detailed quotes after understanding your specific needs."
+        answer: `Website development starts at ${pricing.products.website.launch.priceDisplay} for basic sites and can range up to ${pricing.products.website.advanced.priceDisplay}+ for complex e-commerce or custom applications. Pricing depends on the number of pages, features, integrations, and design complexity. We provide detailed quotes after understanding your specific needs.`
       },
       {
         question: "How long does it take to build a website?",

@@ -1,54 +1,32 @@
 "use client";
 import Link from "next/link";
+import { pricing } from "@/config/pricing";
 
 export default function WebsiteDevelopment() {
   const tiers = [
     {
-      name: "Starter Website",
-      price: "$2,000",
+      name: pricing.products.website.launch.name,
+      price: pricing.products.website.launch.priceDisplay,
       description: "Perfect for small businesses and startups",
-      features: [
-        "5-7 pages (Home, About, Services, Contact, etc.)",
-        "Responsive design for all devices",
-        "Contact forms and lead capture",
-        "Basic SEO optimization",
-        "Fast loading speeds",
-        "2 weeks delivery",
-        "1 month of support"
-      ],
-      popular: false
+      features: pricing.products.website.launch.features,
+      popular: false,
+      stripeLink: pricing.products.website.launch.stripeLink
     },
     {
-      name: "Professional Website",
-      price: "$4,500",
+      name: pricing.products.website.professional.name,
+      price: pricing.products.website.professional.priceDisplay,
       description: "Ideal for growing businesses",
-      features: [
-        "10-15 pages with custom layouts",
-        "Advanced animations and effects",
-        "Custom integrations and APIs",
-        "Advanced SEO optimization",
-        "Analytics and tracking setup",
-        "Content management system",
-        "3-4 weeks delivery",
-        "3 months of support"
-      ],
-      popular: true
+      features: pricing.products.website.professional.features,
+      popular: true,
+      stripeLink: pricing.products.website.professional.stripeLink
     },
     {
-      name: "Enterprise Website",
-      price: "$8,000+",
+      name: pricing.products.website.advanced.name,
+      price: pricing.products.website.advanced.priceDisplay,
       description: "For large businesses with complex needs",
-      features: [
-        "Unlimited pages and custom functionality",
-        "E-commerce integration",
-        "Advanced user management",
-        "Custom database solutions",
-        "Multi-language support",
-        "Advanced security features",
-        "6-8 weeks delivery",
-        "6 months of support"
-      ],
-      popular: false
+      features: pricing.products.website.advanced.features,
+      popular: false,
+      stripeLink: pricing.products.website.advanced.stripeLink
     }
   ];
 
@@ -175,34 +153,14 @@ export default function WebsiteDevelopment() {
                   ))}
                 </ul>
 
-                {index === 0 ? (
-                  <a
-                    href="https://buy.stripe.com/5kQ7sLh1K69dbs7f36aEE02"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block text-center py-4 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl hover:shadow-purple-500/25"
-                  >
-                    Buy Now - $2,000
-                  </a>
-                ) : index === 1 ? (
-                  <a
-                    href="https://buy.stripe.com/7sY5kD3aU4150Nt9IMaEE03"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block text-center py-4 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl hover:shadow-purple-500/25"
-                  >
-                    Buy Now - $4,500
-                  </a>
-                ) : (
-                  <a
-                    href="https://buy.stripe.com/8x23cv26Q7dh9jZf36aEE04"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block text-center py-4 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl hover:shadow-purple-500/25"
-                  >
-                    Buy Now - $8,000
-                  </a>
-                )}
+                <a
+                  href={tier.stripeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block text-center py-4 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl hover:shadow-purple-500/25"
+                >
+                  {pricing.ctaLabels.getStarted}
+                </a>
               </div>
             ))}
           </div>

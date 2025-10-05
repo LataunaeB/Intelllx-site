@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { pricing } from '@/config/pricing';
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,7 +28,7 @@ export async function POST(request: NextRequest) {
               name: 'LeadFlow Chatbot Setup',
               description: 'Complete setup includes: Custom conversation design, knowledge base training, branding integration, embed installation, calendar/CRM integration, notifications setup, QA testing, and live training session.',
             },
-            unit_amount: 150000, // $1,500.00 in cents
+            unit_amount: pricing.products.chatbot.pro.price * 100, // Convert to cents
           },
           quantity: 1,
         },
@@ -36,9 +37,9 @@ export async function POST(request: NextRequest) {
       cancel_url: `${request.nextUrl.origin}/pricing`,
       metadata: {
         service: 'LeadFlow Chatbot',
-        setup_fee: '1500',
-        monthly_fee: '400',
-        note: 'Monthly fee of $400 will be set up after initial setup is complete',
+        setup_fee: pricing.products.chatbot.pro.price.toString(),
+        monthly_fee: pricing.products.chatbot.pro.monthlyService.price.toString(),
+        note: `Monthly fee of ${pricing.products.chatbot.pro.monthlyService.priceDisplay} will be set up after initial setup is complete`,
       },
       // Allow customer to update payment method
       allow_promotion_codes: true,

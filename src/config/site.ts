@@ -1,4 +1,6 @@
 // src/config/site.ts
+import { pricing } from "./pricing";
+
 export const site = {
   name: "Intelllx",
   email: "hello@intelllx.com",
@@ -49,7 +51,7 @@ export const site = {
     {
       title: "LeadFlow Chatbot",
       blurb: "Everything you need to turn website visitors into paying customers with a personal touch that never sleeps",
-      price: "$1,500 setup + $400/mo",
+      price: `${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
       setup: {
         title: "Setup includes:",
         items: [
@@ -72,13 +74,13 @@ export const site = {
       },
       cta: {
         label: "Get the Chatbot",
-        href: "https://buy.stripe.com/cNi6oHh1K69d7bRcUYaEE00",  
+        href: pricing.products.chatbot.pro.stripeLink,  
       },
     },
     {
       title: "Website Development",
       blurb: "Custom websites that convert visitors into customers with modern design and seamless functionality",
-      price: "Starting at $2,000",
+      price: `Starting at ${pricing.products.website.launch.priceDisplay}`,
       setup: {
         title: "What's included:",
         items: [

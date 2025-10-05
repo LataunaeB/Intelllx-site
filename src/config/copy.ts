@@ -1,3 +1,5 @@
+import { pricing } from "./pricing";
+
 export const copy = {
   brandTagline: "Websites and chatbots that simply get you booked.",
   
@@ -293,8 +295,8 @@ export const copy = {
   pricing: {
     heading: "Premium AI at Platform Pricing",
     subhead: "Custom AI development that typically costs $75,000+—available at accessible pricing",
-    leadflowSetup: "Professional Setup — $1,500 (one-time)",
-    leadflowSub: "Custom AI Platform — $400/mo",
+    leadflowSetup: `Professional Setup — ${pricing.products.chatbot.pro.priceDisplay} (one-time)`,
+    leadflowSub: `Custom AI Platform — ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
     note: "Compare to $75,000+ custom development or $3,000+/month enterprise platforms. We deliver premium results at accessible pricing.",
     cta: {
       primary: "Get started",
@@ -394,7 +396,7 @@ export const copy = {
       },
       {
         question: "Do you offer ongoing support and optimization?",
-        answer: "Yes, our $400/month platform plan includes weekly optimization reports, conversation reviews, missed-lead analysis, and prompt updates. We also provide email support and monthly strategy calls."
+        answer: `Yes, our ${pricing.products.chatbot.pro.monthlyService.priceDisplay} platform plan includes weekly optimization reports, conversation reviews, missed-lead analysis, and prompt updates. We also provide email support and monthly strategy calls.`
       },
       {
         question: "What if my chatbot needs changes after launch?",
