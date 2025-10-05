@@ -67,9 +67,14 @@ export default function Pricing() {
               </div>
             </div>
             
-            <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
+            <a
+              href="https://buy.stripe.com/14A9ATh1K9lp7bR3koaEE05"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center justify-center"
+            >
               Get Started
-            </button>
+            </a>
           </div>
 
           {/* Chatbot · Pro */}
@@ -98,9 +103,14 @@ export default function Pricing() {
               </div>
             </div>
             
-            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300">
+            <a
+              href="https://buy.stripe.com/aFacN5eTC7dh7bR2gkaEE06"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 inline-flex items-center justify-center"
+            >
               Get Started
-            </button>
+            </a>
           </div>
 
           {/* Website · Launch */}
@@ -129,9 +139,14 @@ export default function Pricing() {
               </div>
             </div>
             
-            <button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300">
+            <a
+              href="https://buy.stripe.com/9B65kDaDm4158fVbQUaEE07"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 inline-flex items-center justify-center"
+            >
               Get Started
-            </button>
+            </a>
           </div>
 
           {/* Website · Professional/Business */}
@@ -160,9 +175,14 @@ export default function Pricing() {
               </div>
             </div>
             
-            <button className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300">
+            <a
+              href="https://buy.stripe.com/bJe5kD12Mbtx2VB3koaEE08"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center"
+            >
               Get Started
-            </button>
+            </a>
           </div>
 
           {/* Website · Advanced */}
@@ -191,9 +211,14 @@ export default function Pricing() {
               </div>
             </div>
             
-            <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300">
+            <a
+              href="https://buy.stripe.com/bJe7sL6n61SXfIn2gkaEE09"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 inline-flex items-center justify-center"
+            >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
 
