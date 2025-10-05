@@ -6,6 +6,11 @@ interface GoogleAnalyticsProps {
 }
 
 export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
+  // Only load GA4 in production
+  if (process.env.NODE_ENV !== 'production') {
+    return null;
+  }
+
   return (
     <>
       <Script
@@ -18,6 +23,8 @@ export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps)
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${measurementId}', {
+            anonymize_ip: true,
+            respect_dnt: true,
             page_title: document.title,
             page_location: window.location.href,
           });
