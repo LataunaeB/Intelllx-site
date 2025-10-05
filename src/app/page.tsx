@@ -5,6 +5,7 @@ import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 import Image from "next/image";
 import WhyLeadFlowBand from "@/components/marketing/WhyLeadFlowBand";
 import { copy } from "@/config/copy";
+import { pricing } from "@/config/pricing";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Sparkles, Zap, Shield, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -503,7 +504,7 @@ export default function Home() {
               },
               {
                 question: "Do you offer ongoing support after setup?",
-                answer: "Yes! We provide ongoing support for $400/month, which includes hosting, maintenance, performance monitoring, and monthly optimization to keep your chatbot performing at its best."
+                answer: `Yes! We provide ongoing support for ${pricing.products.chatbot.pro.monthlyService.priceDisplay}, which includes hosting, maintenance, performance monitoring, and monthly optimization to keep your chatbot performing at its best.`
               },
               {
                 question: "Can I customize the chatbot's appearance and responses?",
@@ -569,13 +570,13 @@ export default function Home() {
                 onClick={() => window.location.href = '/contact'}
                 className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
               >
-                Book Discovery Call
+                {pricing.ctaLabels.bookDiscovery}
               </button>
               <button 
                 onClick={() => window.location.href = '/pricing'}
                 className="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300"
               >
-                View Pricing
+                {pricing.ctaLabels.viewPricing}
               </button>
             </div>
           </motion.div>
