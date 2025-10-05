@@ -16,7 +16,7 @@ const faqs = [
       },
       {
         question: "How much does LeadFlow Chatbot cost?",
-        answer: `LeadFlow costs ${pricing.products.chatbot.pro.priceDisplay} for setup (one-time) plus ${pricing.products.chatbot.pro.monthlyService.priceDisplay} for hosting and optimization. The setup includes custom conversation design, knowledge training, branding, CRM integration, and deployment. Monthly includes weekly optimization, reports, and up to 7 hours of support.`
+        answer: `Basic — ${pricing.products.chatbot.basic.priceDisplay} (template, up to 5 Q/As) or Pro — ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 15 Q/As with one integration). Monthly is optional: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
       },
       {
         question: "How long does it take to set up LeadFlow?",
@@ -62,7 +62,7 @@ const faqs = [
       },
       {
         question: "How much does website development cost?",
-        answer: `Website development starts at ${pricing.products.website.launch.priceDisplay} for basic sites and can range up to ${pricing.products.website.advanced.priceDisplay}+ for complex e-commerce or custom applications. Pricing depends on the number of pages, features, integrations, and design complexity. We provide detailed quotes after understanding your specific needs.`
+        answer: `Website development: Launch ${pricing.products.website.launch.priceDisplay} (basic sites), Professional ${pricing.products.website.professional.priceDisplay} (growing businesses), Advanced ${pricing.products.website.advanced.priceDisplay} (complex e-commerce or custom applications). Pricing depends on the number of pages, features, integrations, and design complexity. We provide detailed quotes after understanding your specific needs.`
       },
       {
         question: "How long does it take to build a website?",
@@ -120,7 +120,11 @@ const faqs = [
       },
       {
         question: "Do you offer ongoing support and maintenance?",
-        answer: "Yes! LeadFlow includes ongoing optimization and support in the monthly fee. For websites, we offer maintenance packages for updates, security, and performance monitoring. We're here to help your business grow and adapt to changing needs."
+        answer: `Monthly is optional. Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
+      },
+      {
+        question: "Can I start basic and upgrade later?",
+        answer: `Yes. Start Basic — ${pricing.products.chatbot.basic.priceDisplay}, upgrade to Pro — ${pricing.products.chatbot.pro.priceDisplay}, or add a monthly service anytime.`
       },
       {
         question: "How do I get started?",

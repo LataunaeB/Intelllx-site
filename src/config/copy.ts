@@ -396,7 +396,7 @@ export const copy = {
       },
       {
         question: "Do you offer ongoing support and optimization?",
-        answer: `Yes, our ${pricing.products.chatbot.pro.monthlyService.priceDisplay} platform plan includes weekly optimization reports, conversation reviews, missed-lead analysis, and prompt updates. We also provide email support and monthly strategy calls.`
+        answer: `Monthly is optional. Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
       },
       {
         question: "What if my chatbot needs changes after launch?",

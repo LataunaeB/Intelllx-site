@@ -504,7 +504,7 @@ export default function Home() {
               },
               {
                 question: "Do you offer ongoing support after setup?",
-                answer: `Yes! We provide ongoing support for ${pricing.products.chatbot.pro.monthlyService.priceDisplay}, which includes hosting, maintenance, performance monitoring, and monthly optimization to keep your chatbot performing at its best.`
+                answer: `Monthly is optional. Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
               },
               {
                 question: "Can I customize the chatbot's appearance and responses?",
@@ -525,6 +525,14 @@ export default function Home() {
               {
                 question: "How do I know if an AI chatbot is right for my business?",
                 answer: "If you're missing leads, spending too much time on repetitive questions, or want to capture prospects 24/7, an AI chatbot is perfect for you. Book a discovery call and we'll help you decide."
+              },
+              {
+                question: "How much does a chatbot cost?",
+                answer: `Basic — ${pricing.products.chatbot.basic.priceDisplay} (template, up to 5 Q/As) or Pro — ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 15 Q/As with one integration).`
+              },
+              {
+                question: "Can I start basic and upgrade later?",
+                answer: `Yes. Start Basic — ${pricing.products.chatbot.basic.priceDisplay}, upgrade to Pro — ${pricing.products.chatbot.pro.priceDisplay}, or add a monthly service anytime.`
               }
             ].map((faq, index) => (
               <motion.div 

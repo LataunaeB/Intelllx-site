@@ -80,7 +80,7 @@ export const site = {
     {
       title: "Website Development",
       blurb: "Custom websites that convert visitors into customers with modern design and seamless functionality",
-      price: `Starting at ${pricing.products.website.launch.priceDisplay}`,
+      price: `${pricing.products.website.launch.priceDisplay}`,
       setup: {
         title: "What's included:",
         items: [

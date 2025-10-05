@@ -5,7 +5,7 @@ export const pricing = {
       basic: {
         name: "Chatbot · Basic",
         price: 500,
-        priceDisplay: "from $500",
+        priceDisplay: "$500",
         features: [
           "Template setup, up to 5 Q/As",
           "1 website widget, basic analytics",
@@ -44,7 +44,7 @@ export const pricing = {
       launch: {
         name: "Website · Launch",
         price: 500,
-        priceDisplay: "from $500",
+        priceDisplay: "$500",
         features: [
           "1–3 pages (template)",
           "Mobile-responsive, fast load",
@@ -56,7 +56,7 @@ export const pricing = {
       professional: {
         name: "Website · Professional/Business",
         price: 1000,
-        priceDisplay: "from $1,000",
+        priceDisplay: "$1,000",
         features: [
           "4–6 pages (light customization)",
           "Brand-matched sections + micro-polish",
@@ -68,7 +68,7 @@ export const pricing = {
       advanced: {
         name: "Website · Advanced",
         price: 2500,
-        priceDisplay: "from $2,500",
+        priceDisplay: "$2,500",
         features: [
           "7–12 pages or special features",
           "Custom sections + tasteful animations",
@@ -95,7 +95,7 @@ export const pricing = {
     {
       name: "Extra integration",
       price: 300,
-      priceDisplay: "from $300"
+      priceDisplay: "$300"
     }
   ],
   
