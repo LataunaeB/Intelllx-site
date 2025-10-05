@@ -31,7 +31,7 @@ export default function Terms() {
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
               <div className="text-slate-300 space-y-3">
-                <p>By accessing and using INTELLLX's website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+                <p>By accessing and using INTELLLX&apos;s website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ export default function Terms() {
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">8. Indemnification</h2>
               <div className="text-slate-300 space-y-3">
-                <p>You agree to defend, indemnify, and hold harmless INTELLLX and its officers, directors, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including attorney's fees) arising from:</p>
+                <p>You agree to defend, indemnify, and hold harmless INTELLLX and its officers, directors, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including attorney&apos;s fees) arising from:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
                   <li>Your use of our services</li>
                   <li>Your violation of these terms</li>
@@ -139,7 +139,7 @@ export default function Terms() {
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">12. Changes to Terms</h2>
               <div className="text-slate-300 space-y-3">
-                <p>We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new terms on this page and updating the "Last updated" date.</p>
+                <p>We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new terms on this page and updating the &quot;Last updated&quot; date.</p>
                 <p>Your continued use of our services after any modifications constitutes acceptance of the new terms.</p>
               </div>
             </div>

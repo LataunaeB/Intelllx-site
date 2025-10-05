@@ -1,7 +1,7 @@
 "use client";
 import { site } from "@/config/site";
 import { pricing } from "@/config/pricing";
-import { CheckCircle, Star, Zap } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 export default function Pricing() {
 

@@ -110,9 +110,9 @@ export default function Privacy() {
               <div className="text-slate-300 space-y-3">
                 <p>We use third-party services that may collect information:</p>
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li><strong>Stripe:</strong> Payment processing (see Stripe's privacy policy)</li>
-                  <li><strong>Calendly:</strong> Appointment scheduling (see Calendly's privacy policy)</li>
-                  <li><strong>Google Analytics:</strong> Website analytics (see Google's privacy policy)</li>
+                  <li><strong>Stripe:</strong> Payment processing (see Stripe&apos;s privacy policy)</li>
+                  <li><strong>Calendly:</strong> Appointment scheduling (see Calendly&apos;s privacy policy)</li>
+                  <li><strong>Google Analytics:</strong> Website analytics (see Google&apos;s privacy policy)</li>
                   <li><strong>Email Services:</strong> Communication and notifications</li>
                 </ul>
               </div>
@@ -141,7 +141,7 @@ export default function Privacy() {
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">10. Changes to This Policy</h2>
               <div className="text-slate-300 space-y-3">
-                <p>We may update this privacy policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the "Last updated" date.</p>
+                <p>We may update this privacy policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the &quot;Last updated&quot; date.</p>
               </div>
             </div>
 
