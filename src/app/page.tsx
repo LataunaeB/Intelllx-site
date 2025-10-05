@@ -472,6 +472,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="relative py-24 px-6 bg-gradient-to-br from-slate-900/30 via-gray-900/20 to-slate-800/30">
+        <div className="max-w-4xl mx-auto">
+          <motion.div 
+            initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+              Frequently Asked <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Questions</span>
+            </h2>
+            
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium">
+              Everything you need to know about our AI chatbot and web development services
+            </p>
+          </motion.div>
+          
+          <div className="space-y-6">
+            {[
+              {
+                question: "How long does it take to build and deploy my AI chatbot?",
+                answer: "Most chatbots are built and deployed within 1-2 weeks. This includes custom training, integration with your website, and testing to ensure everything works perfectly."
+              },
+              {
+                question: "What's included in the setup fee?",
+                answer: "The setup fee covers custom AI training, website integration, initial conversation flow design, testing, and deployment. You also get 30 days of optimization support to fine-tune performance."
+              },
+              {
+                question: "Do you offer ongoing support after setup?",
+                answer: "Yes! We provide ongoing support for $400/month, which includes hosting, maintenance, performance monitoring, and monthly optimization to keep your chatbot performing at its best."
+              },
+              {
+                question: "Can I customize the chatbot's appearance and responses?",
+                answer: "Absolutely! We customize everything to match your brand - colors, fonts, conversation style, and responses. The chatbot will feel like a natural extension of your business."
+              },
+              {
+                question: "What happens after I purchase a service?",
+                answer: "You'll receive a welcome email with next steps, we'll schedule a discovery call to understand your needs, then begin development. You'll get regular updates throughout the process."
+              },
+              {
+                question: "Do you work with businesses in my industry?",
+                answer: "Yes! We work with businesses across all industries - from SaaS companies to local services. Our AI adapts to your specific industry language and customer needs."
+              },
+              {
+                question: "What if I need changes after the chatbot is live?",
+                answer: "We include 1-2 revisions in our setup process, and ongoing optimization is part of the monthly support. We're here to help your chatbot evolve with your business."
+              },
+              {
+                question: "How do I know if an AI chatbot is right for my business?",
+                answer: "If you're missing leads, spending too much time on repetitive questions, or want to capture prospects 24/7, an AI chatbot is perfect for you. Book a discovery call and we'll help you decide."
+              }
+            ].map((faq, index) => (
+              <motion.div 
+                key={index}
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold text-white mb-3 leading-tight">
+                  {faq.question}
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Single CTA Section - Simplified */}
       <section className="relative py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
