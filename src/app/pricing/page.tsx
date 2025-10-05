@@ -1,8 +1,6 @@
 "use client";
 import { site } from "@/config/site";
 import { pricing } from "@/config/pricing";
-import StripeCheckoutButton from "@/components/StripeCheckoutButton";
-import Link from "next/link";
 import { CheckCircle, Star, Zap } from "lucide-react";
 
 export default function Pricing() {

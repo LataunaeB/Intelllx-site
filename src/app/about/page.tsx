@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { CheckCircle, Zap, Target, Users, Lightbulb } from "lucide-react";
 
 export default function About() {

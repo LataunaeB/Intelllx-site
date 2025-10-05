@@ -8,6 +8,7 @@ import Image from "next/image";
 import Head from "next/head";
 import ProgressIndicator from "@/components/ui/ProgressIndicator";
 import ScrollspyProvider from "@/components/ui/ScrollspyProvider";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const script = Great_Vibes({
   weight: "400",
@@ -39,6 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </Head>
       <body className="min-h-screen flex flex-col">
+        {/* Google Analytics - Replace with your actual GA4 Measurement ID */}
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
         <header className="sticky top-0 z-50 transition-all duration-300">
           <div className="absolute inset-0 bg-white border-b border-gray-200 shadow-lg"></div>
           <div className="relative mx-auto max-w-7xl px-4 py-4 flex items-center justify-between min-h-[80px]">

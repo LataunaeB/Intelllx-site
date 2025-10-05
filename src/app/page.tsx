@@ -1,23 +1,16 @@
 "use client";
-import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
-import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 import Image from "next/image";
 import WhyLeadFlowBand from "@/components/marketing/WhyLeadFlowBand";
 import { copy } from "@/config/copy";
 import { pricing } from "@/config/pricing";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Sparkles, Zap, Shield, Clock, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { useRouter } from "next/navigation";
+import { ArrowRight, Sparkles, Zap, CheckCircle } from "lucide-react";
 import HeroMockup from "@/components/ui/HeroMockup";
-import ProcessDiagram from "@/components/ui/ProcessDiagram";
-import WorksWithStrip from "@/components/ui/WorksWithStrip";
 
 export default function Home() {
   const [currentValueProp, setCurrentValueProp] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const reduceMotion = useReducedMotion();
   
@@ -214,8 +207,8 @@ export default function Home() {
                   <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/20">
                     <CheckCircle className="w-4 h-4 text-green-400" />
                     <span className="text-sm font-medium text-white">{item}</span>
-                  </div>
-                ))}
+                    </div>
+                  ))}
               </motion.div>
 
               {/* Premium CTA Buttons */}
@@ -464,7 +457,7 @@ export default function Home() {
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                   </svg>
-                </div>
+            </div>
                 <h3 className="text-xl font-bold text-white mb-4 leading-tight">{item.title}</h3>
                 <p className="text-slate-300 leading-relaxed">{item.description}</p>
               </motion.div>
