@@ -73,7 +73,7 @@ export default function Pricing() {
             
             <div className="space-y-2">
               <a
-                href={pricing.products.chatbot.basic.stripeLink}
+                href={site.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center justify-center"
@@ -114,7 +114,7 @@ export default function Pricing() {
             
             <div className="space-y-2">
               <a
-                href={pricing.products.chatbot.pro.stripeLink}
+                href={site.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 inline-flex items-center justify-center"
@@ -142,7 +142,7 @@ export default function Pricing() {
             </div>
             
             <a
-              href={pricing.products.website.launch.stripeLink}
+              href={site.calendly}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 inline-flex items-center justify-center"
@@ -168,7 +168,7 @@ export default function Pricing() {
             </div>
             
             <a
-              href={pricing.products.website.professional.stripeLink}
+              href={site.calendly}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center"
@@ -194,7 +194,7 @@ export default function Pricing() {
             </div>
             
             <a
-              href={pricing.products.website.advanced.stripeLink}
+              href={site.calendly}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 inline-flex items-center justify-center"

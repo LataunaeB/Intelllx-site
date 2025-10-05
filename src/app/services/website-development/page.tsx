@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { pricing } from "@/config/pricing";
+import { site } from "@/config/site";
 
 export default function WebsiteDevelopment() {
   const tiers = [
@@ -154,7 +155,7 @@ export default function WebsiteDevelopment() {
                 </ul>
 
                 <a
-                  href={tier.stripeLink}
+                  href={site.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full block text-center py-4 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl hover:shadow-purple-500/25"
