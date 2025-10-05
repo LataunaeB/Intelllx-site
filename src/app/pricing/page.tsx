@@ -2,7 +2,6 @@
 import { site } from "@/config/site";
 import StripeCheckoutButton from "@/components/StripeCheckoutButton";
 import Link from "next/link";
-import CountdownTimer from "@/components/CountdownTimer";
 import { CheckCircle, Star, Zap } from "lucide-react";
 
 export default function Pricing() {
@@ -23,20 +22,6 @@ export default function Pricing() {
       </div>
 
       <section className="relative container-max section-padding">
-        {/* Promotional Banner */}
-        <div className="card p-8 mb-12 text-center">
-          <div className="eyebrow-label mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-orange-400"></span>
-            <span>LAUNCH SPECIAL - LIMITED TIME</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-            Founding Client Pricing
-          </h2>
-          <p className="text-lg text-gray-300 mb-6">
-            Premium AI development at accessible pricing - limited time offer
-          </p>
-          <CountdownTimer endDate={new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)} />
-        </div>
 
         {/* Header */}
         <div className="text-center mb-16">
