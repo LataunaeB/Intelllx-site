@@ -50,9 +50,9 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-white mb-2">Chatbot · Basic</h3>
               <div className="text-3xl font-black text-white">$500</div>
-            </div>
-            
-            <div className="space-y-3 mb-6">
+                </div>
+                
+            <div className="space-y-3 mb-4">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">Template setup, up to 5 Q/As</span>
@@ -60,21 +60,33 @@ export default function Pricing() {
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">1 website widget, basic analytics</span>
-              </div>
+                    </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">1 revision, 7-day fixes</span>
               </div>
+              </div>
+
+            {/* Optional Monthly Service */}
+            <div className="mb-6 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs text-blue-300 font-medium">Optional</span>
+                <span className="text-sm text-blue-200 font-semibold">Basic Care — $99/mo</span>
+              </div>
+              <p className="text-xs text-gray-400">Light maintenance & 5 Q/A updates/mo</p>
             </div>
             
-            <a
-              href="https://buy.stripe.com/14A9ATh1K9lp7bR3koaEE05"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center justify-center"
-            >
-              Get Started
-            </a>
+            <div className="space-y-2">
+              <a
+                href="https://buy.stripe.com/14A9ATh1K9lp7bR3koaEE05"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center justify-center"
+              >
+                Get Started
+              </a>
+              <p className="text-xs text-gray-400 text-center">Add monthly service later</p>
+            </div>
           </div>
 
           {/* Chatbot · Pro */}
@@ -82,9 +94,9 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-white mb-2">Chatbot · Pro</h3>
               <div className="text-3xl font-black text-white">$1,000</div>
-            </div>
-            
-            <div className="space-y-3 mb-6">
+                </div>
+                
+            <div className="space-y-3 mb-4">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">Custom look & flows (up to 15 Q/As)</span>
@@ -92,7 +104,7 @@ export default function Pricing() {
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">1 integration (Calendly/Email/CRM)</span>
-              </div>
+                </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">Lead export + event tracking</span>
@@ -100,17 +112,30 @@ export default function Pricing() {
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                 <span className="text-gray-300 text-sm">2 revisions, 30-day optimization</span>
-              </div>
-            </div>
+                    </div>
+                  </div>
             
-            <a
-              href="https://buy.stripe.com/aFacN5eTC7dh7bR2gkaEE06"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 inline-flex items-center justify-center"
-            >
-              Get Started
-            </a>
+            {/* Optional Monthly Service */}
+            <div className="mb-6 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs text-purple-300 font-medium">Optional</span>
+                <span className="text-sm text-purple-200 font-semibold">Pro Optimize — $299/mo</span>
+                <span className="text-xs bg-purple-500/20 text-purple-200 px-2 py-0.5 rounded-full">Recommended</span>
+              </div>
+              <p className="text-xs text-gray-400">2 tuning cycles + A/B slot/mo</p>
+              </div>
+
+            <div className="space-y-2">
+                <a
+                href="https://buy.stripe.com/aFacN5eTC7dh7bR2gkaEE06"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 inline-flex items-center justify-center"
+              >
+                Get Started
+              </a>
+              <p className="text-xs text-gray-400 text-center">Add monthly service later</p>
+            </div>
           </div>
 
           {/* Website · Launch */}
@@ -141,8 +166,8 @@ export default function Pricing() {
             
             <a
               href="https://buy.stripe.com/9B65kDaDm4158fVbQUaEE07"
-              target="_blank"
-              rel="noopener noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 inline-flex items-center justify-center"
             >
               Get Started
@@ -177,13 +202,13 @@ export default function Pricing() {
             
             <a
               href="https://buy.stripe.com/bJe5kD12Mbtx2VB3koaEE08"
-              target="_blank"
-              rel="noopener noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center"
-            >
+                  >
               Get Started
-            </a>
-          </div>
+                  </a>
+                </div>
 
           {/* Website · Advanced */}
           <div className="card p-6 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1">
