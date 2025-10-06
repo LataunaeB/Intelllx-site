@@ -1,4 +1,3 @@
-"use client";
 import { site } from "@/config/site";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";

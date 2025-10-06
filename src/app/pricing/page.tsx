@@ -1,4 +1,3 @@
-"use client";
 import { site } from "@/config/site";
 import { pricing } from "@/config/pricing";
 import { CheckCircle } from "lucide-react";

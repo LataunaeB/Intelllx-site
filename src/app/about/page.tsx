@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { CheckCircle, Zap, Target, Users, Lightbulb } from "lucide-react";
 import type { Metadata } from "next";

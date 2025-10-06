@@ -4,13 +4,6 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { pricing } from "@/config/pricing";
 import { Button } from "@/components/ui/Button";
 import { HelpCircle, MessageCircle } from "lucide-react";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  alternates: {
-    canonical: 'https://intelllx.com/faq',
-  },
-};
 
 const faqs = [
   // LeadFlow Chatbot FAQs

@@ -4,13 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  alternates: {
-    canonical: 'https://intelllx.com/contact',
-  },
-};
 
 export default function Contact() {
   const [formData, setFormData] = useState({
