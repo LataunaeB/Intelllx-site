@@ -1,6 +1,13 @@
 "use client";
 import Link from "next/link";
 import { CheckCircle, Zap, Target, Users, Lightbulb } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://intelllx.com/about',
+  },
+};
 
 export default function About() {
 

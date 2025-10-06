@@ -2,6 +2,13 @@
 import { site } from "@/config/site";
 import { pricing } from "@/config/pricing";
 import { CheckCircle } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://intelllx.com/pricing',
+  },
+};
 
 export default function Pricing() {
 
@@ -49,8 +56,8 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-white mb-2">{pricing.products.chatbot.basic.name}</h3>
               <div className="text-3xl font-black text-white">{pricing.products.chatbot.basic.priceDisplay}</div>
-            </div>
-            
+                </div>
+                
             <div className="space-y-3 mb-4">
               {pricing.products.chatbot.basic.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
@@ -67,8 +74,8 @@ export default function Pricing() {
                 <span className="text-sm text-blue-200 font-semibold">{pricing.products.chatbot.basic.monthlyService.name} — {pricing.products.chatbot.basic.monthlyService.priceDisplay}</span>
               </div>
               <p className="text-xs text-gray-400">{pricing.products.chatbot.basic.monthlyService.description}</p>
-            </div>
-            
+              </div>
+
             <div className="space-y-2">
               <a
                 href={site.calendly}
@@ -87,17 +94,17 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-white mb-2">{pricing.products.chatbot.pro.name}</h3>
               <div className="text-3xl font-black text-white">{pricing.products.chatbot.pro.priceDisplay}</div>
-            </div>
+                    </div>
             
             <div className="space-y-3 mb-4">
               {pricing.products.chatbot.pro.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                   <span className="text-gray-300 text-sm">{feature}</span>
-                </div>
-              ))}
-            </div>
-            
+                  </div>
+                ))}
+              </div>
+
             {/* Optional Monthly Service */}
             <div className="mb-6 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
               <div className="flex items-center gap-2 mb-1">
@@ -128,8 +135,8 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-white mb-2">{pricing.products.website.launch.name}</h3>
               <div className="text-3xl font-black text-white">{pricing.products.website.launch.priceDisplay}</div>
-            </div>
-            
+                </div>
+                
             <div className="space-y-3 mb-6">
               {pricing.products.website.launch.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
@@ -137,8 +144,8 @@ export default function Pricing() {
                   <span className="text-gray-300 text-sm">{feature}</span>
                 </div>
               ))}
-            </div>
-            
+              </div>
+
             <a
               href={site.calendly}
               target="_blank"
@@ -154,21 +161,21 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-white mb-2">{pricing.products.website.professional.name}</h3>
               <div className="text-3xl font-black text-white">{pricing.products.website.professional.priceDisplay}</div>
-            </div>
+                    </div>
             
             <div className="space-y-3 mb-6">
               {pricing.products.website.professional.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                   <span className="text-gray-300 text-sm">{feature}</span>
-                </div>
-              ))}
-            </div>
-            
-            <a
+                  </div>
+                ))}
+              </div>
+
+                <a
               href={site.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center"
             >
               {pricing.ctaLabels.getStarted}

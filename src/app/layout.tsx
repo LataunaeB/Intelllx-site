@@ -19,6 +19,9 @@ const script = Great_Vibes({
 export const metadata: Metadata = {
   title: `${site.name} — ${site.tagline}`,
   description: site.blurb,
+  alternates: {
+    canonical: 'https://intelllx.com',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
