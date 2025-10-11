@@ -325,6 +325,7 @@ export default function Contact() {
               <div className="card p-8">
                 <HubSpotForm
                   formId={process.env.NEXT_PUBLIC_HUBSPOT_CONTACT_FORM_ID}
+                  region="na2"
                   onSubmit={() => {
                     console.log('HubSpot form submitted!');
                   }}
