@@ -25,22 +25,37 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Prevent double-submit
+    if (isSubmitting) return;
+    
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone,
+          message: formData.message,
+          source: 'contact_form',
+          pageUrl: typeof window !== 'undefined' ? window.location.href : undefined
+        })
       });
       
-      if (response.ok) {
+      const data = await response.json();
+      
+      if (response.ok && data.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
       } else {
         setSubmitStatus('error');
       }
-    } catch {
+    } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -116,9 +131,26 @@ export default function Contact() {
               </p>
 
               {submitStatus === 'success' && (
-                <div className="mb-8 p-6 bg-green-500/20 border border-green-500/30 rounded-xl flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-400" />
-                  <p className="text-green-300 font-medium">Thank you! Your message has been sent successfully.</p>
+                <div className="mb-8 p-8 bg-green-500/20 border border-green-500/30 rounded-xl">
+                  <div className="flex items-center gap-3 mb-6">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <h3 className="text-xl font-bold text-green-300">Message Sent!</h3>
+                  </div>
+                  <p className="text-green-200 mb-6 leading-relaxed">
+                    Thank you for reaching out! We&apos;ve received your message and will get back to you within 24 hours. 
+                    In the meantime, why not schedule a discovery call?
+                  </p>
+                  <a
+                    href={process.env.NEXT_PUBLIC_MEETINGS_URL || 'https://calendly.com/lataunaeb-intelllx-discovery/30min'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Book a Discovery Call
+                  </a>
                 </div>
               )}
 
