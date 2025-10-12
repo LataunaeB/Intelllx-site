@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { site } from "@/config/site";
 import Link from "next/link";
-import LeadFlowChatbot from "@/components/LeadFlowChatbot";
+import ChatWidget from "@/components/chat/ChatWidget";
 import Header from "@/components/Header";
 import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
@@ -61,8 +61,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Scrollspy Navigation */}
         <ScrollspyProvider />
 
-        {/* LeadFlow Chatbot */}
-        <LeadFlowChatbot />
+        {/* Sleek Chat Widget */}
+        <ChatWidget />
 
         <footer className="relative mt-20 bg-gray-50 border-t border-gray-200">
           <div className="mx-auto max-w-7xl px-4 py-12">
