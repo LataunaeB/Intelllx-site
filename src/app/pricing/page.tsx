@@ -80,7 +80,8 @@ export default function Pricing() {
                 href={site.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center justify-center"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                aria-label="Get started with LeadFlow Chatbot Basic"
               >
                 {pricing.ctaLabels.getStarted}
               </a>
@@ -121,7 +122,8 @@ export default function Pricing() {
                 href={site.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 inline-flex items-center justify-center"
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+                aria-label="Get started with LeadFlow Chatbot Pro"
               >
                 {pricing.ctaLabels.getStarted}
               </a>
@@ -149,7 +151,8 @@ export default function Pricing() {
               href={site.calendly}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 inline-flex items-center justify-center"
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+              aria-label="Get started with Website Development Launch"
             >
               {pricing.ctaLabels.getStarted}
             </a>
@@ -175,7 +178,8 @@ export default function Pricing() {
               href={site.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center"
+              className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
+                  aria-label="Get started with Website Development Professional"
             >
               {pricing.ctaLabels.getStarted}
             </a>
@@ -201,7 +205,8 @@ export default function Pricing() {
               href={site.calendly}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 inline-flex items-center justify-center"
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              aria-label="Get started with Website Development Advanced"
             >
               {pricing.ctaLabels.getStarted}
             </a>

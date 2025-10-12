@@ -142,8 +142,9 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="Your full name"
+                      aria-required="true"
                     />
                   </div>
                   <div>
@@ -157,8 +158,9 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="your@email.com"
+                      aria-required="true"
                     />
                   </div>
                 </div>
@@ -174,7 +176,7 @@ export default function Contact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="(555) 123-4567"
                     />
                   </div>
@@ -188,7 +190,7 @@ export default function Contact() {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="Your company"
                     />
                   </div>
@@ -203,13 +205,13 @@ export default function Contact() {
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 [&>option]:bg-gray-800 [&>option]:text-white"
                   >
-                    <option value="">Select a service</option>
-                    <option value="leadflow-chatbot">LeadFlow Chatbot</option>
-                    <option value="website-development">Website Development</option>
-                    <option value="both-services">Both Services</option>
-                    <option value="consultation">General Consultation</option>
+                    <option value="" className="bg-gray-800 text-gray-300">Select a service</option>
+                    <option value="leadflow-chatbot" className="bg-gray-800 text-white">LeadFlow Chatbot</option>
+                    <option value="website-development" className="bg-gray-800 text-white">Website Development</option>
+                    <option value="both-services" className="bg-gray-800 text-white">Both Services</option>
+                    <option value="consultation" className="bg-gray-800 text-white">General Consultation</option>
                   </select>
                 </div>
 
@@ -224,8 +226,9 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
                     placeholder="Tell us about your project and how we can help..."
+                    aria-required="true"
                   />
                 </div>
 
@@ -293,7 +296,8 @@ export default function Contact() {
                 <div>
                   <Link
                     href="/pricing"
-                    className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 px-6 rounded-xl text-center hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                    className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 px-6 rounded-xl text-center hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+                    aria-label="View pricing plans"
                   >
                     View Pricing
                   </Link>
