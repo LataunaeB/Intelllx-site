@@ -1,55 +1,75 @@
 'use client';
 
-import { useState } from 'react';
-import { X, Minimize2, Maximize2, MessageCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, Minimize2, Maximize2, MessageCircle, Calendar, Send, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useChatI18n } from '@/lib/i18n/useChatI18n';
 import LanguageMenu from './LanguageMenu';
-import CTAButton from './CTAButton';
 import MessageList, { type Message } from './MessageList';
 import Composer from './Composer';
 import { pricing } from '@/config/pricing';
-
-// Simple business hours check
-const isWithinBusinessHours = () => {
-  try {
-    const now = new Date();
-    const hour = now.getHours();
-    const day = now.getDay();
-    // Monday-Friday (1-5), 9 AM - 6 PM
-    return day >= 1 && day <= 5 && hour >= 9 && hour < 18;
-  } catch {
-    return true;
-  }
-};
+import { isBusinessDay, getAvailableTimeSlots, getBusinessHoursMessage } from '@/lib/business-hours';
 
 /**
- * Sleek Chat Widget - Redesigned
+ * 24/7 Chat Widget with Business Hours-Aware Booking
  * 
- * Modern, minimal chat widget with:
- * - Single CTA: "Book a discovery call"
- * - Language selector with 6 languages
- * - Clean, professional design
- * - Responsive (full-screen on mobile)
- * - Accessible keyboard navigation
+ * Features:
+ * - Chat available 24/7 (no time gating)
+ * - "Away" ribbon displayed outside business hours
+ * - "Book a discovery call" CTA always visible
+ * - In-widget date/time picker restricted to Mon-Fri 9-6 PT
+ * - Supports external scheduler URL (NEXT_PUBLIC_MEETINGS_URL)
+ * - Full keyboard navigation and ARIA labels
+ * - No hydration warnings
  */
 export default function ChatWidget() {
   const { t, language, setLanguage } = useChatI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAway, setIsAway] = useState(false);
+  const [availableTimeSlots, setAvailableTimeSlots] = useState<Array<{ value: string; label: string }>>([]);
   
-  const [messages, setMessages] = useState<Message[]>(() => {
-    const withinHours = isWithinBusinessHours();
-    return [{
-      id: 1,
-      text: withinHours ? t.welcome : t.awayMessage,
-      isUser: false,
-      timestamp: new Date()
-    }];
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    preferredDate: '',
+    preferredTime: '',
   });
+  
+  const [messages, setMessages] = useState<Message[]>([{
+    id: 1,
+    text: t.welcome,
+    isUser: false,
+    timestamp: new Date()
+  }]);
 
-  // Simple bot response logic (preserved from original)
+  // Check business hours on mount (client-side only to avoid hydration issues)
+  useEffect(() => {
+    const checkBusinessHours = () => {
+      const startHour = parseInt(process.env.NEXT_PUBLIC_BUSINESS_START_HOUR || '9', 10);
+      const endHour = parseInt(process.env.NEXT_PUBLIC_BUSINESS_END_HOUR || '18', 10);
+      
+      const now = new Date();
+      const day = now.getDay();
+      const hour = now.getHours();
+      
+      const isBusinessDay = day >= 1 && day <= 5;
+      const isBusinessHour = hour >= startHour && hour < endHour;
+      
+      setIsAway(!(isBusinessDay && isBusinessHour));
+    };
+    
+    checkBusinessHours();
+    // Check every minute
+    const interval = setInterval(checkBusinessHours, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Bot response logic
   const getBotResponse = (input: string): string => {
     const lowerInput = input.toLowerCase();
 
@@ -145,6 +165,114 @@ export default function ChatWidget() {
     }
   };
 
+  // Handle external booking URL (if configured)
+  const handleExternalBooking = () => {
+    const meetingsUrl = process.env.NEXT_PUBLIC_MEETINGS_URL;
+    if (meetingsUrl) {
+      window.open(meetingsUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  // Handle form submission
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.email || !formData.name) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Combine date and time into ISO datetime string
+      let preferredDateTime: string | undefined;
+      if (formData.preferredDate && formData.preferredTime) {
+        preferredDateTime = `${formData.preferredDate}T${formData.preferredTime}:00`;
+      }
+
+      // Get current conversation context
+      const conversationText = messages
+        .filter(m => m.isUser)
+        .map(m => m.text)
+        .join('\n');
+
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone || null,
+          message: conversationText || 'Chat widget inquiry',
+          source: 'chat_widget',
+          pageUrl: window.location.href,
+          preferredDateTime,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit');
+      }
+
+      // Success! Show confirmation message
+      const confirmMessage: Message = {
+        id: Date.now(),
+        text: data.zoomMeetingUrl
+          ? `Perfect! Your meeting has been scheduled. Check your email (${formData.email}) for the Zoom link and calendar invite. We'll see you soon!`
+          : `Thank you, ${formData.name}! We've received your information and will be in touch shortly at ${formData.email}. Check your inbox!`,
+        isUser: false,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, confirmMessage]);
+      setShowForm(false);
+      setFormData({ name: '', email: '', phone: '', preferredDate: '', preferredTime: '' });
+    } catch (error) {
+      console.error('[Chat Widget] Submission error:', error);
+      alert('Failed to submit. Please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Get min date (today) and max date (30 days from now)
+  const getDateLimits = () => {
+    const today = new Date();
+    const maxDate = new Date();
+    maxDate.setDate(today.getDate() + 30);
+
+    return {
+      min: today.toISOString().split('T')[0],
+      max: maxDate.toISOString().split('T')[0],
+    };
+  };
+
+  // Handle date selection and update available time slots
+  const handleDateChange = (dateString: string) => {
+    if (!dateString) {
+      setFormData({ ...formData, preferredDate: '', preferredTime: '' });
+      setAvailableTimeSlots([]);
+      return;
+    }
+
+    const selectedDate = new Date(dateString + 'T12:00:00');
+    
+    if (!isBusinessDay(selectedDate)) {
+      alert('Please select a weekday (Monday–Friday)');
+      return;
+    }
+
+    const slots = getAvailableTimeSlots(selectedDate);
+    setAvailableTimeSlots(slots);
+    setFormData({ ...formData, preferredDate: dateString, preferredTime: '' });
+  };
+
+  const meetingsUrl = process.env.NEXT_PUBLIC_MEETINGS_URL;
+  const businessHoursMsg = getBusinessHoursMessage();
+
   return (
     <>
       {/* Floating Action Button */}
@@ -199,6 +327,7 @@ export default function ChatWidget() {
               onKeyDown={handleKeyDown}
               role="dialog"
               aria-label={t.title}
+              aria-modal="true"
             >
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
@@ -242,6 +371,16 @@ export default function ChatWidget() {
                 </div>
               </div>
 
+              {/* Away Ribbon (Outside Business Hours) */}
+              {isAway && !isMinimized && (
+                <div className="bg-amber-50 dark:bg-amber-900/20 border-b border-amber-200 dark:border-amber-800 px-4 py-2 flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                  <p className="text-xs text-amber-900 dark:text-amber-200">
+                    Away now—we&apos;ll reply next business day. ({businessHoursMsg})
+                  </p>
+                </div>
+              )}
+
               {/* Body (only show when not minimized) */}
               {!isMinimized && (
                 <>
@@ -255,9 +394,127 @@ export default function ChatWidget() {
                     isLoading={isTyping}
                   />
 
-                  {/* CTA Footer */}
+                  {/* CTA Footer - ALWAYS VISIBLE */}
                   <div className="px-4 py-3 bg-gray-50 dark:bg-zinc-800/50 border-t border-gray-200 dark:border-zinc-800">
-                    <CTAButton label={t.bookCall} />
+                    {!showForm ? (
+                      <div className="space-y-2">
+                        <button
+                          onClick={meetingsUrl ? handleExternalBooking : () => setShowForm(true)}
+                          className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                          aria-label={t.bookCall}
+                        >
+                          <Calendar className="w-5 h-5" />
+                          <span>{t.bookCall}</span>
+                        </button>
+                        {meetingsUrl && (
+                          <p className="text-xs text-center text-gray-600 dark:text-gray-400">
+                            Bookings available {businessHoursMsg}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <form onSubmit={handleFormSubmit} className="space-y-3" noValidate>
+                        <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                          Book Your Discovery Call
+                        </h3>
+                        
+                        <input
+                          type="text"
+                          placeholder="Your name *"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          required
+                          aria-required="true"
+                          aria-label="Your name"
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100"
+                        />
+                        
+                        <input
+                          type="email"
+                          placeholder="Your email *"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          required
+                          aria-required="true"
+                          aria-label="Your email"
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100"
+                        />
+                        
+                        <input
+                          type="tel"
+                          placeholder="Your phone (optional)"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          aria-label="Your phone number"
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100"
+                        />
+                        
+                        <div className="grid grid-cols-2 gap-2">
+                          <input
+                            type="date"
+                            value={formData.preferredDate}
+                            onChange={(e) => handleDateChange(e.target.value)}
+                            min={getDateLimits().min}
+                            max={getDateLimits().max}
+                            aria-label="Preferred date (Monday-Friday only)"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100"
+                          />
+                          
+                          <select
+                            value={formData.preferredTime}
+                            onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
+                            disabled={!formData.preferredDate || availableTimeSlots.length === 0}
+                            aria-label="Preferred time"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            <option value="">Time</option>
+                            {availableTimeSlots.map(slot => (
+                              <option key={slot.value} value={slot.value}>
+                                {slot.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        
+                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                          Available slots: {businessHoursMsg}
+                        </p>
+                        
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setShowForm(false);
+                              setFormData({ name: '', email: '', phone: '', preferredDate: '', preferredTime: '' });
+                              setAvailableTimeSlots([]);
+                            }}
+                            className="flex-1 py-2.5 px-4 rounded-lg font-medium text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-700 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            aria-label="Cancel booking"
+                          >
+                            Cancel
+                          </button>
+                          
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="flex-1 py-2.5 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            aria-label="Submit booking"
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                <span>Sending...</span>
+                              </>
+                            ) : (
+                              <>
+                                <Send className="w-4 h-4" />
+                                <span>Submit</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    )}
                   </div>
                 </>
               )}
@@ -268,4 +525,3 @@ export default function ChatWidget() {
     </>
   );
 }
-
