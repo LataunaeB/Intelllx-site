@@ -10,7 +10,6 @@ import Head from "next/head";
 import ProgressIndicator from "@/components/ui/ProgressIndicator";
 import ScrollspyProvider from "@/components/ui/ScrollspyProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import HubSpotTracking from "@/components/HubSpotTracking";
 
 const script = Great_Vibes({
   weight: "400",
@@ -47,9 +46,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         {/* Google Analytics */}
         <GoogleAnalytics measurementId="G-8J18HLB8FS" />
-        
-        {/* HubSpot Tracking & Chat */}
-        <HubSpotTracking />
         
         <Header />
 

@@ -5,6 +5,7 @@ import { site } from '@/config/site';
 import { pricing } from '@/config/pricing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, X, Minimize2, Maximize2, Bot } from 'lucide-react';
+import { isWithinBusinessHours, getAwayMessage } from '@/lib/business-hours';
 
 interface Message {
   id: number;
@@ -16,6 +17,7 @@ interface Message {
 export default function LeadFlowChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isWithinHours, setIsWithinHours] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -32,7 +34,24 @@ export default function LeadFlowChatbot() {
   const [detectedLanguage, setDetectedLanguage] = useState<string>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState<string>('en');
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Check business hours on mount
+  useEffect(() => {
+    const withinHours = isWithinBusinessHours();
+    setIsWithinHours(withinHours);
+    
+    // Update welcome message if outside business hours
+    if (!withinHours) {
+      setMessages([{
+        id: 1,
+        text: getAwayMessage(),
+        isUser: false,
+        timestamp: new Date()
+      }]);
+    }
+  }, []);
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
@@ -504,26 +523,70 @@ export default function LeadFlowChatbot() {
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
   };
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the lead data to your CRM or email
-    console.log('Lead captured:', leadData);
+    setIsSubmittingLead(true);
     
-    // Redirect to Calendly
-    window.open(site.calendly, '_blank');
-    
-    // Reset form
-    setLeadData({ name: '', email: '', phone: '' });
-    setShowLeadForm(false);
-    
-    // Add confirmation message
-    const confirmMessage: Message = {
-      id: Date.now(),
-      text: "Perfect! I've opened your calendar booking link. You should see a new tab with available times. Thanks for your interest!",
-      isUser: false,
-      timestamp: new Date()
-    };
-    setMessages(prev => [...prev, confirmMessage]);
+    try {
+      // Get the last user message as context
+      const lastUserMessage = messages
+        .filter(m => m.isUser)
+        .slice(-1)[0]?.text || '';
+      
+      // Call /api/leads endpoint
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: leadData.email,
+          name: leadData.name,
+          message: lastUserMessage,
+          source: 'chat',
+          pageUrl: window.location.href,
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit lead');
+      }
+      
+      const data = await response.json();
+      console.log('[Chat] Lead captured:', data);
+      
+      // Redirect to Calendly
+      window.open(site.calendly, '_blank');
+      
+      // Reset form
+      setLeadData({ name: '', email: '', phone: '' });
+      setShowLeadForm(false);
+      
+      // Add confirmation message
+      const confirmMessage: Message = {
+        id: Date.now(),
+        text: isWithinHours 
+          ? "Perfect! I've opened your calendar booking link. You should see a new tab with available times. Thanks for your interest!"
+          : "Perfect! I've saved your information and we'll get back to you on the next business day. I've also opened your calendar booking link if you'd like to schedule a time. Thanks for your interest!",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, confirmMessage]);
+      
+    } catch (error) {
+      console.error('[Chat] Error submitting lead:', error);
+      
+      // Show error message
+      const errorMessage: Message = {
+        id: Date.now(),
+        text: "Sorry, there was an error saving your information. Please try again or email us directly at " + site.email,
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsSubmittingLead(false);
+    }
   };
 
   const speakText = (text: string, messageId: number) => {
@@ -936,9 +999,10 @@ export default function LeadFlowChatbot() {
                 />
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 rounded-xl text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[44px] transition-colors duration-200"
+                  disabled={isSubmittingLead}
+                  className="w-full bg-blue-600 text-white py-3 rounded-xl text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[44px] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Book Discovery Call
+                  {isSubmittingLead ? 'Submitting...' : 'Book Discovery Call'}
                 </button>
               </form>
             </div>
