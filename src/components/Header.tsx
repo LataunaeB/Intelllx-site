@@ -122,7 +122,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 transition-all duration-300">
-      <div className="absolute inset-0 bg-white border-b border-gray-200 shadow-lg"></div>
+      <div className="absolute inset-0 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg dark:bg-gray-900/95 dark:border-gray-700/50"></div>
       <div className="relative mx-auto max-w-7xl px-4 py-4 flex items-center justify-between min-h-[80px]">
         {/* Brand/Logo */}
         <Link
@@ -152,10 +152,10 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-blue-50 rounded-lg group ${
+              className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                 isActiveRoute(item.href)
-                  ? "text-blue-600 bg-blue-50"
-                  : "text-gray-900 hover:text-blue-600"
+                  ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
+                  : "text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
               }`}
             >
               {item.label}
@@ -256,7 +256,7 @@ export default function Header() {
                         ref={index === 0 ? firstLinkRef : null}
                         href={item.href}
                         onClick={closeMobileMenu}
-                        className={`block px-4 py-3 text-base font-semibold rounded-lg transition-all duration-200 ${
+                        className={`block px-4 py-3 text-base font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                           isActiveRoute(item.href)
                             ? "text-blue-600 bg-blue-50"
                             : "text-gray-900 hover:text-blue-600 hover:bg-gray-50"

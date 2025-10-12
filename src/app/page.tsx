@@ -223,7 +223,7 @@ export default function Home() {
                     console.log('Primary button clicked - navigating to contact');
                     window.location.href = '/contact';
                   }}
-                  className="group inline-flex items-center justify-center rounded-xl font-medium tracking-tight transition duration-200 ease-out active:duration-75 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--ring] disabled:opacity-50 bg-[--btn] text-white shadow-sm shadow-black/10 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-none hover:bg-[--btn-hover] px-5 py-3 text-base cursor-pointer relative z-10"
+                  className="group inline-flex items-center justify-center rounded-xl font-medium tracking-tight transition duration-200 ease-out active:duration-75 select-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50 bg-[--btn] text-white shadow-sm shadow-black/10 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-none hover:bg-[--btn-hover] px-5 py-3 text-base cursor-pointer relative z-10"
                   aria-label="Get started with LeadFlow chatbot and website development"
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
@@ -236,7 +236,7 @@ export default function Home() {
                     console.log('Secondary button clicked - navigating to pricing');
                     window.location.href = '/pricing';
                   }}
-                  className="inline-flex items-center justify-center rounded-xl font-medium tracking-tight transition duration-200 ease-out active:duration-75 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--ring] disabled:opacity-50 border border-white/20 text-white/90 hover:text-white hover:border-white/40 hover:bg-white/5 active:shadow-none px-5 py-3 text-base cursor-pointer relative z-10"
+                  className="inline-flex items-center justify-center rounded-xl font-medium tracking-tight transition duration-200 ease-out active:duration-75 select-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50 border border-white/20 text-white/90 hover:text-white hover:border-white/40 hover:bg-white/5 active:shadow-none px-5 py-3 text-base cursor-pointer relative z-10"
                   aria-label="View pricing plans and packages"
                 >
                   <Zap className="w-5 h-5 text-blue-400 mr-2" />
@@ -569,13 +569,15 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button 
                 onClick={() => window.location.href = '/contact'}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+                aria-label="Book a discovery call"
               >
                 {pricing.ctaLabels.bookDiscovery}
               </button>
               <button 
                 onClick={() => window.location.href = '/pricing'}
-                className="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300"
+                className="px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                aria-label="View pricing options"
               >
                 {pricing.ctaLabels.viewPricing}
               </button>
