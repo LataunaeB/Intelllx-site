@@ -421,7 +421,7 @@ a {
 }
 
 .card {
-  @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-200;
+  @apply rounded-xl border border-white/15 bg-white/5 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-200;
 }
 
 .eyebrow-label {

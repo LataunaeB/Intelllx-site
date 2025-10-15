@@ -11,7 +11,6 @@ import HeroMockup from "@/components/ui/HeroMockup";
 export default function Home() {
   const [currentValueProp, setCurrentValueProp] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const reduceMotion = useReducedMotion();
   
   const valueProps = [
@@ -31,15 +30,6 @@ export default function Home() {
     const interval = setInterval(rotateValueProp, 3000);
     return () => clearInterval(interval);
   }, [rotateValueProp]);
-
-  // Mouse tracking for interactive effects
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -73,9 +63,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-100/10 to-transparent animate-pulse"></div>
         </div>
         
-        {/* Refined floating elements */}
+        {/* Refined floating elements - Reduced for cleaner look */}
         <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(5)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
@@ -88,7 +78,7 @@ export default function Home() {
                 opacity: [0.2, 0.4, 0.2],
               }}
               transition={{
-                duration: 5 + Math.random() * 3,
+                duration: 8 + Math.random() * 2,
                 repeat: Infinity,
                 delay: Math.random() * 3,
               }}
@@ -96,22 +86,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Elegant cursor glow */}
-        <motion.div
-          className="absolute w-64 h-64 bg-gradient-to-r from-blue-400/8 to-indigo-400/8 rounded-full blur-3xl pointer-events-none"
-          style={{
-            left: mousePosition.x - 128,
-            top: mousePosition.y - 128,
-          }}
-          animate={reduceMotion ? {} : {
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
       </div>
 
       {/* World-Class Hero Section */}
@@ -127,9 +101,9 @@ export default function Home() {
               backgroundPosition: '0 0, 50px 50px'
             }}></div>
           </div>
-          {/* Floating Elements */}
-          <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          {/* Floating Elements - Slowed for premium feel */}
+          <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+          <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
         </div>
 
         <div className="max-w-8xl mx-auto w-full">
@@ -451,7 +425,7 @@ export default function Home() {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-                className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500"
+                className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/15 hover:bg-white/10 transition-all duration-500"
               >
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -534,7 +508,7 @@ export default function Home() {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
+                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/15 hover:bg-white/10 transition-all duration-300"
               >
                 <h3 className="text-lg font-bold text-white mb-3 leading-tight">
                   {faq.question}
