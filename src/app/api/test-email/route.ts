@@ -48,7 +48,7 @@ export async function GET() {
           status: 'SUCCESS',
           from: from,
           to: to,
-          emailId: result.id,
+          emailId: result.data?.id || 'unknown',
           message: 'Email sent successfully! Check your inbox at ' + to
         };
       } catch (emailError) {
