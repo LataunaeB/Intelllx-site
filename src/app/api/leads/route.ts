@@ -165,13 +165,17 @@ export async function POST(request: NextRequest) {
       try {
         const resend = new Resend(resendApiKey);
 
-        // Format timestamp in PT
+        // Format timestamp
         const now = new Date();
-        const ptTime = new Intl.DateTimeFormat('en-US', {
-          timeZone: process.env.TIMEZONE || 'America/Los_Angeles',
-          dateStyle: 'short',
-          timeStyle: 'short'
-        }).format(now);
+        const ptTime = now.toLocaleString('en-US', {
+          timeZone: 'America/Los_Angeles',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        });
 
         // Truncate message for email preview
         const messagePreview = trimmedMessage 
