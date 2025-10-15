@@ -246,7 +246,13 @@ export async function POST(request: NextRequest) {
           </html>
         `;
 
-        await resend.emails.send({
+        console.log('[API /leads] Attempting to send email via Resend...', {
+          from: resendFrom,
+          to: resendTo,
+          apiKeyPrefix: resendApiKey.substring(0, 10) + '...'
+        });
+
+        const emailResult = await resend.emails.send({
           from: resendFrom,
           to: resendTo,
           subject: `New Lead — Intelllx`,
@@ -254,7 +260,10 @@ export async function POST(request: NextRequest) {
           replyTo: trimmedEmail
         });
 
-        console.log('[API /leads] Resend email sent successfully');
+        console.log('[API /leads] Resend email sent successfully!', {
+          emailId: emailResult.data?.id,
+          result: JSON.stringify(emailResult)
+        });
       } catch (resendError) {
         // Log warning but don't fail the request
         // This allows the form to work even if Resend DNS isn't verified yet
