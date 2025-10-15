@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 /**
  * Diagnostic endpoint to test email configuration
  * Visit: /api/test-email to see configuration status
  */
-export async function GET(request: NextRequest) {
-  const diagnostics: any = {
+export async function GET() {
+  const diagnostics: Record<string, unknown> = {
     timestamp: new Date().toISOString(),
     environment: 'production',
     config: {},
@@ -51,16 +51,17 @@ export async function GET(request: NextRequest) {
           emailId: result.id,
           message: 'Email sent successfully! Check your inbox at ' + to
         };
-      } catch (emailError: any) {
+      } catch (emailError) {
+        const error = emailError as Error;
         diagnostics.test = {
           status: 'FAILED',
           from: from,
           to: to,
-          error: emailError.message,
-          errorType: emailError.name,
-          errorDetails: emailError.toString()
+          error: error.message,
+          errorType: error.name,
+          errorDetails: error.toString()
         };
-        diagnostics.error = emailError.message;
+        diagnostics.error = error.message;
       }
     } else {
       diagnostics.test = {
@@ -77,11 +78,12 @@ export async function GET(request: NextRequest) {
       }
     });
 
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as Error;
     return NextResponse.json({
       ...diagnostics,
-      error: error.message,
-      errorType: error.name
+      error: err.message,
+      errorType: err.name
     }, { status: 500 });
   }
 }
