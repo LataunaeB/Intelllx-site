@@ -87,7 +87,7 @@ export default function Home() {
       </div>
 
       {/* World-Class Hero Section */}
-      <section id="hero" ref={heroRef} className="relative min-h-screen flex items-center px-6 pt-20 pb-16 md:pt-28 md:pb-12">
+      <section id="hero" ref={heroRef} className="relative min-h-[90vh] md:min-h-screen flex items-center px-6 pt-20 pb-16 md:pt-28 md:pb-12">
         {/* Unifying Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-indigo-900/10"></div>
@@ -111,7 +111,7 @@ export default function Home() {
               initial={reduceMotion ? false : { opacity: 0, x: -50 }}
               animate={reduceMotion ? {} : { opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="space-y-6 md:space-y-8 md:-translate-y-6"
+              className="space-y-8 md:space-y-10 md:-translate-y-6"
             >
               {/* Minimalist Eyebrow Label */}
               <motion.div 
@@ -129,7 +129,7 @@ export default function Home() {
                 initial={reduceMotion ? false : { opacity: 0, y: 30 }}
                 animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="space-y-3"
+                className="space-y-4"
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
                   <span className="text-white block">
@@ -173,7 +173,7 @@ export default function Home() {
                 initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-                className="flex flex-wrap gap-4"
+                className="flex flex-wrap gap-3 pt-4"
               >
                 {copy.microcopy.trustRow.split(' • ').map((item, index) => (
                   <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/20">
@@ -326,7 +326,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 leading-tight">
               <span className="text-white">How It</span>{' '}
               <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Works</span>
             </h2>
@@ -336,7 +336,7 @@ export default function Home() {
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
             {[
               {
                 title: "We Learn",
@@ -381,20 +381,20 @@ export default function Home() {
       <WhyLeadFlowBand />
 
       {/* Single CTA Section - Simplified */}
-      <section className="relative py-24 px-6">
+      <section className="relative py-32 md:py-40 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div 
             initial={reduceMotion ? false : { opacity: 0, y: 30 }}
             whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-12 border border-purple-500/20"
+            className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-10 md:p-14 border border-purple-500/20"
           >
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
               Ready to Get Started?
             </h2>
             
-            <p className="text-xl text-slate-300 mb-8 leading-relaxed font-medium max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
               Book a 15-minute discovery call. We&apos;ll learn about your business and show you exactly how LeadFlow will transform your lead generation.
             </p>
             
