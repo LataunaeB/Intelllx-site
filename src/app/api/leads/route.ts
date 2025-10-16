@@ -274,8 +274,16 @@ export async function POST(request: NextRequest) {
       console.warn('[API /leads] RESEND_API_KEY not configured - skipping email');
     }
 
-    // Return success
-    return NextResponse.json({ ok: true }, { status: 200 });
+    // Return success (with debug info in non-production)
+    return NextResponse.json({ 
+      ok: true,
+      debug: {
+        supabaseWorked: !!lead,
+        resendConfigured: !!resendApiKey,
+        resendFrom: resendFrom,
+        resendTo: resendTo
+      }
+    }, { status: 200 });
 
   } catch (error) {
     console.error('[API /leads] Unexpected error:', error);
