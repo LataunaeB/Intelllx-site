@@ -76,7 +76,7 @@ export default function Contact() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative container-max section-padding">
+      <section className="relative container-max section-padding pt-24 md:pt-32">
         <div className="text-center">
           {/* Eyebrow Label */}
           <div className="eyebrow-label mb-6">
@@ -101,7 +101,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="relative section-padding">
+      <section className="relative section-padding pt-8 md:pt-12">
         <div className="container-max">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}

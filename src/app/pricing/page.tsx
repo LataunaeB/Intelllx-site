@@ -26,11 +26,11 @@ export default function Pricing() {
         </div>
       </div>
 
-      <section className="relative container-max section-padding">
+      <section className="relative container-max section-padding pt-24 md:pt-32">
 
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="eyebrow-label mb-4">
+          <div className="eyebrow-label mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-[--accent]"></span>
             <span>Transparent Pricing</span>
           </div>
@@ -43,13 +43,13 @@ export default function Pricing() {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium mb-16">
             Choose the service that fits your business needs. No hidden fees, no surprises.
           </p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-8">
           {/* Chatbot · Basic */}
           <div className="card p-6 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
             <div className="text-center mb-6">

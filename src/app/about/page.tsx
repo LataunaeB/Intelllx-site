@@ -26,10 +26,10 @@ export default function About() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative container-max section-padding">
+      <section className="relative container-max section-padding pt-24 md:pt-32">
         <div className="text-center max-w-4xl mx-auto">
           {/* Eyebrow Label */}
-          <div className="eyebrow-label mb-8">
+          <div className="eyebrow-label mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-[--accent]"></span>
             <span>About INTELLLX</span>
           </div>
@@ -89,7 +89,7 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
-                Our <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Mission</span>
+                Our <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">Mission</span>
               </h2>
               <p className="text-xl text-gray-200 leading-relaxed font-medium mb-8">
                 At INTELLLX, we believe that artificial intelligence should serve humanity&apos;s greatest needs. 
