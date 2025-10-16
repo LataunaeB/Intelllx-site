@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Calculator, TrendingUp, AlertTriangle, ArrowRight, DollarSign, Users, Target } from "lucide-react";
-import type { Metadata } from "next";
 
 export default function LeadLeakageCalculator() {
   const [inputs, setInputs] = useState({
@@ -94,7 +93,7 @@ export default function LeadLeakageCalculator() {
 
           {/* Subtitle */}
           <p className="text-xl text-gray-200 leading-relaxed font-medium mb-12">
-            Discover how much revenue you're losing every month from website visitors who leave without converting. Most businesses are shocked by the results.
+            Discover how much revenue you&apos;re losing every month from website visitors who leave without converting. Most businesses are shocked by the results.
           </p>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GitCompare, ArrowRight, CheckCircle, XCircle, Zap } from "lucide-react";
+import { ArrowRight, CheckCircle, XCircle, Zap } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
