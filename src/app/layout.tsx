@@ -6,7 +6,6 @@ import ChatWidget from "@/components/chat/ChatWidget";
 import Header from "@/components/Header";
 import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
-import Head from "next/head";
 import ProgressIndicator from "@/components/ui/ProgressIndicator";
 import ScrollspyProvider from "@/components/ui/ScrollspyProvider";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -37,12 +36,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${script.variable}`}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      </Head>
       <body className="min-h-screen flex flex-col">
         {/* Google Analytics */}
         <GoogleAnalytics measurementId="G-8J18HLB8FS" />
