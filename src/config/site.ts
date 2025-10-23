@@ -52,7 +52,7 @@ export const site = {
     {
       title: "LeadFlow Chatbot",
       blurb: "Everything you need to turn website visitors into paying customers with a personal touch that never sleeps",
-      price: `${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
+      price: `Basic: ${pricing.products.chatbot.basic.priceDisplay} setup + ${pricing.products.chatbot.basic.monthlyService.priceDisplay} | Pro: ${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
       setup: {
         title: "Setup includes:",
         items: [

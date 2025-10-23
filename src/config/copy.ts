@@ -295,8 +295,8 @@ export const copy = {
   pricing: {
     heading: "Premium AI at Platform Pricing",
     subhead: "Custom AI development that typically costs $75,000+—available at accessible pricing",
-    leadflowSetup: `Professional Setup — ${pricing.products.chatbot.pro.priceDisplay} (one-time)`,
-    leadflowSub: `Custom AI Platform — ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
+    leadflowSetup: `Basic — ${pricing.products.chatbot.basic.priceDisplay} | Pro — ${pricing.products.chatbot.pro.priceDisplay}`,
+    leadflowSub: `Monthly: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} | Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
     note: "Compare to $75,000+ custom development or $3,000+/month enterprise platforms. We deliver premium results at accessible pricing.",
     cta: {
       primary: "Get started",
