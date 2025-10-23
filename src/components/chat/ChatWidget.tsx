@@ -55,7 +55,7 @@ export default function ChatWidget() {
 
     // Pricing
     if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much')) {
-      return `LeadFlow Chatbot pricing: ${pricing.products.chatbot.pro.priceDisplay} one-time setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}/month for maintenance and 7 hours of expert support. Most clients see ROI within 30 days!`;
+      return `LeadFlow Chatbot pricing: Basic — ${pricing.products.chatbot.basic.priceDisplay} setup + ${pricing.products.chatbot.basic.monthlyService.priceDisplay}/mo, or Pro — ${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}/mo. Most clients see ROI within 30 days!`;
     }
 
     // How it works
