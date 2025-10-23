@@ -100,7 +100,7 @@ export default function ChatWidget() {
 
     // Default
     const defaultResponses = [
-      `I'm here to help! You can ask me about pricing (${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}/mo), features, how it works, ROI, or click below to book a discovery call!`,
+      `I'm here to help! You can ask me about pricing (Basic — ${pricing.products.chatbot.basic.priceDisplay} or Pro — ${pricing.products.chatbot.pro.priceDisplay}), features, how it works, ROI, or click below to book a discovery call!`,
       "Great question! LeadFlow captures and converts leads 24/7. Ask me about pricing, features, integrations, or book a call to learn more!",
       "Excited to help! LeadFlow is designed to turn visitors into customers. Ask about pricing, how it works, or book a discovery call below!"
     ];
