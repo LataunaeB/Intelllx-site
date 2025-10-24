@@ -155,7 +155,7 @@ export default function WebsiteDevelopment() {
                 </ul>
 
                 <a
-                  href={site.calendly}
+                  href="/contact"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full block text-center py-4 rounded-2xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl hover:shadow-purple-500/25"
