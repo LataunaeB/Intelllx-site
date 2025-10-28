@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
 
     // 4. Send email notification via Resend
     const resendApiKey = process.env.RESEND_API_KEY;
-    const resendFrom = process.env.RESEND_FROM || process.env.EMAIL_FROM || 'leads@intelllx.com';
+    const resendFrom = process.env.RESEND_FROM || process.env.EMAIL_FROM || 'onboarding@resend.dev';
     const resendTo = process.env.RESEND_TO || process.env.EMAIL_TO || 'hello@intelllx.com';
 
     console.log('[API /leads] Email config check:', {
