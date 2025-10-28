@@ -170,38 +170,6 @@ export default function Services() {
           </div>
         </div>
 
-        {/* What You'll Get Each Week */}
-        <div className="mb-20">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-              What You&apos;ll Get <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Each Week</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-white/70 max-w-4xl mx-auto leading-relaxed font-light">
-              Ongoing support and optimization to maximize your results
-            </p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 p-12">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                "Conversation review",
-                "Missed-lead analysis", 
-                "Prompt updates",
-                "5-minute report"
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-semibold text-lg">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Our Process CTA */}
         <div className="mb-20">
           <div className="text-center">
