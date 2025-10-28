@@ -121,8 +121,8 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300">
-      <div className="absolute inset-0 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg dark:bg-gray-900/95 dark:border-gray-700/50"></div>
+    <header className="sticky top-0 z-50 transition-all duration-300 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800">
+      <div className="absolute inset-0 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
       <div className="relative mx-auto max-w-7xl px-4 py-4 flex items-center justify-between min-h-[80px]">
         {/* Brand/Logo */}
         <Link
@@ -140,7 +140,7 @@ export default function Header() {
             />
           </div>
           <div className="flex flex-col items-start">
-            <span className="text-xs md:text-sm text-gray-600 font-medium tracking-wide italic font-serif">
+            <span className="text-xs md:text-sm text-gray-300 font-medium tracking-wide italic font-serif">
               Always-On Growth • LeadFlow Chatbots & Web Development That Convert
             </span>
           </div>
@@ -152,10 +152,10 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-white/10 rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                 isActiveRoute(item.href)
-                  ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-                  : "text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+                  ? "text-blue-400 bg-white/10"
+                  : "text-white hover:text-blue-400"
               }`}
             >
               {item.label}
@@ -168,13 +168,13 @@ export default function Header() {
         <button
           ref={hamburgerButtonRef}
           onClick={toggleMobileMenu}
-          className="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200 z-10"
+          className="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 z-10"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
         >
           <svg
-            className="w-5 h-5 text-gray-700"
+            className="w-5 h-5 text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
