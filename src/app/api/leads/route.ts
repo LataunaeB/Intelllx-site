@@ -80,17 +80,11 @@ export async function POST(request: NextRequest) {
       email: trimmedEmail,
       name: trimmedName,
       phone: trimmedPhone,
-      company: trimmedCompany,
-      service: trimmedService,
-      message: trimmedMessage,
       source: trimmedSource,
       page_url: trimmedPageUrl,
       updated_at: new Date().toISOString()
     };
     
-    // Add booking info if provided
-    if (trimmedPreferredDate) leadData.preferred_date = trimmedPreferredDate;
-    if (trimmedPreferredTime) leadData.preferred_time = trimmedPreferredTime;
     
     const { data: lead, error: leadError } = await supabase
       .from('leads')
