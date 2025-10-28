@@ -27,10 +27,14 @@ export async function POST(request: NextRequest) {
       email, 
       name, 
       phone,
-      message, 
+      message,
+      company,
+      service,
+      preferredDate,
+      preferredTime,
       source = 'contact_form',
       pageUrl
-    } = body;
+    } cubed body;
 
     // Validate email (required)
     if (!email || typeof email !== 'string' || !email.includes('@')) {
@@ -45,6 +49,10 @@ export async function POST(request: NextRequest) {
     const trimmedName = name?.trim() || null;
     const trimmedPhone = phone?.trim() || null;
     const trimmedMessage = message?.trim() || null;
+    const trimmedCompany = company?.trim() || null;
+    const trimmedService = service?.trim() || null;
+    const trimmedPreferredDate = preferredDate?.trim() || null;
+    const trimmedPreferredTime = preferredTime?.trim() || null;
     const trimmedSource = source?.trim() || 'contact_form';
     const trimmedPageUrl = pageUrl?.trim() || null;
 
@@ -68,22 +76,28 @@ export async function POST(request: NextRequest) {
     });
 
     // 1. Upsert lead (insert or update if email exists)
+    const leadData: Record<string, unknown> = {
+      email: trimmedEmail,
+      name: trimmedName,
+      phone: trimmedPhone,
+      company: trimmedCompany,
+      service: trimmedService,
+      message: trimmedMessage,
+      source: trimmedSource,
+      page_url: trimmedPageUrl,
+      updated_at: new Date().toISOString()
+    };
+    
+    // Add booking info if provided
+    if (trimmedPreferredDate) leadData.preferred_date = trimmedPreferredDate;
+    if (trimmedPreferredTime) leadData.preferred_time = trimmedPreferredTime;
+    
     const { data: lead, error: leadError } = await supabase
       .from('leads')
-      .upsert(
-        {
-          email: trimmedEmail,
-          name: trimmedName,
-          phone: trimmedPhone,
-          source: trimmedSource,
-          page_url: trimmedPageUrl,
-          updated_at: new Date().toISOString()
-        },
-        { 
-          onConflict: 'email',
-          ignoreDuplicates: false 
-        }
-      )
+      .upsert(leadData, { 
+        onConflict: 'email',
+        ignoreDuplicates: false 
+      })
       .select()
       .single();
 
