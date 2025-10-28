@@ -190,9 +190,13 @@ export async function POST(request: NextRequest) {
     const resendTo = process.env.RESEND_TO || process.env.EMAIL_TO || 'hello@intelllx.com';
 
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('[API /leads] Supabase credentials missing');
+      console.error('[API /leads] === CRITICAL ERROR ===');
+      console.error('[API /leads] Supabase credentials missing!');
+      console.error('[API /leads] SUPABASE_URL:', !!supabaseUrl);
+      console.error('[API /leads] SUPABASE_SERVICE_ROLE_KEY:', !!supabaseServiceKey);
+      console.error('[API /leads] === END ERROR ===');
       return NextResponse.json(
-        { ok: false, error: 'Server configuration error' },
+        { ok: false, error: 'Server configuration error - Supabase credentials missing' },
         { status: 500 }
       );
     }
