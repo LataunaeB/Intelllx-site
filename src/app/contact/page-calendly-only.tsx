@@ -72,17 +72,15 @@ export default function Contact() {
             </div>
 
             {/* Embedded Calendly Widget */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <div style={{ minHeight: '800px', width: '100%' }}>
-                <iframe
-                  src={`${site.calendly}?hide_gdpr_banner=1&embed_domain=intelllx.com&embed_type=Inline`}
-                  width="100%"
-                  height="700"
-                  frameBorder="0"
-                  className="rounded-xl"
-                  title="Book a discovery call with Intelllx"
-                />
-              </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/适 min-h-[900px]">
+              <iframe
+                src={`${site.calendly}?hide_gdpr_banner=1&embed_domain=intelllx.com&embed_type=Inline`}
+                width="100%"
+                height="700"
+                frameBorder="0"
+                className="rounded-xl"
+                title="Book a discovery call with Intelllx"
+              />
             </div>
           </div>
         </div>
