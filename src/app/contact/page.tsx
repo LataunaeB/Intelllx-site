@@ -525,8 +525,7 @@ export default function Contact() {
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-6 h-6 text-green-400" />
                       <div>
-                        <h3 className="text-green-400 font-semibold">Message Sent Successfully!</h3>
-                        <p className="text-green-300 text-sm">We&apos;ll get back to you within 24 hours.</p>
+                        <h3 className="text-green-400 font-semibold">Message Sent!</h3>
                       </div>
                     </div>
                   </div>
