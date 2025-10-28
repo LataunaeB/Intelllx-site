@@ -94,22 +94,35 @@ export default function Services() {
               </div>
 
               <div className="flex gap-4">
-                <Link href={index === 0 ? "/pricing" : "/services/website-development"}>
+                {index === 0 ? (
+                  <>
+                    <Link href="/pricing">
+                      <Button
+                        variant="primary"
+                        size="md"
+                        className="flex-1"
+                      >
+                        Get Started
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      size="md"
+                      onClick={() => window.location.href = '/contact'}
+                    >
+                      Get Quote
+                    </Button>
+                  </>
+                ) : (
                   <Button
                     variant="primary"
                     size="md"
-                    className="flex-1"
+                    className="w-full"
+                    onClick={() => window.location.href = '/contact'}
                   >
-                    {index === 0 ? "Get Started" : "View Packages"}
+                    Get Custom Quote
                   </Button>
-                </Link>
-                <Button
-                  variant="ghost"
-                  size="md"
-                  onClick={() => window.location.href = '/contact'}
-                >
-                  Get Quote
-                </Button>
+                )}
               </div>
             </div>
           ))}
