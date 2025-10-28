@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       preferredTime,
       source = 'contact_form',
       pageUrl
-    } cubed body;
+    } = body;
 
     // Validate email (required)
     if (!email || typeof email !== 'string' || !email.includes('@')) {
