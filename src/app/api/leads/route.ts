@@ -185,8 +185,8 @@ export async function POST(request: NextRequest) {
 
     // Initialize Resend configuration
     const resendApiKey = process.env.RESEND_API_KEY;
-    // Use your verified intelllx.com domain  
-    const resendFrom = process.env.RESEND_FROM || 'hello@intelllx.com';
+    // Use onboarding@resend.dev until intelllx.com is fully verified
+    const resendFrom = process.env.RESEND_FROM || 'onboarding@resend.dev';
     const resendTo = process.env.RESEND_TO || process.env.EMAIL_TO || 'hello@intelllx.com';
 
     if (!supabaseUrl || !supabaseServiceKey) {
