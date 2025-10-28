@@ -609,15 +609,24 @@ export async function POST(request: NextRequest) {
           replyTo: trimmedEmail
         });
 
-        console.log('[API /leads] Resend email sent successfully!', {
+        console.log('[API /leads] Notification email sent successfully!', {
           emailId: emailResult.data?.id,
-          result: JSON.stringify(emailResult)
+          result: JSON.stringify(emailResult),
+          from: resendFrom,
+          to: resendTo
         });
       } catch (resendError) {
-        // Log warning but don't fail the request
-        // This allows the form to work even if Resend DNS isn't verified yet
-        console.warn('[API /leads] Resend email failed (DNS may not be verified):', resendError);
-        console.warn('[API /leads] Lead was still saved to Supabase successfully');
+        // Log detailed error information
+        const error = resendError as Error & { response?: { status?: number; data?: unknown } };
+        console.error('=== NOTIFICATION EMAIL FAILED ===');
+        console.error('Error:', error);
+        console.error('Message:', error?.message);
+        console.error('Status:', error?.response?.status);
+        console.error('Data:', error?.response?.data);
+        console.error('From:', resendFrom);
+        console.error('To:', resendTo);
+        console.error('=== END ERROR ===');
+        // Don't fail the request - lead was saved successfully
       }
     } else {
       console.warn('[API /leads] RESEND_API_KEY not configured - skipping email');
