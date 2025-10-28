@@ -155,7 +155,7 @@ export default function Header() {
               className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                 isActiveRoute(item.href)
                   ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
-                  : "text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
+                  : "text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
               }`}
             >
               {item.label}
