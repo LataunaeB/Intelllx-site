@@ -22,8 +22,8 @@ export const copy = {
     // headline: "We build custom AI conversations tailored to your business.",
     // subhead: "So your business is always-on growth.",
     ctas: {
-      primary: "Get Started", 
-      secondary: "See Pricing" 
+      primary: "Book a Free Call", 
+      secondary: "View Pricing Plans" 
     }
   },
 

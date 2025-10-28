@@ -139,21 +139,10 @@ export default function Home() {
                 className="space-y-4"
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
-                  <span className="text-white block">
-              Your 24/7 AI
-            </span>
-                  <div className="text-6xl md:text-7xl lg:text-8xl font-black">
-                    <motion.span 
-                      key={currentValueProp}
-                      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                      animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                      className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent block"
-                    >
-                {valueProps[currentValueProp]}
-                    </motion.span>
-                  </div>
-          </h1>
+                  <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent block">
+                    Your AI Sales Team Works 24/7, Books Calls, Converts Visitors
+                  </span>
+                </h1>
 
                 <motion.div 
                   initial={reduceMotion ? false : { opacity: 0, y: 20 }}
@@ -161,7 +150,7 @@ export default function Home() {
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
                   className="text-xl md:text-2xl text-gray-300 font-medium tracking-wide"
                 >
-                  LeadFlow Chatbots & Web Development That Convert
+                  Intelligent chatbots + conversion-optimized websites for modern businesses
                 </motion.div>
               </motion.div>
 
