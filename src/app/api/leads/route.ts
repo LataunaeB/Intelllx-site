@@ -256,7 +256,7 @@ export async function POST(request: NextRequest) {
       console.warn('[API /leads] Database error (continuing anyway):', dbError);
     }
 
-    // 2. Send automated welcome email based on lead temperature (if Resend is configured)
+    // 2. Send automated welcome email to the lead (DISABLED - domain not verified yet)
     console.log('[API /leads] RESEND CONFIG CHECK:', {
       hasApiKey: !!resendApiKey,
       apiKeyPrefix: resendApiKey ? resendApiKey.substring(0, 20) : 'MISSING',
