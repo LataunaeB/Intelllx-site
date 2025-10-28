@@ -33,15 +33,18 @@ export default function Contact() {
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                <a 
+                  href="mailto:hello@intelllx.com?subject=General Question - Intelllx"
+                  className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 hover:border-blue-500/50 transition-all duration-200 cursor-pointer group"
+                >
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
                     <Mail className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
                     <h3 className="text-white font-semibold">Email</h3>
-                    <p className="text-gray-300">hello@intelllx.com</p>
+                    <p className="text-gray-300 group-hover:text-blue-400 transition-colors">hello@intelllx.com</p>
                   </div>
-                </div>
+                </a>
 
                 <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
                   <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
