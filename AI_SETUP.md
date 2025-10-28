@@ -1,6 +1,12 @@
 # AI Integration Setup Guide
 
-This guide walks you through adding OpenAI, Anthropic, and Stability AI API keys to enable enhanced AI capabilities for development and content creation.
+This guide walks you through adding **free** AI API keys to enable enhanced AI capabilities for development and content creation.
+
+## 🎯 What You Get (All Free!)
+
+✅ **OpenAI** - Code generation & general content  
+✅ **Google Gemini** - Content, UX copy, structured text (FREE TIER)  
+✅ **Stability AI** - Image generation (FREE CREDITS)
 
 ---
 
@@ -13,14 +19,14 @@ This guide walks you through adding OpenAI, Anthropic, and Stability AI API keys
 4. Give it a name (e.g., "Intelllx Development")
 5. Copy the key (starts with `sk-`)
 
-### Anthropic (Excellent at structured copy/UX)
-1. Visit: https://console.anthropic.com/
-2. Sign up or log in
-3. Go to "API Keys"
-4. Click "Create Key"
-5. Copy the key (starts with `sk-ant-`)
+### Google Gemini (FREE - Great for content & UX copy!)
+1. Visit: https://aistudio.google.com/app/apikey
+2. Click "Get API key"
+3. Select "Create API key in new project" or choose existing
+4. Copy the key
+5. **Free tier:** 1,500 requests/day = FREE!
 
-### Stability AI / Stable Diffusion (Image generation)
+### Stability AI / Stable Diffusion (FREE credits for images)
 1. Visit: https://platform.stability.ai/
 2. Sign up or log in
 3. Go to "API Keys" in your account
@@ -43,8 +49,8 @@ This guide walks you through adding OpenAI, Anthropic, and Stability AI API keys
 **Click:** "Save"
 
 ### Add This Variable:
-**Name:** `ANTHROPIC_API_KEY`  
-**Value:** `sk-ant-your-anthropic-key-here`  
+**Name:** `GOOGLE_GEMINI_API_KEY`  
+**Value:** `your-gemini-key-here`  
 **Environment:** Select all (Production, Preview, Development)  
 **Click:** "Save"
 
@@ -83,18 +89,23 @@ Once deployed, the AI integrations are ready to use. You can test them by:
 - Create general content and text
 - Code explanations and documentation
 - API endpoint descriptions
+- **Cost:** Pay per use
 
-### Anthropic
+### Google Gemini (FREE! 🎉)
 - Structured content creation
-- UX copy and microcopy
-- Formatted text with specific tone
+- UX copy and microcopy  
 - Business communication templates
+- Code generation
+- General content writing
+- **FREE TIER:** 1,500 requests/day
 
-### Stability AI
+### Stability AI (FREE credits! 🎉)
 - AI image generation
 - Logo variations
 - Marketing assets
 - UI mockups and wireframes
+- Hero backgrounds
+- **FREE TIER:** Generous monthly credits
 
 ---
 
@@ -104,7 +115,7 @@ If you want to test locally, create a `.env.local` file in the project root:
 
 ```bash
 OPENAI_API_KEY=sk-your-key-here
-ANTHROPIC_API_KEY=sk-ant-your-key-here
+GOOGLE_GEMINI_API_KEY=your-gemini-key-here
 STABILITY_API_KEY=your-key-here
 ```
 
@@ -115,8 +126,16 @@ STABILITY_API_KEY=your-key-here
 ## Need Help?
 
 - OpenAI Docs: https://platform.openai.com/docs
-- Anthropic Docs: https://docs.anthropic.com/
+- Google Gemini Docs: https://ai.google.dev/docs
 - Stability AI Docs: https://platform.stability.ai/docs
+
+## 🆓 Cost Summary
+
+| Service | Free Tier | Best For |
+|---------|-----------|----------|
+| OpenAI | Pay per use | Code, general content |
+| Google Gemini | 1,500 req/day (FREE!) | Content, UX copy |
+| Stability AI | Free credits monthly | Image generation |
 
 ---
 
