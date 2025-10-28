@@ -185,9 +185,9 @@ export async function POST(request: NextRequest) {
 
     // Initialize Resend configuration
     const resendApiKey = process.env.RESEND_API_KEY;
-    // Use your verified intelllx.com domain (from Resend dashboard)
-    // You can use any address from intelllx.com: hello@intelllx.com, noreply@intelllx.com, etc.
-    const resendFrom = process.env.RESEND_FROM || 'hello@intelllx.com';
+    // Use Resend onboarding email for testing (works without domain verification)
+    // Change to hello@intelllx.com once your domain is verified in Resend
+    const resendFrom = process.env.RESEND_FROM || 'onboarding@resend.dev';
     const resendTo = process.env.RESEND_TO || process.env.EMAIL_TO || 'hello@intelllx.com';
 
     if (!supabaseUrl || !supabaseServiceKey) {
@@ -305,10 +305,11 @@ export async function POST(request: NextRequest) {
               </ol>
               <p><a href="https://calendly.com/lataunaeb-intelllx-discovery/30min" style="background: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px;">Book Your Strategy Call</a></p>
             `}
+            <p><strong>🔗 Join our Zoom meeting:</strong> <a href="${zoomMeetingUrl}">${zoomMeetingUrl}</a></p>
             <p>I typically respond to high-priority inquiries like yours within 2 hours.</p>
             <p>Best regards,<br>Your INTELLLX Team</p>
           `;
-          textContent = `Hi ${trimmedName || 'there'},\n\nI'm excited you reached out about our LeadFlow chatbot service! Based on your inquiry, I can tell you're serious about growing your business with AI.\n\n${hasBookingInfo ? `I saw you selected: ${trimmedPreferredDate} at ${trimmedPreferredTime} PST. Perfect! Click the Calendly link to confirm and secure your spot: https://calendly.com/lataunaeb-intelllx-discovery/30min` : `Lead Score: ${scoreResult.score}/100 (HOT LEAD)\n\nNext steps:\n1. Book a 15-minute strategy call\n2. We'll discuss your specific needs and goals\n3. I'll create a custom proposal for your business\n\nBook your call: https://calendly.com/lataunaeb-intelllx-discovery/30min`}\n\nI typically respond to high-priority inquiries like yours within 2 hours.\n\nBest regards,\nYour INTELLLX Team`;
+          textContent = `Hi ${trimmedName || 'there'},\n\nI'm excited you reached out about our LeadFlow chatbot service! Based on your inquiry, I can tell you're serious about growing your business with AI.\n\n${hasBookingInfo ? `I saw you selected: ${trimmedPreferredDate} at ${trimmedPreferredTime} PST. Perfect! Click the Calendly link to confirm and secure your spot: https://calendly.com/lataunaeb-intelllx-discovery/30min` : `Lead Score: ${scoreResult.score}/100 (HOT LEAD)\n\nNext steps:\n1. Book a 15-minute strategy call\n2. We'll discuss your specific needs and goals\n3. I'll create a custom proposal for your business\n\nBook your call: https://calendly.com/lataunaeb-intelllx-discovery/30min`}\n\n🔗 Join our Zoom meeting: ${zoomMeetingUrl}\n\nI typically respond to high-priority inquiries like yours within 2 hours.\n\nBest regards,\nYour INTELLLX Team`;
         } else if (leadTemperature === 'warm') {
           subject = `Thanks for your interest! Here's how we can help...`;
           htmlContent = `
@@ -330,10 +331,11 @@ export async function POST(request: NextRequest) {
             ` : `
               <p><a href="https://calendly.com/lataunaeb-intelllx-discovery/30min" style="background: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px;">Schedule a Free Consultation</a></p>
             `}
+            <p><strong>🔗 Join our Zoom meeting:</strong> <a href="${zoomMeetingUrl}">${zoomMeetingUrl}</a></p>
             <p>I'll send you a follow-up email in a few days with more insights about AI chatbots for businesses like yours.</p>
             <p>Best regards,<br>Your INTELLLX Team</p>
           `;
-          textContent = `Hi ${trimmedName || 'there'},\n\nThank you for your interest in INTELLLX! I appreciate you taking the time to reach out.\n\n${hasBookingInfo ? `I saw you selected: ${trimmedPreferredDate} at ${trimmedPreferredTime} PST. ` : ''}Lead Score: ${scoreResult.score}/100 (WARM LEAD)\n\nI've helped dozens of businesses like yours capture more leads and grow their revenue with AI chatbots.\n\nWhat makes INTELLLX different:\n✅ Custom AI conversations tailored to your business\n✅ Professional setup included (no technical work for you)\n✅ Automated lead capture and calendar booking\n✅ Ongoing optimization and support\n\n${hasBookingInfo ? `Confirm your booking: https://calendly.com/lataunaeb-intelllx-discovery/30min` : `Schedule a consultation: https://calendly.com/lataunaeb-intelllx-discovery/30min`}\n\nI'll send you a follow-up email in a few days with more insights.\n\nBest regards,\nYour INTELLLX Team`;
+          textContent = `Hi ${trimmedName || 'there'},\n\nThank you for your interest in INTELLLX! I appreciate you taking the time to reach out.\n\n${hasBookingInfo ? `I saw you selected: ${trimmedPreferredDate} at ${trimmedPreferredTime} PST. ` : ''}Lead Score: ${scoreResult.score}/100 (WARM LEAD)\n\nI've helped dozens of businesses like yours capture more leads and grow their revenue with AI chatbots.\n\nWhat makes INTELLLX different:\n✅ Custom AI conversations tailored to your business\n✅ Professional setup included (no technical work for you)\n✅ Automated lead capture and calendar booking\n✅ Ongoing optimization and support\n\n${hasBookingInfo ? `Confirm your booking: https://calendly.com/lataunaeb-intelllx-discovery/30min` : `Schedule a consultation: https://calendly.com/lataunaeb-intelllx-discovery/30min`}\n\n🔗 Join our Zoom meeting: ${zoomMeetingUrl}\n\nI'll send you a follow-up email in a few days with more insights.\n\nBest regards,\nYour INTELLLX Team`;
         } else {
           subject = `Welcome! Here's how AI chatbots can grow your business`;
           htmlContent = `
@@ -355,10 +357,11 @@ export async function POST(request: NextRequest) {
             ` : `
               <p><a href="https://calendly.com/lataunaeb-intelllx-discovery/30min" style="background: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px;">Learn More</a></p>
             `}
+            <p><strong>🔗 Join our Zoom meeting:</strong> <a href="${zoomMeetingUrl}">${zoomMeetingUrl}</a></p>
             <p>I'll send you valuable tips and insights about AI chatbots over the next few weeks. No pressure, just helpful content!</p>
             <p>Best regards,<br>Your INTELLLX Team</p>
           `;
-          textContent = `Hi ${trimmedName || 'there'},\n\nWelcome to INTELLLX! Thanks for your interest in our services.\n\n${hasBookingInfo ? `I saw you selected: ${trimmedPreferredDate} at ${trimmedPreferredTime} PST. ` : ''}Lead Score: ${scoreResult.score}/100 (COLD LEAD)\n\nDid you know that businesses using AI chatbots see an average of 3-5x more qualified leads?\n\nAI Chatbot Benefits:\n• 24/7 Lead Capture: Never miss another opportunity\n• Instant Qualification: Only book calls with serious prospects\n• Automated Follow-up: Nurture leads while you sleep\n• Brand Consistency: Every interaction reflects your quality\n\n${hasBookingInfo ? `Confirm your booking: https://calendly.com/lataunaeb-intelllx-discovery/30min` : `Learn more: https://calendly.com/lataunaeb-intelllx-discovery/30min`}\n\nI'll send you valuable tips and insights about AI chatbots over the next few weeks.\n\nBest regards,\nYour INTELLLX Team`;
+          textContent = `Hi ${trimmedName || 'there'},\n\nWelcome to INTELLLX! Thanks for your interest in our services.\n\n${hasBookingInfo ? `I saw you selected: ${trimmedPreferredDate} at ${trimmedPreferredTime} PST. ` : ''}Lead Score: ${scoreResult.score}/100 (COLD LEAD)\n\nDid you know that businesses using AI chatbots see an average of 3-5x more qualified leads?\n\nAI Chatbot Benefits:\n• 24/7 Lead Capture: Never miss another opportunity\n• Instant Qualification: Only book calls with serious prospects\n• Automated Follow-up: Nurture leads while you sleep\n• Brand Consistency: Every interaction reflects your quality\n\n${hasBookingInfo ? `Confirm your booking: https://calendly.com/lataunaeb-intelllx-discovery/30min` : `Learn more: https://calendly.com/lataunaeb-intelllx-discovery/30min`}\n\n🔗 Join our Zoom meeting: ${zoomMeetingUrl}\n\nI'll send you valuable tips and insights about AI chatbots over the next few weeks.\n\nBest regards,\nYour INTELLLX Team`;
         }
 
         // Send welcome email to the lead
