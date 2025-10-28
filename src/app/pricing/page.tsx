@@ -49,16 +49,16 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-8">
-          {/* Chatbot · Basic */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-8">
+          {/* Chatbot · Essential */}
           <div className="card p-6 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
             <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">{pricing.products.chatbot.basic.name}</h3>
-              <div className="text-3xl font-black text-white">{pricing.products.chatbot.basic.priceDisplay}</div>
+              <h3 className="text-xl font-bold text-white mb-2">{pricing.products.chatbot.essential.name}</h3>
+              <div className="text-3xl font-black text-white">{pricing.products.chatbot.essential.priceDisplay}</div>
                 </div>
                 
             <div className="space-y-3 mb-4">
-              {pricing.products.chatbot.basic.features.map((feature, index) => (
+              {pricing.products.chatbot.essential.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
                   <span className="text-gray-300 text-sm">{feature}</span>
@@ -70,9 +70,9 @@ export default function Pricing() {
             <div className="mb-6 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-xs text-blue-300 font-medium">Optional</span>
-                <span className="text-sm text-blue-200 font-semibold">{pricing.products.chatbot.basic.monthlyService.name} — {pricing.products.chatbot.basic.monthlyService.priceDisplay}</span>
+                <span className="text-sm text-blue-200 font-semibold">{pricing.products.chatbot.essential.monthlyService.name} → {pricing.products.chatbot.essential.monthlyService.priceDisplay}</span>
               </div>
-              <p className="text-xs text-gray-400">{pricing.products.chatbot.basic.monthlyService.description}</p>
+              <p className="text-xs text-gray-400">{pricing.products.chatbot.essential.monthlyService.description}</p>
               </div>
 
             <div className="space-y-2">
@@ -109,7 +109,7 @@ export default function Pricing() {
             <div className="mb-6 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-xs text-purple-300 font-medium">Optional</span>
-                <span className="text-sm text-purple-200 font-semibold">{pricing.products.chatbot.pro.monthlyService.name} — {pricing.products.chatbot.pro.monthlyService.priceDisplay}</span>
+                <span className="text-sm text-purple-200 font-semibold">{pricing.products.chatbot.pro.monthlyService.name} → {pricing.products.chatbot.pro.monthlyService.priceDisplay}</span>
                 {pricing.products.chatbot.pro.monthlyService.recommended && (
                   <span className="text-xs bg-purple-500/20 text-purple-200 px-2 py-0.5 rounded-full">Recommended</span>
                 )}
@@ -131,109 +131,56 @@ export default function Pricing() {
             </div>
           </div>
 
-          {/* Website · Launch */}
-          <div className="card p-6 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 hover:-translate-y-1">
+          {/* Website Development - Custom Pricing */}
+          <div className="card p-8 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1 border-2 border-indigo-500/30">
             <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">{pricing.products.website.launch.name}</h3>
-              <div className="text-3xl font-black text-white">{pricing.products.website.launch.priceDisplay}</div>
-                </div>
-                
-            <div className="space-y-3 mb-6">
-              {pricing.products.website.launch.features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300 text-sm">{feature}</span>
-                </div>
-              ))}
-              </div>
-
-            <a
-              href={site.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
-              aria-label="Get started with Website Development Launch"
-            >
-              {pricing.ctaLabels.getStarted}
-            </a>
-          </div>
-
-          {/* Website · Professional/Business */}
-          <div className="card p-6 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 hover:-translate-y-1">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">{pricing.products.website.professional.name}</h3>
-              <div className="text-3xl font-black text-white">{pricing.products.website.professional.priceDisplay}</div>
-                    </div>
-            
-            <div className="space-y-3 mb-6">
-              {pricing.products.website.professional.features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300 text-sm">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-                <a
-              href={site.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
-                  aria-label="Get started with Website Development Professional"
-            >
-              {pricing.ctaLabels.getStarted}
-            </a>
-          </div>
-
-          {/* Website · Advanced */}
-          <div className="card p-6 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-2">{pricing.products.website.advanced.name}</h3>
-              <div className="text-3xl font-black text-white">{pricing.products.website.advanced.priceDisplay}</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Website Development</h3>
+              <div className="text-4xl font-black text-white mb-2">Custom Pricing</div>
+              <p className="text-gray-300 text-sm">Priced based on your specific needs</p>
             </div>
             
-            <div className="space-y-3 mb-6">
-              {pricing.products.website.advanced.features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
-                  <span className="text-gray-300 text-sm">{feature}</span>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-white font-semibold mb-1">Completely Custom</h4>
+                  <p className="text-gray-300 text-sm">Built to match your exact business needs</p>
                 </div>
-              ))}
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-white font-semibold mb-1">Modern Tech Stack</h4>
+                  <p className="text-gray-300 text-sm">Next.js, responsive design, fast loading</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-white font-semibold mb-1">SEO & Analytics</h4>
+                  <p className="text-gray-300 text-sm">Optimized for search and fully tracked</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-white font-semibold mb-1">Integrations Included</h4>
+                  <p className="text-gray-300 text-sm">Chatbot, forms, calendar, CRM ready</p>
+                </div>
+              </div>
             </div>
             
             <a
-              href={site.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-              aria-label="Get started with Website Development Advanced"
+              href="/contact"
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 inline-flex items-center justify-center text-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              aria-label="Get a custom website quote"
             >
-              {pricing.ctaLabels.getStarted}
+              Get a Custom Quote
             </a>
+            <p className="text-center text-gray-400 text-sm mt-3">Contact us to discuss your needs</p>
           </div>
         </div>
 
-        {/* Simple add-ons */}
-        <div className="text-center mb-6">
-          <div className="card p-4 max-w-4xl mx-auto">
-            <h4 className="text-lg font-semibold text-white mb-3">Simple add-ons (optional)</h4>
-            <p className="text-gray-300 text-sm md:text-base">
-              {pricing.addOns.map((addon, index) => (
-                <span key={index}>
-                  {addon.name} {addon.priceDisplay}
-                  {index < pricing.addOns.length - 1 ? " · " : ""}
-                </span>
-              ))}
-            </p>
-          </div>
-        </div>
-
-        {/* Payment tagline */}
-        <div className="text-center mb-8">
-          <p className="text-gray-300 text-base">
-            {pricing.paymentTagline}
-          </p>
-        </div>
 
     </section>
     </div>

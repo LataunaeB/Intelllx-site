@@ -98,6 +98,13 @@ export default function Home() {
               backgroundSize: '100px 100px',
               backgroundPosition: '0 0, 50px 50px'
             }}></div>
+            {/* Subtle texture overlay */}
+            <div 
+              className="absolute inset-0 opacity-[0.015]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`,
+              }}
+            ></div>
           </div>
           {/* Floating Elements - Slowed for premium feel */}
           <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse" style={{ animationDuration: '4s' }}></div>

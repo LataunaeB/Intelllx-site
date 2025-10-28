@@ -48,7 +48,7 @@ export default function HeroMockup({ reduceMotion = false }: HeroMockupProps) {
           <div className="flex gap-3 justify-end">
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl px-4 py-3 max-w-[240px] shadow-sm">
               <p className="text-sm text-white leading-relaxed font-medium">
-                We&apos;re a digital marketing agency looking to scale our lead generation.
+                We need a consultation for legal services.
               </p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function HeroMockup({ reduceMotion = false }: HeroMockupProps) {
             </div>
             <div className="bg-gray-50 rounded-xl px-4 py-3 max-w-[240px] shadow-sm">
               <p className="text-sm text-gray-800 leading-relaxed font-medium">
-                Perfect! I can help you book a strategy call. What&apos;s your preferred time?
+                I&apos;ll help you book a consultation. What type of legal matter is this regarding?
               </p>
             </div>
           </div>

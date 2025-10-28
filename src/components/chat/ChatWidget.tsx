@@ -10,18 +10,7 @@ import MessageList, { type Message } from './MessageList';
 import Composer from './Composer';
 import { pricing } from '@/config/pricing';
 
-// Simple business hours check
-const isWithinBusinessHours = () => {
-  try {
-    const now = new Date();
-    const hour = now.getHours();
-    const day = now.getDay();
-    // Monday-Friday (1-5), 9 AM - 6 PM
-    return day >= 1 && day <= 5 && hour >= 9 && hour < 18;
-  } catch {
-    return true;
-  }
-};
+// Business hours check removed - chatbot is available 24/7
 
 /**
  * Sleek Chat Widget - Redesigned
@@ -40,10 +29,9 @@ export default function ChatWidget() {
   const [isTyping, setIsTyping] = useState(false);
   
   const [messages, setMessages] = useState<Message[]>(() => {
-    const withinHours = isWithinBusinessHours();
     return [{
       id: 1,
-      text: withinHours ? t.welcome : t.awayMessage,
+      text: t.welcome, // Always show welcome message - chatbot works 24/7
       isUser: false,
       timestamp: new Date()
     }];
@@ -53,9 +41,9 @@ export default function ChatWidget() {
   const getBotResponse = (input: string): string => {
     const lowerInput = input.toLowerCase();
 
-    // Pricing
-    if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much')) {
-      return `LeadFlow Chatbot pricing: Basic — ${pricing.products.chatbot.basic.priceDisplay} setup + ${pricing.products.chatbot.basic.monthlyService.priceDisplay}/mo, or Pro — ${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}/mo. Most clients see ROI within 30 days!`;
+    // Pricing - check for 'pricing' first, then other variations
+    if (lowerInput === 'pricing' || lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('how much')) {
+      return `LeadFlow Chatbot pricing: Essential → ${pricing.products.chatbot.essential.priceDisplay} setup + ${pricing.products.chatbot.essential.monthlyService.priceDisplay}/mo, or Pro → ${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}/mo. Most clients see ROI within 30 days!`;
     }
 
     // How it works
@@ -100,7 +88,7 @@ export default function ChatWidget() {
 
     // Default
     const defaultResponses = [
-      `I'm here to help! You can ask me about pricing (Basic — ${pricing.products.chatbot.basic.priceDisplay} or Pro — ${pricing.products.chatbot.pro.priceDisplay}), features, how it works, ROI, or click below to book a discovery call!`,
+      `I'm here to help! You can ask me about pricing (Essential → ${pricing.products.chatbot.essential.priceDisplay} or Pro → ${pricing.products.chatbot.pro.priceDisplay}), features, how it works, ROI, or click below to book a discovery call!`,
       "Great question! LeadFlow captures and converts leads 24/7. Ask me about pricing, features, integrations, or book a call to learn more!",
       "Excited to help! LeadFlow is designed to turn visitors into customers. Ask about pricing, how it works, or book a discovery call below!"
     ];
@@ -247,6 +235,62 @@ export default function ChatWidget() {
                 <>
                   {/* Messages */}
                   <MessageList messages={messages} isTyping={isTyping} />
+
+                  {/* Quick Action Buttons - Only show on welcome message */}
+                  {messages.length === 1 && (
+                    <div className="px-4 py-3 space-y-2 border-t border-gray-200 dark:border-zinc-800">
+                      <button
+                        onClick={() => {
+                          const userMsg: Message = { id: Date.now(), text: 'book a call', isUser: true, timestamp: new Date() };
+                          setMessages(prev => [...prev, userMsg]);
+                          setIsTyping(true);
+                          setTimeout(() => {
+                            const response = getBotResponse('book a call');
+                            const botMsg: Message = { id: Date.now() + 1, text: response, isUser: false, timestamp: new Date() };
+                            setMessages(prev => [...prev, botMsg]);
+                            setIsTyping(false);
+                          }, 800);
+                        }}
+                        className="w-full px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-medium rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      >
+                        📅 Book a Call
+                      </button>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          onClick={() => {
+                            const userMsg: Message = { id: Date.now(), text: 'pricing', isUser: true, timestamp: new Date() };
+                            setMessages(prev => [...prev, userMsg]);
+                            setIsTyping(true);
+                            setTimeout(() => {
+                              const response = getBotResponse('pricing');
+                              const botMsg: Message = { id: Date.now() + 1, text: response, isUser: false, timestamp: new Date() };
+                              setMessages(prev => [...prev, botMsg]);
+                              setIsTyping(false);
+                            }, 800);
+                          }}
+                          className="px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                          💰 Pricing
+                        </button>
+                        <button
+                          onClick={() => {
+                            const userMsg: Message = { id: Date.now(), text: 'how it works', isUser: true, timestamp: new Date() };
+                            setMessages(prev => [...prev, userMsg]);
+                            setIsTyping(true);
+                            setTimeout(() => {
+                              const response = getBotResponse('how it works');
+                              const botMsg: Message = { id: Date.now() + 1, text: response, isUser: false, timestamp: new Date() };
+                              setMessages(prev => [...prev, botMsg]);
+                              setIsTyping(false);
+                            }, 800);
+                          }}
+                          className="px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                          🔧 How It Works
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Composer */}
                   <Composer

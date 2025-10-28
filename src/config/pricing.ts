@@ -2,21 +2,23 @@ export const pricing = {
   // Main Products
   products: {
     chatbot: {
-      basic: {
-        name: "Chatbot · Basic",
+      essential: {
+        name: "Chatbot · Essential",
         price: 500,
         priceDisplay: "$500",
         features: [
-          "Template setup, up to 5 Q/As",
-          "1 website widget, basic analytics",
-          "1 revision, 7-day fixes"
+          "Custom setup with up to 10 Q/As",
+          "1 website widget + basic analytics",
+          "Calendly or email integration",
+          "Lead capture & export",
+          "2 revisions + 30-day support"
         ],
         stripeLink: "https://buy.stripe.com/14A9ATh1K9lp7bR3koaEE05",
         monthlyService: {
-          name: "Basic Care",
-          price: 99,
-          priceDisplay: "$99/mo",
-          description: "Light maintenance & 5 Q/A updates/mo",
+          name: "Essential Care",
+          price: 149,
+          priceDisplay: "$149/mo",
+          description: "Monthly optimization + 10 Q/A updates",
           recommended: false
         }
       },
@@ -25,17 +27,18 @@ export const pricing = {
         price: 1000,
         priceDisplay: "$1,000",
         features: [
-          "Custom look & flows (up to 15 Q/As)",
-          "1 integration (Calendly/Email/CRM)",
-          "Lead export + event tracking",
-          "2 revisions, 30-day optimization"
+          "Custom look & flows (up to 25 Q/As)",
+          "2 integrations (Calendly, CRM, Email)",
+          "Advanced lead tracking & analytics",
+          "3 revisions, 60-day optimization",
+          "Priority support"
         ],
         stripeLink: "https://buy.stripe.com/aFacN5eTC7dh7bR2gkaEE06",
         monthlyService: {
           name: "Pro Optimize",
           price: 299,
           priceDisplay: "$299/mo",
-          description: "2 tuning cycles + A/B slot/mo",
+          description: "Advanced optimization + unlimited Q/A updates",
           recommended: true
         }
       }

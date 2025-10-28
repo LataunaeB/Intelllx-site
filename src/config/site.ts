@@ -8,15 +8,16 @@ export const site = {
   // Booking (Calendly)
   calendly: "https://calendly.com/lataunaeb-intelllx-discovery/30min",
 
-  // Hero copy
+  // Hero copy - NICHE FOCUSED
   tagline: "Your 24/7 AI Sales Assistant",
   blurb:
-    "Your intelligent, always-on sales team that captures leads, books calls, and nurtures prospects while you sleep. Never miss another opportunity.",
+    "Never miss another consultation. Our AI captures leads, qualifies prospects, and books appointments 24/7 → so you can focus on winning cases and closing deals.",
 
   // Header nav
   nav: [
     { href: "/services", label: "Services" },
     { href: "/pricing", label: "Pricing" },
+    { href: "/how-we-build", label: "How We Build" },
     { href: "/resources", label: "Resources" },
     { href: "/faq", label: "FAQ" },
     { href: "/about", label: "About" },
@@ -52,7 +53,7 @@ export const site = {
     {
       title: "LeadFlow Chatbot",
       blurb: "Everything you need to turn website visitors into paying customers with a personal touch that never sleeps",
-      price: `Basic: ${pricing.products.chatbot.basic.priceDisplay} setup + ${pricing.products.chatbot.basic.monthlyService.priceDisplay} | Pro: ${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
+      price: `Essential: ${pricing.products.chatbot.essential.priceDisplay} setup + ${pricing.products.chatbot.essential.monthlyService.priceDisplay} | Pro: ${pricing.products.chatbot.pro.priceDisplay} setup + ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
       setup: {
         title: "Setup includes:",
         items: [

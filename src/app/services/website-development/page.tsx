@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { pricing } from "@/config/pricing";
-import { site } from "@/config/site";
 
 export default function WebsiteDevelopment() {
   const tiers = [

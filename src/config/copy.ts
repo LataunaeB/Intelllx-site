@@ -16,7 +16,7 @@ export const copy = {
 
   hero: {
     title: "Custom AI That Actually Converts",
-    subhead_A: "We build custom AI conversations tailored to your business → so you wake up always-on growth.",
+    subhead_A: "Never miss a consultation again. AI handles client inquiries 24/7, qualifies prospects, and books appointments → so your business is Always-On Growth.",
     subhead_B: "Professional setup included. Real AI that understands your customers and books qualified calls.",
     // Alternative hierarchy approach:
     // headline: "We build custom AI conversations tailored to your business.",
@@ -38,7 +38,7 @@ export const copy = {
       },
       { 
         title: "Professional Setup Included", 
-        body: "We handle everything from design to deployment—you focus on your business while we handle the technical details." 
+        body: "We handle everything from design to deployment → you focus on your business while we handle the technical details." 
       },
       { 
         title: "ROI-Focused Design", 
@@ -99,7 +99,7 @@ export const copy = {
     },
     whyChoose: {
       heading: "Premium Quality, Accessible Pricing",
-      subhead: "Custom AI development at platform pricing—the best of both worlds",
+      subhead: "Custom AI development at platform pricing → the best of both worlds",
       features: [
         {
           title: "Custom AI Development",
@@ -107,7 +107,7 @@ export const copy = {
         },
         {
           title: "Professional Setup Included", 
-          description: "We handle everything from design to deployment—you focus on your business"
+          description: "We handle everything from design to deployment → you focus on your business"
         },
         {
           title: "ROI-Focused Results",
@@ -294,9 +294,9 @@ export const copy = {
 
   pricing: {
     heading: "Premium AI at Platform Pricing",
-    subhead: "Custom AI development that typically costs $75,000+—available at accessible pricing",
-    leadflowSetup: `Basic — ${pricing.products.chatbot.basic.priceDisplay} | Pro — ${pricing.products.chatbot.pro.priceDisplay}`,
-    leadflowSub: `Monthly: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} | Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
+    subhead: "Custom AI development that typically costs $75,000+ → available at accessible pricing",
+    leadflowSetup: `Essential — ${pricing.products.chatbot.essential.priceDisplay} | Pro — ${pricing.products.chatbot.pro.priceDisplay}`,
+    leadflowSub: `Monthly: Essential Care — ${pricing.products.chatbot.essential.monthlyService.priceDisplay} | Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay}`,
     note: "Compare to $75,000+ custom development or $3,000+/month enterprise platforms. We deliver premium results at accessible pricing.",
     cta: {
       primary: "Get started",
@@ -309,7 +309,7 @@ export const copy = {
     subhead: "Democratizing premium AI technology for businesses of all sizes",
     mission: {
       heading: "Our mission",
-      body: "We're making premium AI technology accessible to businesses of all sizes. We deliver custom AI solutions at accessible pricing—giving every business access to professional AI development.",
+      body: "We're making premium AI technology accessible to businesses of all sizes. We deliver custom AI solutions at accessible pricing → giving every business access to professional AI development.",
       subtext: "Our mission is to make custom AI development accessible to businesses of all sizes, delivering enterprise-quality results without enterprise-level costs."
     },
     values: {
@@ -396,7 +396,7 @@ export const copy = {
       },
       {
         question: "Do you offer ongoing support and optimization?",
-        answer: `Monthly is optional. Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
+        answer: `Monthly is optional. Essential Care — ${pricing.products.chatbot.essential.monthlyService.priceDisplay} (monthly optimization + 10 Q/A updates). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (advanced optimization + unlimited updates; recommended).`
       },
       {
         question: "What if my chatbot needs changes after launch?",
@@ -430,7 +430,7 @@ export const copy = {
   microcopy: {
     trustRow: "Custom AI • Professional Setup • Premium Results at Platform Pricing",
     loading: "One sec…",
-    success: "Got it—thank you! We'll reply shortly.",
+    success: "Got it → thank you! We'll reply shortly.",
     error: "Something went wrong. Please try again or email hello@intelllx.com.",
     cta: {
       getStarted: "Get started",

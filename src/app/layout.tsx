@@ -17,10 +17,25 @@ const script = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.tagline}`,
+  title: `${site.name} → ${site.tagline}`,
   description: site.blurb,
+  keywords: ['AI chatbot', 'lead generation', 'legal services chatbot', 'consulting chatbot', 'appointment booking', 'website development', 'Next.js', 'law firm chatbot'],
+  authors: [{ name: site.name }],
   alternates: {
     canonical: 'https://intelllx.com',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://intelllx.com',
+    siteName: site.name,
+    title: `${site.name} → ${site.tagline}`,
+    description: site.blurb,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${site.name} → ${site.tagline}`,
+    description: site.blurb,
   },
   icons: {
     icon: [
@@ -44,6 +59,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" sizes="16x16" href={`/favicon-16x16.png?v=4&t=${Date.now()}`} />
         <link rel="apple-touch-icon" sizes="180x180" href={`/apple-touch-icon.png?v=4&t=${Date.now()}`} />
         <link rel="shortcut icon" href={`/favicon-32x32.png?v=4&t=${Date.now()}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": site.name,
+              "url": "https://intelllx.com",
+              "logo": "https://intelllx.com/images/logo/Intelllxherologo.png",
+              "email": site.email,
+              "description": site.blurb,
+              "sameAs": [],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": site.email,
+                "contactType": "customer service"
+              }
+            })
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col">
         {/* Google Analytics */}

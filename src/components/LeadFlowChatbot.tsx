@@ -5,6 +5,7 @@ import { site } from '@/config/site';
 import { pricing } from '@/config/pricing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, X, Minimize2, Maximize2, Bot } from 'lucide-react';
+import { trackEvent } from "@/components/GoogleAnalytics";
 
 interface Message {
   id: number;
@@ -19,7 +20,7 @@ export default function LeadFlowChatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Welcome—I'm the INTELLLX assistant for LeadFlow Chatbots & Web Development. Ask about pricing, features, or how it works.",
+      text: "Welcome → I'm the INTELLLX assistant for LeadFlow Chatbots & Web Development. Ask about pricing, features, or how it works.",
       isUser: false,
       timestamp: new Date()
     }
@@ -28,6 +29,16 @@ export default function LeadFlowChatbot() {
   const [isTyping, setIsTyping] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState({ name: '', email: '', phone: '' });
+  const [showCalendarBooking, setShowCalendarBooking] = useState(false);
+  const [calendarData, setCalendarData] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '', 
+    preferredDate: '', 
+    preferredTime: '',
+    timezone: 'America/Los_Angeles'
+  });
+  const [googleAccessToken, setGoogleAccessToken] = useState<string | null>(null);
   const [speakingMessageId, setSpeakingMessageId] = useState<number | null>(null);
   const [detectedLanguage, setDetectedLanguage] = useState<string>('en');
   const [showLanguageSelector, setShowLanguageSelector] = useState(true);
@@ -38,6 +49,34 @@ export default function LeadFlowChatbot() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
+
+  // Handle OAuth callback
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const state = urlParams.get('state');
+    
+    if (code && state === 'calendar-booking') {
+      // Exchange code for access token
+      fetch('/api/auth/callback/google', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          setGoogleAccessToken(data.accessToken);
+          // Clear URL parameters
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      })
+      .catch(error => {
+        console.error('OAuth callback error:', error);
+      });
+    }
+  }, []);
 
   // Load voices when component mounts
   useEffect(() => {
@@ -143,12 +182,12 @@ export default function LeadFlowChatbot() {
 
   const faqResponses: { [key: string]: string } = {
     // Pricing - Concise and clear
-    'price': `Basic — ${pricing.products.chatbot.basic.priceDisplay} (template, up to 5 Q/As) or Pro — ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 15 Q/As with one integration). Monthly is optional: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`,
-    'cost': `Basic — ${pricing.products.chatbot.basic.priceDisplay} (template, up to 5 Q/As) or Pro — ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 15 Q/As with one integration). Monthly is optional: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`,
-    'pricing': `Basic — ${pricing.products.chatbot.basic.priceDisplay} (template, up to 5 Q/As) or Pro — ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 15 Q/As with one integration). Monthly is optional: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`,
-    'expensive': `I understand cost concerns! Our Basic — ${pricing.products.chatbot.basic.priceDisplay} or Pro — ${pricing.products.chatbot.pro.priceDisplay} typically pays for itself within 30 days. Most clients see 3-5x more qualified leads, so just 1-2 additional customers per month covers the cost. It's like having a sales team member for a fraction of the cost.`,
-    'cheap': `You're right - it's very affordable! Basic — ${pricing.products.chatbot.basic.priceDisplay} or Pro — ${pricing.products.chatbot.pro.priceDisplay} gets you a complete 24/7 lead generation system. Compare that to hiring a salesperson ($3,000-5,000/month) or missing leads. Most clients see ROI within 30 days.`,
-    'budget': `Our Basic — ${pricing.products.chatbot.basic.priceDisplay} or Pro — ${pricing.products.chatbot.pro.priceDisplay} is a fraction of what most businesses spend on lead generation. Most clients see 3-5x more qualified leads, so the investment pays for itself with just 1-2 additional customers.`,
+    'price': `Essential → ${pricing.products.chatbot.essential.priceDisplay} (custom setup, up to 10 Q/As) or Pro → ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 25 Q/As with 2 integrations). Monthly is optional: Essential Care → ${pricing.products.chatbot.essential.monthlyService.priceDisplay} (monthly optimization + 10 Q/A updates). Pro Optimize → ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (advanced optimization + unlimited updates; recommended).`,
+    'cost': `Essential → ${pricing.products.chatbot.essential.priceDisplay} (custom setup, up to 10 Q/As) or Pro → ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 25 Q/As with 2 integrations). Monthly is optional: Essential Care → ${pricing.products.chatbot.essential.monthlyService.priceDisplay} (monthly optimization + 10 Q/A updates). Pro Optimize → ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (advanced optimization + unlimited updates; recommended).`,
+    'pricing': `Essential → ${pricing.products.chatbot.essential.priceDisplay} (custom setup, up to 10 Q/As) or Pro → ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 25 Q/As with 2 integrations). Monthly is optional: Essential Care → ${pricing.products.chatbot.essential.monthlyService.priceDisplay} (monthly optimization + 10 Q/A updates). Pro Optimize → ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (advanced optimization + unlimited updates; recommended).`,
+    'expensive': `I understand cost concerns! Our Essential → ${pricing.products.chatbot.essential.priceDisplay} or Pro → ${pricing.products.chatbot.pro.priceDisplay} typically pays for itself within 30 days. Most clients see 3-5x more qualified leads, so just 1-2 additional customers per month covers the cost. It's like having a sales team member for a fraction of the cost.`,
+    'cheap': `You're right - it's very affordable! Essential → ${pricing.products.chatbot.essential.priceDisplay} or Pro → ${pricing.products.chatbot.pro.priceDisplay} gets you a complete 24/7 lead generation system. Compare that to hiring a salesperson ($3,000-5,000/month) or missing leads. Most clients see ROI within 30 days.`,
+    'budget': `Our Essential → ${pricing.products.chatbot.essential.priceDisplay} or Pro → ${pricing.products.chatbot.pro.priceDisplay} is a fraction of what most businesses spend on lead generation. Most clients see 3-5x more qualified leads, so the investment pays for itself with just 1-2 additional customers.`,
     
     // Website Development Pricing
     'website price': `Website development: Launch ${pricing.products.website.launch.priceDisplay} (1-3 pages, responsive design, SEO). Professional websites are ${pricing.products.website.professional.priceDisplay} (4-6 pages, advanced features). Advanced websites are ${pricing.products.website.advanced.priceDisplay} (7-12 pages, custom functionality). All include modern design, mobile optimization, and fast loading.`,
@@ -212,10 +251,15 @@ export default function LeadFlowChatbot() {
     'maintenance': 'We handle all maintenance: Weekly optimization, monthly reports, 7 hours support per month, regular updates, and 24/7 monitoring. You focus on your business.',
     
     // Booking - Concise
-    'book': 'Great! I can help you book a discovery call. Let me get your information first.',
-    'call': 'Great! I can help you book a discovery call. Let me get your information first.',
-    'demo': 'I\'d love to tell you more about LeadFlow! Let me get your information to connect you with our team.',
-    'schedule': 'Perfect! Let me get your information to schedule a discovery call.',
+    'book': 'Great! I can help you book a discovery call. I can either connect you to our calendar booking system or schedule directly to your Google Calendar. What would you prefer?',
+    'call': 'Great! I can help you book a discovery call. I can either connect you to our calendar booking system or schedule directly to your Google Calendar. What would you prefer?',
+    'demo': 'I\'d love to tell you more about LeadFlow! I can either connect you to our calendar booking system or schedule directly to your Google Calendar. What would you prefer?',
+    'schedule': 'Perfect! I can schedule a discovery call directly to your Google Calendar with Zoom meeting details, or connect you to our booking system. What would you prefer?',
+    
+    // Calendar-specific responses
+    'calendar': 'I can book a discovery call directly to your Google Calendar! Just provide your details and preferred time, and I\'ll create the event with Zoom meeting details.',
+    'google calendar': 'Perfect! I can schedule directly to your Google Calendar. Just tell me your preferred date and time, and I\'ll create the calendar event with Zoom meeting details.',
+    'direct booking': 'Great! I can book directly to your Google Calendar. Just provide your contact details and preferred time, and I\'ll create the calendar event with Zoom meeting details.',
     
     // Help - Concise
     'help': 'I\'m here to help! Ask me about: Pricing, How it works, Lead conversion, Business types, Benefits, ROI, Integration, Setup process, or book a discovery call.',
@@ -378,6 +422,11 @@ export default function LeadFlowChatbot() {
       if (translatedResponse.includes('get your information') || translatedResponse.includes('información')) {
         setShowLeadForm(true);
       }
+      
+      // Show calendar booking if they want to schedule
+      if (translatedResponse.includes('schedule') || translatedResponse.includes('book') || translatedResponse.includes('calendar')) {
+        setShowCalendarBooking(true);
+      }
     }, 1000);
   };
 
@@ -509,6 +558,15 @@ export default function LeadFlowChatbot() {
     // Here you would typically send the lead data to your CRM or email
     console.log('Lead captured:', leadData);
     
+    // Track chatbot lead conversion
+    trackEvent('chatbot_lead_capture', {
+      lead_source: 'chatbot',
+      service_interest: 'LeadFlow Chatbot',
+      lead_name: leadData.name,
+      lead_email: leadData.email,
+      conversion_type: 'calendar_booking',
+    });
+    
     // Redirect to Calendly
     window.open(site.calendly, '_blank');
     
@@ -524,6 +582,91 @@ export default function LeadFlowChatbot() {
       timestamp: new Date()
     };
     setMessages(prev => [...prev, confirmMessage]);
+  };
+
+  const handleGoogleAuth = async () => {
+    try {
+      const response = await fetch('/api/auth/google');
+      const { authUrl } = await response.json();
+      window.location.href = authUrl;
+    } catch (error) {
+      console.error('Google auth error:', error);
+    }
+  };
+
+  const handleCalendarBooking = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!googleAccessToken) {
+      await handleGoogleAuth();
+      return;
+    }
+
+    try {
+      // Calculate start and end times
+      const startTime = new Date(`${calendarData.preferredDate}T${calendarData.preferredTime}:00`);
+      const endTime = new Date(startTime.getTime() + 45 * 60 * 1000); // 45 minutes
+
+      const response = await fetch('/api/calendar/book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          accessToken: googleAccessToken,
+          startTime: startTime.toISOString(),
+          endTime: endTime.toISOString(),
+          attendeeEmail: calendarData.email,
+          attendeeName: calendarData.name,
+          meetingTitle: 'Discovery Call with Intelllx',
+          meetingDescription: `Discovery call with ${calendarData.name} to discuss LeadFlow chatbot needs. Phone: ${calendarData.phone}`
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Track calendar booking
+        trackEvent('chatbot_calendar_booking', {
+          lead_source: 'chatbot',
+          service_interest: 'LeadFlow Chatbot',
+          lead_name: calendarData.name,
+          lead_email: calendarData.email,
+          conversion_type: 'calendar_booking',
+        });
+
+        // Reset form
+        setCalendarData({ 
+          name: '', 
+          email: '', 
+          phone: '', 
+          preferredDate: '', 
+          preferredTime: '',
+          timezone: 'America/Los_Angeles'
+        });
+        setShowCalendarBooking(false);
+
+        // Add confirmation message
+        const confirmMessage: Message = {
+          id: Date.now(),
+          text: `Perfect! I've booked your discovery call for ${calendarData.preferredDate} at ${calendarData.preferredTime}. You'll receive a calendar invite with Zoom meeting details. Looking forward to speaking with you!`,
+          isUser: false,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, confirmMessage]);
+      } else {
+        throw new Error(result.error || 'Failed to book calendar event');
+      }
+    } catch (error) {
+      console.error('Calendar booking error:', error);
+      const errorMessage: Message = {
+        id: Date.now(),
+        text: "I'm sorry, there was an issue booking your calendar. Please try again or contact us directly at hello@intelllx.com.",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    }
   };
 
   const speakText = (text: string, messageId: number) => {
@@ -944,8 +1087,151 @@ export default function LeadFlowChatbot() {
             </div>
           )}
 
+          {/* Calendar Booking Form */}
+          {showCalendarBooking && (
+            <div className="p-6 border-t border-gray-200 bg-gray-50">
+              <div className="mb-4">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">Schedule Your Discovery Call</h4>
+                <p className="text-sm text-gray-600">Choose your preferred booking method:</p>
+              </div>
+              
+              {/* Booking Method Selection */}
+              <div className="mb-6">
+                <div className="grid grid-cols-1 gap-3">
+                  {/* Google Calendar Option */}
+                  <div className="border border-gray-200 rounded-xl p-4 bg-white">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <h5 className="font-medium text-gray-900">Direct Google Calendar Booking</h5>
+                          <p className="text-sm text-gray-600">Book directly to your Google Calendar with Zoom meeting</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setShowCalendarBooking(false);
+                          setShowLeadForm(true);
+                        }}
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                      >
+                        Use Calendly
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* Calendly Option */}
+                  <div className="border border-gray-200 rounded-xl p-4 bg-white">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <h5 className="font-medium text-gray-900">Calendly Booking</h5>
+                          <p className="text-sm text-gray-600">Simple booking with automatic Zoom meeting creation</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          // Track Calendly booking
+                          trackEvent('chatbot_calendly_booking', {
+                            lead_source: 'chatbot',
+                            service_interest: 'LeadFlow Chatbot',
+                            conversion_type: 'calendly_booking',
+                          });
+                          
+                          // Open Calendly
+                          window.open(site.calendly, '_blank');
+                          
+                          // Reset and close form
+                          setShowCalendarBooking(false);
+                          
+                          // Add confirmation message
+                          const confirmMessage: Message = {
+                            id: Date.now(),
+                            text: "Perfect! I&apos;ve opened Calendly for you. You can select your preferred time slot and book directly. You&apos;ll receive a calendar invite with Zoom meeting details automatically!",
+                            isUser: false,
+                            timestamp: new Date()
+                          };
+                          setMessages(prev => [...prev, confirmMessage]);
+                        }}
+                        className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Google Calendar Form (Hidden by default, shown when user chooses Google Calendar) */}
+              <div className="border-t border-gray-200 pt-4">
+                <div className="mb-3">
+                  <h5 className="font-medium text-gray-900 mb-2">Google Calendar Direct Booking</h5>
+                  <p className="text-sm text-gray-600">Fill out your details and I'll create the calendar event directly in your Google Calendar.</p>
+                </div>
+                <form onSubmit={handleCalendarBooking} className="space-y-4">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={calendarData.name}
+                    onChange={(e) => setCalendarData({ ...calendarData, name: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    value={calendarData.email}
+                    onChange={(e) => setCalendarData({ ...calendarData, email: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
+                    required
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Your phone"
+                    value={calendarData.phone}
+                    onChange={(e) => setCalendarData({ ...calendarData, phone: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
+                    required
+                  />
+                  <div className="grid grid-cols-2 gap-3">
+                    <input
+                      type="date"
+                      value={calendarData.preferredDate}
+                      onChange={(e) => setCalendarData({ ...calendarData, preferredDate: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
+                      required
+                    />
+                    <input
+                      type="time"
+                      value={calendarData.preferredTime}
+                      onChange={(e) => setCalendarData({ ...calendarData, preferredTime: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-base text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[44px]"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white py-3 rounded-xl text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[44px] transition-colors duration-200"
+                  >
+                    {googleAccessToken ? 'Book Calendar Event' : 'Connect Google Calendar & Book'}
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+
           {/* Modern Input Area */}
-          {!showLeadForm && (
+          {!showLeadForm && !showCalendarBooking && (
             <div className="p-6 border-t border-gray-200 bg-white">
               <div className="flex space-x-3">
                 <div className="flex-1">

@@ -16,7 +16,7 @@ const faqs = [
       },
       {
         question: "How much does LeadFlow Chatbot cost?",
-        answer: `Basic — ${pricing.products.chatbot.basic.priceDisplay} (template, up to 5 Q/As) or Pro — ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 15 Q/As with one integration). Monthly is optional: Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
+        answer: `Essential → ${pricing.products.chatbot.essential.priceDisplay} (custom setup, up to 10 Q/As) or Pro → ${pricing.products.chatbot.pro.priceDisplay} (custom look & flows up to 25 Q/As with 2 integrations). Monthly is optional: Essential Care → ${pricing.products.chatbot.essential.monthlyService.priceDisplay} (monthly optimization + 10 Q/A updates). Pro Optimize → ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (advanced optimization + unlimited updates; recommended).`
       },
       {
         question: "How long does it take to set up LeadFlow?",
@@ -120,11 +120,11 @@ const faqs = [
       },
       {
         question: "Do you offer ongoing support and maintenance?",
-        answer: `Monthly is optional. Basic Care — ${pricing.products.chatbot.basic.monthlyService.priceDisplay} (light maintenance, up to 5 Q/A updates per month). Pro Optimize — ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (2 tuning cycles + A/B test slot per month; recommended for Pro).`
+        answer: `Monthly is optional. Essential Care → ${pricing.products.chatbot.essential.monthlyService.priceDisplay} (monthly optimization + 10 Q/A updates). Pro Optimize → ${pricing.products.chatbot.pro.monthlyService.priceDisplay} (advanced optimization + unlimited updates; recommended).`
       },
       {
-        question: "Can I start basic and upgrade later?",
-        answer: `Yes. Start Basic — ${pricing.products.chatbot.basic.priceDisplay}, upgrade to Pro — ${pricing.products.chatbot.pro.priceDisplay}, or add a monthly service anytime.`
+        question: "Can I start essential and upgrade later?",
+        answer: `Yes. Start Essential → ${pricing.products.chatbot.essential.priceDisplay}, upgrade to Pro → ${pricing.products.chatbot.pro.priceDisplay}, or add a monthly service anytime.`
       },
       {
         question: "How do I get started?",
