@@ -347,7 +347,7 @@ export default function Home() {
             {[
               {
                 title: "We Learn",
-                body: "Tell us about your business and goals in a 15-minute call.",
+                body: "Tell us about your business and goals in a 15-30 minute call.",
                 number: "1"
               },
               {
