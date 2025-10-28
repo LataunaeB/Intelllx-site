@@ -29,7 +29,8 @@
     "react-dom": "19.1.0",
     "resend": "^6.1.2",
     "stability-ai": "^0.7.0",
-    "stripe": "^18.5.0"
+    "stripe": "^18.5.0",
+    "tavily": "^1.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
