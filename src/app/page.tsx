@@ -323,19 +323,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Brief Credibility Section */}
-      <section className="relative py-12 px-6 bg-gradient-to-br from-gray-900/80 via-slate-900/80 to-gray-800/80">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/10">
-            <div className="text-center">
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-medium max-w-4xl mx-auto">
-                <span className="text-blue-400 font-semibold">Built with 5+ years of development experience</span> • Combining cutting-edge AI technology with proven business strategies to deliver results that actually work
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Simplified How It Works Section */}
       <section id="how-it-works" className="relative py-24 px-6 bg-gradient-to-br from-gray-800/50 via-slate-800/30 to-gray-900/50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
