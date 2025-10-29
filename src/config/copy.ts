@@ -428,7 +428,7 @@ export const copy = {
   },
 
   microcopy: {
-    trustRow: "Built with Latest AI • Professional Setup Guaranteed • Fast 1-2 Week Implementation • 30-Day Support Included",
+    trustRow: "Built with Latest AI • Professional Setup Guaranteed • Custom Solutions That Work • 30-Day Support Included",
     loading: "One sec…",
     success: "Got it → thank you! We'll reply shortly.",
     error: "Something went wrong. Please try again or email hello@intelllx.com.",
