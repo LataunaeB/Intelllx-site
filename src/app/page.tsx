@@ -398,11 +398,11 @@ export default function Home() {
             className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-10 md:p-14 border border-purple-500/20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-              Ready to Get Started?
+              See How AI Can Transform Your Business
             </h2>
             
             <p className="text-xl text-slate-300 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
-              Book a 15-minute discovery call. We&apos;ll learn about your business and show you exactly how LeadFlow will transform your lead generation.
+              Book a free strategy session. We&apos;ll analyze your business and show you exactly how LeadFlow will capture more leads, book more calls, and grow your revenue.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
