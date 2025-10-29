@@ -77,6 +77,24 @@ const industryExamples = [
     useCase: "Schedule appointments and answer common questions",
     example: "Patient asks: 'What insurance do you accept?' → Bot answers → Books appointment → Sends confirmation",
     result: "Reduce front desk calls by 70% while booking more appointments"
+  },
+  {
+    industry: "Salons & Spas",
+    useCase: "Book appointments and answer service questions 24/7",
+    example: "Client asks: 'Do you do hair color?' → Bot confirms services → Books appointment → Sends reminder",
+    result: "Fill up your calendar even when you're closed for the day"
+  },
+  {
+    industry: "Restaurants",
+    useCase: "Take reservations, answer FAQs, and promote specials",
+    example: "Guest asks: 'Do you take reservations?' → Bot checks availability → Books table → Confirms time",
+    result: "Never miss a reservation and reduce phone calls during rush hours"
+  },
+  {
+    industry: "Fitness Coaches",
+    useCase: "Book consultations and answer fitness questions",
+    example: "Client asks: 'What's included in personal training?' → Bot explains → Books consultation → Sends intake form",
+    result: "Book more consultations while you focus on training clients"
   }
 ];
 
