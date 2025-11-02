@@ -37,8 +37,8 @@ export default function ChatWidget() {
     }];
   });
 
-  // Simple bot response logic (preserved from original)
-  const getBotResponse = (input: string): string => {
+  // Simple bot response logic (preserved as fallback)
+  const getFallbackResponse = (input: string): string => {
     const lowerInput = input.toLowerCase();
 
     // Pricing - check for 'pricing' first, then other variations
@@ -96,8 +96,9 @@ export default function ChatWidget() {
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
   };
 
-  const handleSendMessage = (messageText: string) => {
+  const handleSendMessage = async (messageText: string) => {
     if (!messageText.trim()) return;
+    if (isTyping) return; // Prevent double-clicks
 
     // Add user message
     const userMessage: Message = {
@@ -110,20 +111,62 @@ export default function ChatWidget() {
     setMessages(prev => [...prev, userMessage]);
     setIsTyping(true);
 
-    // Simulate bot response with delay
-    setTimeout(() => {
-      const response = getBotResponse(messageText);
-      
-      const botMessage: Message = {
-        id: Date.now() + 1,
-        text: response,
-        isUser: false,
-        timestamp: new Date()
-      };
+    let aiText: string = getFallbackResponse(messageText); // Default fallback
 
-      setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 800);
+    try {
+      // Try smart AI endpoint with timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => {
+        controller.abort();
+      }, 10000); // 10 second timeout
+
+      let res: Response;
+      try {
+        res = await fetch('/api/chat-smart', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: messageText }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+      } catch (fetchError: any) {
+        clearTimeout(timeoutId);
+        if (fetchError.name === 'AbortError') {
+          aiText = "Request timed out. Would you like to book a quick discovery call to get immediate help?";
+        } else {
+          throw fetchError;
+        }
+        res = null as any; // Will skip the res.ok check
+      }
+
+      if (res && res.ok) {
+        try {
+          const data = await res.json();
+          aiText = data.response || aiText;
+        } catch (jsonError) {
+          // JSON parse error - use fallback
+          console.warn('Failed to parse API response:', jsonError);
+        }
+      } else if (res) {
+        // HTTP error - use fallback
+        console.warn('API returned error status:', res.status);
+      }
+    } catch (error: any) {
+      // Handle any other errors
+      console.warn('Chat error:', error);
+      aiText = getFallbackResponse(messageText);
+    }
+
+    // Always add bot message and clear typing state
+    const botMessage: Message = {
+      id: Date.now() + 1,
+      text: aiText,
+      isUser: false,
+      timestamp: new Date()
+    };
+    
+    setMessages(prev => [...prev, botMessage]);
+    setIsTyping(false);
   };
 
   // Handle escape key to close
@@ -240,51 +283,30 @@ export default function ChatWidget() {
                   {messages.length === 1 && (
                     <div className="px-4 py-3 space-y-2 border-t border-gray-200 dark:border-zinc-800">
                       <button
-                        onClick={() => {
-                          const userMsg: Message = { id: Date.now(), text: 'book a call', isUser: true, timestamp: new Date() };
-                          setMessages(prev => [...prev, userMsg]);
-                          setIsTyping(true);
-                          setTimeout(() => {
-                            const response = getBotResponse('book a call');
-                            const botMsg: Message = { id: Date.now() + 1, text: response, isUser: false, timestamp: new Date() };
-                            setMessages(prev => [...prev, botMsg]);
-                            setIsTyping(false);
-                          }, 800);
+                        onClick={async () => {
+                          await handleSendMessage('book a call');
                         }}
-                        className="w-full px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-medium rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        disabled={isTyping}
+                        className="w-full px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-medium rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         📅 Book a Call
                       </button>
                       <div className="grid grid-cols-2 gap-2">
                         <button
-                          onClick={() => {
-                            const userMsg: Message = { id: Date.now(), text: 'pricing', isUser: true, timestamp: new Date() };
-                            setMessages(prev => [...prev, userMsg]);
-                            setIsTyping(true);
-                            setTimeout(() => {
-                              const response = getBotResponse('pricing');
-                              const botMsg: Message = { id: Date.now() + 1, text: response, isUser: false, timestamp: new Date() };
-                              setMessages(prev => [...prev, botMsg]);
-                              setIsTyping(false);
-                            }, 800);
+                          onClick={async () => {
+                            await handleSendMessage('pricing');
                           }}
-                          className="px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          disabled={isTyping}
+                          className="px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           💰 Pricing
                         </button>
                         <button
-                          onClick={() => {
-                            const userMsg: Message = { id: Date.now(), text: 'how it works', isUser: true, timestamp: new Date() };
-                            setMessages(prev => [...prev, userMsg]);
-                            setIsTyping(true);
-                            setTimeout(() => {
-                              const response = getBotResponse('how it works');
-                              const botMsg: Message = { id: Date.now() + 1, text: response, isUser: false, timestamp: new Date() };
-                              setMessages(prev => [...prev, botMsg]);
-                              setIsTyping(false);
-                            }, 800);
+                          onClick={async () => {
+                            await handleSendMessage('how it works');
                           }}
-                          className="px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          disabled={isTyping}
+                          className="px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           🔧 How It Works
                         </button>
