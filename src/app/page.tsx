@@ -140,7 +140,7 @@ export default function Home() {
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
                   <span className="text-white block">
-                    Your AI Sales Team
+                    Your 24/7 AI Assistant
                   </span>
                   <div className="text-6xl md:text-7xl lg:text-8xl font-black">
                     <motion.span 
@@ -161,7 +161,7 @@ export default function Home() {
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
                   className="text-xl md:text-2xl text-gray-300 font-medium tracking-wide"
                 >
-                  Intelligent chatbots + conversion-optimized websites for modern businesses
+                  LeadFlow Chatbots & Web Development That Convert
                 </motion.div>
               </motion.div>
 
@@ -347,7 +347,7 @@ export default function Home() {
             {[
               {
                 title: "We Learn",
-                body: "Tell us about your business and goals in a 15-30 minute call.",
+                body: "Tell us about your business and goals in a 15-minute call.",
                 number: "1"
               },
               {
@@ -398,11 +398,11 @@ export default function Home() {
             className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-10 md:p-14 border border-purple-500/20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-              See How AI Can Transform Your Business
+              Ready to Get Started?
             </h2>
             
             <p className="text-xl text-slate-300 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
-              Book a free strategy session. We&apos;ll analyze your business and show you exactly how LeadFlow will capture more leads, book more calls, and grow your revenue.
+              Book a 15-minute discovery call. We&apos;ll learn about your business and show you exactly how LeadFlow will transform your lead generation.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
