@@ -38,6 +38,14 @@ If you want to develop locally with full functionality:
 3. Add them to `.env.local`
 4. Run `npm run dev`
 
+### Environment Variable Checklist
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+- `RESEND_FROM` (default `hello@intelllx.com` if unset)
+- `RESEND_TO`
+- `NEXT_PUBLIC_MEETINGS_URL`
+
 ### Option 3: Just Deploy & Test
 Since Vercel likely has everything configured:
 1. Commit your changes: `git add . && git commit -m "Fix TypeScript errors"`

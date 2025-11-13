@@ -43,6 +43,9 @@ export default function Contact() {
                   <div>
                     <h3 className="text-white font-semibold">Email</h3>
                     <p className="text-gray-300 group-hover:text-blue-400 transition-colors">hello@intelllx.com</p>
+                    <p className="text-xs text-blue-300/80 mt-1 group-hover:text-blue-200 transition-colors">
+                      Hi 👋 Tap to email Intelllx
+                    </p>
                   </div>
                 </a>
 

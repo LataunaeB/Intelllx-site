@@ -12,6 +12,10 @@ import { Resend } from 'resend';
  * - name: string (optional)
  * - phone: string (optional)
  * - message: string (optional)
+ * - company: string (optional)
+ * - service: string (optional)
+ * - preferredDate: string (optional)
+ * - preferredTime: string (optional)
  * - source: string (optional, default: 'contact_form')
  * - pageUrl: string (optional)
  * 
@@ -80,8 +84,13 @@ export async function POST(request: NextRequest) {
       email: trimmedEmail,
       name: trimmedName,
       phone: trimmedPhone,
+      company: trimmedCompany,
+      service: trimmedService,
+      message: trimmedMessage,
       source: trimmedSource,
       page_url: trimmedPageUrl,
+      preferred_date: trimmedPreferredDate,
+      preferred_time: trimmedPreferredTime,
       updated_at: new Date().toISOString()
     };
     
@@ -159,7 +168,10 @@ export async function POST(request: NextRequest) {
 
     // 4. Send email notification via Resend
     const resendApiKey = process.env.RESEND_API_KEY;
-    const resendFrom = 'onboarding@resend.dev'; // Force onboarding email until domain verified
+    const resendFrom =
+      process.env.RESEND_FROM?.trim() ||
+      process.env.EMAIL_FROM?.trim() ||
+      'hello@intelllx.com';
     const resendTo = process.env.RESEND_TO || process.env.EMAIL_TO || 'hello@intelllx.com';
 
     console.log('[API /leads] Email config check:', {
@@ -231,16 +243,37 @@ export async function POST(request: NextRequest) {
                     <div class="label">Message:</div>
                     <div class="value">${messagePreview.replace(/\n/g, '<br>')}</div>
                   </div>
+                  ${trimmedCompany ? `
                   <div class="field">
-                    <div class="label">Source:</div>
-                    <div class="value">${trimmedSource}</div>
+                    <div class="label">Company:</div>
+                    <div class="value">${trimmedCompany}</div>
                   </div>
+                  ` : ''}
+                  ${trimmedService ? `
+                  <div class="field">
+                    <div class="label">Service:</div>
+                    <div class="value">${trimmedService}</div>
+                  </div>
+                  ` : ''}
                   ${trimmedPageUrl ? `
                   <div class="field">
                     <div class="label">Page URL:</div>
                     <div class="value">${trimmedPageUrl}</div>
                   </div>
                   ` : ''}
+                  ${trimmedPreferredDate || trimmedPreferredTime ? `
+                  <div class="field">
+                    <div class="label">Preferred Scheduling:</div>
+                    <div class="value">
+                      ${trimmedPreferredDate ? `Date: ${trimmedPreferredDate}<br>` : ''}
+                      ${trimmedPreferredTime ? `Time: ${trimmedPreferredTime}` : ''}
+                    </div>
+                  </div>
+                  ` : ''}
+                  <div class="field">
+                    <div class="label">Source:</div>
+                    <div class="value">${trimmedSource}</div>
+                  </div>
                   <div class="field">
                     <div class="label">Timestamp (PT):</div>
                     <div class="value">${ptTime}</div>
@@ -265,7 +298,22 @@ export async function POST(request: NextRequest) {
           to: resendTo,
           subject: `New Lead — Intelllx`,
           html: emailHtml,
-          replyTo: trimmedEmail
+          replyTo: trimmedEmail,
+          text: [
+            `New lead captured at ${ptTime}`,
+            `Email: ${trimmedEmail}`,
+            trimmedName ? `Name: ${trimmedName}` : null,
+            trimmedPhone ? `Phone: ${trimmedPhone}` : null,
+            trimmedCompany ? `Company: ${trimmedCompany}` : null,
+            trimmedService ? `Service: ${trimmedService}` : null,
+            trimmedPreferredDate ? `Preferred Date: ${trimmedPreferredDate}` : null,
+            trimmedPreferredTime ? `Preferred Time: ${trimmedPreferredTime}` : null,
+            `Source: ${trimmedSource}`,
+            trimmedPageUrl ? `Page URL: ${trimmedPageUrl}` : null,
+            '',
+            `Message:`,
+            trimmedMessage ?? 'No message provided'
+          ].filter(Boolean).join('\n')
         });
 
         console.log('[API /leads] Resend email sent successfully!', {
