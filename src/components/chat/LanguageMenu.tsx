@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import type { KeyboardEvent } from 'react';
 import { Globe } from 'lucide-react';
 import { SUPPORTED_LANGUAGES, type SupportedLanguage } from '@/lib/i18n/chat';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -40,7 +41,7 @@ export default function LanguageMenu({
   }, [isOpen]);
 
   // Handle keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
     }
