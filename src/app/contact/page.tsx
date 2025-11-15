@@ -1,23 +1,33 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { Mail, MapPin, Send, CheckCircle, AlertCircle, User, Building, MessageSquare, Calendar, ExternalLink, Sparkles } from "lucide-react";
+import BookingCalendar from "@/components/BookingCalendar";
+import { Mail, MapPin, Send, CheckCircle, AlertCircle, User, Building, MessageSquare, Calendar, ExternalLink, Sparkles, X, Phone } from "lucide-react";
 import { trackEvent, trackConversion } from "@/components/GoogleAnalytics";
 import { site } from "@/config/site";
 
-interface FormData {
+interface TimeSlot {
+  startTime: string;
+  endTime: string;
+  date: string;
+  time: string;
+  displayDate: string;
+  displayTime: string;
+}
+
+interface BookingFormData {
   name: string;
   email: string;
+  phone: string;
   company: string;
   service: string;
   message: string;
-  preferredDate: string;
-  preferredTime: string;
 }
 
 interface FieldErrors {
   name?: string;
   email?: string;
+  phone?: string;
   company?: string;
   service?: string;
   message?: string;
@@ -30,30 +40,33 @@ interface FieldState {
 }
 
 export default function Contact() {
-  const [formData, setFormData] = useState<FormData>({
+  const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
+  const [bookingFormData, setBookingFormData] = useState<BookingFormData>({
     name: '',
     email: '',
+    phone: '',
     company: '',
     service: '',
-    message: '',
-    preferredDate: '',
-    preferredTime: ''
+    message: ''
   });
   
-  const [fieldStates, setFieldStates] = useState<Record<keyof FormData, FieldState>>({
+  const [fieldStates, setFieldStates] = useState<Record<keyof BookingFormData, FieldState>>({
     name: { touched: false, valid: false, focused: false },
     email: { touched: false, valid: false, focused: false },
+    phone: { touched: false, valid: false, focused: false },
     company: { touched: false, valid: false, focused: false },
     service: { touched: false, valid: false, focused: false },
-    message: { touched: false, valid: false, focused: false },
-    preferredDate: { touched: false, valid: true, focused: false },
-    preferredTime: { touched: false, valid: true, focused: false }
+    message: { touched: false, valid: false, focused: false }
   });
   
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+  const [isBooking, setIsBooking] = useState(false);
+  const [bookingStatus, setBookingStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [bookingResult, setBookingResult] = useState<{
+    meetingLink?: string;
+    calendarLink?: string;
+    eventId?: string;
+  } | null>(null);
 
   // Real-time validation functions
   const validateEmail = (email: string): boolean => {
@@ -61,32 +74,40 @@ export default function Contact() {
     return emailRegex.test(email);
   };
 
-  const validateField = (name: keyof FormData, value: string): boolean => {
+  const validatePhone = (phone: string): boolean => {
+    // Remove all non-digits for validation
+    const digitsOnly = phone.replace(/\D/g, '');
+    // Valid if has at least 10 digits (US format minimum)
+    return digitsOnly.length >= 10;
+  };
+
+  const validateField = (name: keyof BookingFormData, value: string): boolean => {
     switch (name) {
       case 'name':
         return value.trim().length >= 2;
       case 'email':
         return validateEmail(value);
+      case 'phone':
+        return validatePhone(value);
       case 'company':
         return value.trim().length >= 2;
       case 'service':
         return value.trim().length >= 2;
       case 'message':
         return value.trim().length >= 10;
-      case 'preferredDate':
-      case 'preferredTime':
-        return true; // Optional fields
       default:
         return true;
     }
   };
 
-  const getErrorMessage = (name: keyof FormData): string => {
+  const getErrorMessage = (name: keyof BookingFormData): string => {
     switch (name) {
       case 'name':
         return 'Name must be at least 2 characters';
       case 'email':
         return 'Please enter a valid email address';
+      case 'phone':
+        return 'Please enter a valid phone number (at least 10 digits)';
       case 'company':
         return 'Company name must be at least 2 characters';
       case 'service':
@@ -100,9 +121,9 @@ export default function Contact() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    const fieldName = name as keyof FormData;
+    const fieldName = name as keyof BookingFormData;
     
-    setFormData(prev => ({ ...prev, [fieldName]: value }));
+    setBookingFormData(prev => ({ ...prev, [fieldName]: value }));
     
     // Real-time validation
     const isValid = validateField(fieldName, value);
@@ -122,7 +143,7 @@ export default function Contact() {
     }));
   };
 
-  const handleFieldFocus = (fieldName: keyof FormData) => {
+  const handleFieldFocus = (fieldName: keyof BookingFormData) => {
     setFieldStates(prev => ({
       ...prev,
       [fieldName]: {
@@ -132,7 +153,7 @@ export default function Contact() {
     }));
   };
 
-  const handleFieldBlur = (fieldName: keyof FormData) => {
+  const handleFieldBlur = (fieldName: keyof BookingFormData) => {
     setFieldStates(prev => ({
       ...prev,
       [fieldName]: {
@@ -144,89 +165,124 @@ export default function Contact() {
   };
 
   const isFormValid = (): boolean => {
-    return validateField('name', formData.name) &&
-           validateField('email', formData.email) &&
-           validateField('company', formData.company) &&
-           validateField('service', formData.service) &&
-           validateField('message', formData.message);
+    return validateField('name', bookingFormData.name) &&
+           validateField('email', bookingFormData.email) &&
+           validateField('phone', bookingFormData.phone) &&
+           validateField('company', bookingFormData.company) &&
+           validateField('service', bookingFormData.service) &&
+           validateField('message', bookingFormData.message);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleTimeSlotSelect = (slot: TimeSlot) => {
+    setSelectedSlot(slot);
+    // Scroll to form
+    setTimeout(() => {
+      document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  };
+
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (isSubmitting || !isFormValid()) return;
+    if (isBooking || !isFormValid() || !selectedSlot) return;
     
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setIsBooking(true);
+    setBookingStatus('idle');
     
     try {
-      const response = await fetch('/api/leads', {
+      // 1. Save lead to Supabase and send notification
+      const leadResponse = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: formData.email,
-          name: formData.name,
-          phone: '', // Phone field removed, keeping for API compatibility
-          company: formData.company,
-          service: formData.service,
-          message: formData.message,
-          preferredDate: formData.preferredDate,
-          preferredTime: formData.preferredTime,
-          source: 'contact_form',
+          email: bookingFormData.email,
+          name: bookingFormData.name,
+          phone: bookingFormData.phone,
+          company: bookingFormData.company,
+          service: bookingFormData.service,
+          message: bookingFormData.message,
+          preferredDate: selectedSlot.date,
+          preferredTime: selectedSlot.displayTime,
+          source: 'calendar_booking',
           pageUrl: typeof window !== 'undefined' ? window.location.href : undefined
         })
       });
       
-      const data = await response.json();
+      const leadData = await leadResponse.json();
       
-      if (response.ok && data.ok) {
-        setSubmitStatus('success');
-        setShowSuccessAnimation(true);
-        
-        // Track conversion in GA4
-        trackEvent('form_submit', {
-          form_name: 'contact_form',
-          service_interest: formData.service,
-          company: formData.company,
-          lead_source: 'website_contact',
-        });
-        
-        trackConversion('contact_form_submission', undefined, 'USD');
-        
-        // Reset form after success (keep success message visible)
-        setTimeout(() => {
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            service: '',
-            message: '',
-            preferredDate: '',
-            preferredTime: ''
-          });
-          setFieldStates({
-            name: { touched: false, valid: false, focused: false },
-            email: { touched: false, valid: false, focused: false },
-            company: { touched: false, valid: false, focused: false },
-            service: { touched: false, valid: false, focused: false },
-            message: { touched: false, valid: false, focused: false },
-            preferredDate: { touched: false, valid: true, focused: false },
-            preferredTime: { touched: false, valid: true, focused: false }
-          });
-          setErrors({});
-        }, 5000); // Keep success message for 5 seconds
-      } else {
-        setSubmitStatus('error');
+      if (!leadResponse.ok || !leadData.ok) {
+        throw new Error('Failed to save booking information');
       }
+
+      // 2. Book calendar event
+      const bookingResponse = await fetch('/api/calendar/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          startTime: selectedSlot.startTime,
+          endTime: selectedSlot.endTime,
+          attendeeEmail: bookingFormData.email,
+          attendeeName: bookingFormData.name,
+          meetingTitle: `Discovery Call with ${bookingFormData.name} - ${bookingFormData.company}`,
+          meetingDescription: `Discovery call to discuss ${bookingFormData.service} needs.\n\nCompany: ${bookingFormData.company}\nPhone: ${bookingFormData.phone}\nService Interest: ${bookingFormData.service}\n\nMessage: ${bookingFormData.message}`
+        })
+      });
+      
+      const bookingData = await bookingResponse.json();
+      
+      if (!bookingResponse.ok || !bookingData.success) {
+        throw new Error(bookingData.error || 'Failed to book calendar event');
+      }
+
+      // Success!
+      setBookingStatus('success');
+      setBookingResult({
+        meetingLink: bookingData.meetingLink,
+        calendarLink: bookingData.calendarLink,
+        eventId: bookingData.eventId
+      });
+      
+      // Track conversion
+      trackEvent('calendar_booking', {
+        service_interest: bookingFormData.service,
+        company: bookingFormData.company,
+        date: selectedSlot.date,
+        time: selectedSlot.displayTime
+      });
+      
+      trackConversion('calendar_booking_completed', undefined, 'USD');
+      
+      // Reset form after success (but keep confirmation visible)
+      setTimeout(() => {
+        setBookingFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+        setSelectedSlot(null);
+        setFieldStates({
+          name: { touched: false, valid: false, focused: false },
+          email: { touched: false, valid: false, focused: false },
+          phone: { touched: false, valid: false, focused: false },
+          company: { touched: false, valid: false, focused: false },
+          service: { touched: false, valid: false, focused: false },
+          message: { touched: false, valid: false, focused: false }
+        });
+        setErrors({});
+      }, 10000); // Keep confirmation for 10 seconds
+      
     } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
+      console.error('Booking error:', error);
+      setBookingStatus('error');
     } finally {
-      setIsSubmitting(false);
+      setIsBooking(false);
     }
   };
 
-  const getFieldClassName = (fieldName: keyof FormData): string => {
+  const getFieldClassName = (fieldName: keyof BookingFormData): string => {
     const field = fieldStates[fieldName];
     const hasError = errors[fieldName];
     
@@ -252,25 +308,25 @@ export default function Contact() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/15 to-purple-900/20"></div>
         <div className="relative max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            Let&apos;s <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Build Together</span>
+            Book Your <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Discovery Call</span>
           </h1>
           <p className="text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
-            Ready to transform your business with AI? Fill out the form below and we&apos;ll get back to you within 24 hours.
+            Ready to transform your business with AI? Select a time that works for you and let&apos;s discuss your project.
           </p>
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Booking Section */}
       <section className="relative py-16 px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             
-            {/* Contact Info */}
+            {/* Left Side - Contact Info */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+                <h2 className="text-3xl font-bold text-white mb-4">Schedule Your Call</h2>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  Have a project in mind? Let&apos;s discuss how we can help you achieve your goals with custom AI solutions.
+                  Choose a date and time that works for you. All meetings are 30 minutes and include a Zoom link.
                 </p>
               </div>
 
@@ -302,270 +358,331 @@ export default function Contact() {
               <div className="p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20">
                 <h3 className="text-white font-semibold mb-2 flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-blue-400" />
-                  What Happens Next?
+                  What to Expect
                 </h3>
                 <ul className="text-gray-300 text-sm space-y-2 ml-4 list-disc">
-                  <li>We&apos;ll review your project details</li>
-                  <li>You&apos;ll receive a personalized response within 24 hours</li>
-                  <li>We&apos;ll schedule a discovery call to discuss your needs</li>
-                  <li>We&apos;ll provide a custom proposal tailored to your business</li>
+                  <li>30-minute discovery call</li>
+                  <li>Discuss your business goals and challenges</li>
+                  <li>Learn how AI can help you grow</li>
+                  <li>Get a custom proposal for your needs</li>
+                  <li>Automatic Zoom link included</li>
                 </ul>
               </div>
             </div>
 
-            {/* Enhanced Contact Form */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                
-                {/* Name Field */}
-                <div className="space-y-2">
-                  <label htmlFor="name" className="block text-sm font-medium text-white">
-                    Full Name *
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      onFocus={() => handleFieldFocus('name')}
-                      onBlur={() => handleFieldBlur('name')}
-                      className={`${getFieldClassName('name')} pl-12`}
-                      placeholder="Enter your full name"
-                      required
-                    />
-                    {fieldStates.name.valid && fieldStates.name.touched && (
-                      <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.name && fieldStates.name.touched && (
-                    <p className="text-red-400 text-sm flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.name}
-                    </p>
+            {/* Right Side - Calendar & Booking Form */}
+            <div className="space-y-6">
+              {/* Calendar Widget */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                    <Calendar className="w-6 h-6 text-blue-400" />
+                    Select Date & Time
+                  </h3>
+                  {selectedSlot && (
+                    <button
+                      onClick={() => setSelectedSlot(null)}
+                      className="text-gray-400 hover:text-white transition-colors"
+                      aria-label="Clear selection"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
                   )}
                 </div>
 
-                {/* Email Field */}
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-medium text-white">
-                    Email Address *
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      onFocus={() => handleFieldFocus('email')}
-                      onBlur={() => handleFieldBlur('email')}
-                      className={`${getFieldClassName('email')} pl-12`}
-                      placeholder="Enter your email address"
-                      required
-                    />
-                    {fieldStates.email.valid && fieldStates.email.touched && (
-                      <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.email && fieldStates.email.touched && (
-                    <p className="text-red-400 text-sm flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-
-                {/* Company Field */}
-                <div className="space-y-2">
-                  <label htmlFor="company" className="block text-sm font-medium text-white">
-                    Company *
-                  </label>
-                  <div className="relative">
-                    <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      onFocus={() => handleFieldFocus('company')}
-                      onBlur={() => handleFieldBlur('company')}
-                      className={`${getFieldClassName('company')} pl-12`}
-                      placeholder="Enter your company name"
-                      required
-                    />
-                    {fieldStates.company.valid && fieldStates.company.touched && (
-                      <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.company && fieldStates.company.touched && (
-                    <p className="text-red-400 text-sm flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.company}
-                    </p>
-                  )}
-                </div>
-
-                {/* Service Field */}
-                <div className="space-y-2">
-                  <label htmlFor="service" className="block text-sm font-medium text-white">
-                    Service Interest *
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleInputChange}
-                    onFocus={() => handleFieldFocus('service')}
-                    onBlur={() => handleFieldBlur('service')}
-                    className={getFieldClassName('service')}
-                    required
-                  >
-                    <option value="">Select a service</option>
-                    <option value="leadflow-chatbot">LeadFlow Chatbot</option>
-                    <option value="website-development">Website Development</option>
-                    <option value="both">Both Services</option>
-                    <option value="consultation">Consultation</option>
-                    <option value="other">Other</option>
-                  </select>
-                  {errors.service && fieldStates.service.touched && (
-                    <p className="text-red-400 text-sm flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.service}
-                    </p>
-                  )}
-                </div>
-
-                {/* Message Field */}
-                <div className="space-y-2">
-                  <label htmlFor="message" className="block text-sm font-medium text-white">
-                    Project Details *
-                  </label>
-                  <div className="relative">
-                    <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      onFocus={() => handleFieldFocus('message')}
-                      onBlur={() => handleFieldBlur('message')}
-                      className={`${getFieldClassName('message')} pl-12 pt-3 min-h-[120px] resize-none`}
-                      placeholder="Tell us about your project, goals, and any specific requirements..."
-                      required
-                    />
-                    {fieldStates.message.valid && fieldStates.message.touched && (
-                      <CheckCircle className="absolute right-3 top-4 w-5 h-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.message && fieldStates.message.touched && (
-                    <p className="text-red-400 text-sm flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Optional Booking Fields */}
-                <div className="p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
-                  <label className="block text-sm font-medium text-white mb-2">
-                    <Calendar className="w-4 h-4 inline mr-2" />
-                    Preferred Meeting Time (Optional)
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label htmlFor="preferredDate" className="block text-xs text-gray-300 mb-1">Preferred Date</label>
-                      <input
-                        type="date"
-                        id="preferredDate"
-                        name="preferredDate"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        min={new Date().toISOString().split('T')[0]}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
+                {selectedSlot ? (
+                  <div className="space-y-4">
+                    <div className="p-4 bg-blue-500/20 border border-blue-500/30 rounded-xl">
+                      <p className="text-blue-200 text-sm font-medium mb-1">Selected Time</p>
+                      <p className="text-white font-semibold">{selectedSlot.displayDate}</p>
+                      <p className="text-blue-300">{selectedSlot.displayTime}</p>
                     </div>
-                    <div>
-                      <label htmlFor="preferredTime" className="block text-xs text-gray-300 mb-1">Preferred Time (PST)</label>
-                      <select
-                        id="preferredTime"
-                        name="preferredTime"
-                        value={formData.preferredTime}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option value="">Select time</option>
-                        <option value="9:00 AM">9:00 AM</option>
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="12:00 PM">12:00 PM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="5:00 PM">5:00 PM</option>
-                        <option value="6:00 PM">6:00 PM</option>
-                      </select>
-                    </div>
+                    
+                    <Button
+                      onClick={() => setSelectedSlot(null)}
+                      variant="secondary"
+                      className="w-full"
+                    >
+                      Change Time
+                    </Button>
                   </div>
-                </div>
+                ) : (
+                  <BookingCalendar
+                    onTimeSlotSelect={handleTimeSlotSelect}
+                    selectedSlot={selectedSlot}
+                  />
+                )}
+              </div>
 
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={!isFormValid() || isSubmitting}
-                  loading={isSubmitting}
-                  className="w-full py-4 text-lg font-semibold"
-                  icon={<Send className="w-5 h-5" />}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
+              {/* Booking Form - Only show after time selection */}
+              {selectedSlot && (
+                <div id="booking-form" className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <User className="w-6 h-6 text-blue-400" />
+                    Your Information
+                  </h3>
 
-                {/* Success Message */}
-                {submitStatus === 'success' && (
-                  <div className={`p-6 bg-green-500/20 border border-green-500/30 rounded-xl transition-all duration-500 ${showSuccessAnimation ? 'animate-pulse' : ''}`}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <CheckCircle className="w-6 h-6 text-green-400" />
-                      <div>
-                        <h3 className="text-green-400 font-semibold text-lg">Message Sent Successfully!</h3>
-                        <p className="text-green-300 text-sm mt-1">
-                          We&apos;ll review your submission and get back to you within 24 hours. Check your email for an automated welcome message!
+                  <form onSubmit={handleBookingSubmit} className="space-y-6">
+                    {/* Name Field */}
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-white">
+                        Full Name *
+                      </label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={bookingFormData.name}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFieldFocus('name')}
+                          onBlur={() => handleFieldBlur('name')}
+                          className={`${getFieldClassName('name')} pl-12`}
+                          placeholder="Enter your full name"
+                          required
+                        />
+                        {fieldStates.name.valid && fieldStates.name.touched && (
+                          <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
+                      {errors.name && fieldStates.name.touched && (
+                        <p className="text-red-400 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.name}
                         </p>
-                      </div>
+                      )}
                     </div>
-                    <div className="pt-4 border-t border-green-500/30">
-                      <p className="text-green-200 text-sm mb-3">Ready to schedule your discovery call?</p>
-                      <a 
-                        href={site.calendly}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                      >
-                        <Calendar className="w-5 h-5" />
-                        Book Your Discovery Call
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </div>
-                  </div>
-                )}
 
-                {/* Error Message */}
-                {submitStatus === 'error' && (
-                  <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <AlertCircle className="w-6 h-6 text-red-400" />
-                      <div>
-                        <h3 className="text-red-400 font-semibold">Something went wrong</h3>
-                        <p className="text-red-300 text-sm">Please try again or email us directly at hello@intelllx.com</p>
+                    {/* Email Field */}
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-white">
+                        Email Address *
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={bookingFormData.email}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFieldFocus('email')}
+                          onBlur={() => handleFieldBlur('email')}
+                          className={`${getFieldClassName('email')} pl-12`}
+                          placeholder="Enter your email address"
+                          required
+                        />
+                        {fieldStates.email.valid && fieldStates.email.touched && (
+                          <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
+                        )}
                       </div>
+                      {errors.email && fieldStates.email.touched && (
+                        <p className="text-red-400 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
-                  </div>
-                )}
-              </form>
+
+                    {/* Phone Field */}
+                    <div className="space-y-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-white">
+                        Phone Number *
+                      </label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={bookingFormData.phone}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFieldFocus('phone')}
+                          onBlur={() => handleFieldBlur('phone')}
+                          className={`${getFieldClassName('phone')} pl-12`}
+                          placeholder="(555) 123-4567"
+                          required
+                        />
+                        {fieldStates.phone.valid && fieldStates.phone.touched && (
+                          <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
+                      {errors.phone && fieldStates.phone.touched && (
+                        <p className="text-red-400 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.phone}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Company Field */}
+                    <div className="space-y-2">
+                      <label htmlFor="company" className="block text-sm font-medium text-white">
+                        Company *
+                      </label>
+                      <div className="relative">
+                        <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={bookingFormData.company}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFieldFocus('company')}
+                          onBlur={() => handleFieldBlur('company')}
+                          className={`${getFieldClassName('company')} pl-12`}
+                          placeholder="Enter your company name"
+                          required
+                        />
+                        {fieldStates.company.valid && fieldStates.company.touched && (
+                          <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
+                      {errors.company && fieldStates.company.touched && (
+                        <p className="text-red-400 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.company}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Service Field */}
+                    <div className="space-y-2">
+                      <label htmlFor="service" className="block text-sm font-medium text-white">
+                        Service Interest *
+                      </label>
+                      <select
+                        id="service"
+                        name="service"
+                        value={bookingFormData.service}
+                        onChange={handleInputChange}
+                        onFocus={() => handleFieldFocus('service')}
+                        onBlur={() => handleFieldBlur('service')}
+                        className={getFieldClassName('service')}
+                        required
+                      >
+                        <option value="">Select a service</option>
+                        <option value="leadflow-chatbot">LeadFlow Chatbot</option>
+                        <option value="website-development">Website Development</option>
+                        <option value="both">Both Services</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="other">Other</option>
+                      </select>
+                      {errors.service && fieldStates.service.touched && (
+                        <p className="text-red-400 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.service}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Message Field */}
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-white">
+                        Tell Us About Your Project *
+                      </label>
+                      <div className="relative">
+                        <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={bookingFormData.message}
+                          onChange={handleInputChange}
+                          onFocus={() => handleFieldFocus('message')}
+                          onBlur={() => handleFieldBlur('message')}
+                          className={`${getFieldClassName('message')} pl-12 pt-3 min-h-[120px] resize-none`}
+                          placeholder="Tell us about your project, goals, and any specific requirements..."
+                          required
+                        />
+                        {fieldStates.message.valid && fieldStates.message.touched && (
+                          <CheckCircle className="absolute right-3 top-4 w-5 h-5 text-green-500" />
+                        )}
+                      </div>
+                      {errors.message && fieldStates.message.touched && (
+                        <p className="text-red-400 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      disabled={!isFormValid() || isBooking}
+                      loading={isBooking}
+                      className="w-full py-4 text-lg font-semibold"
+                      icon={<Calendar className="w-5 h-5" />}
+                    >
+                      {isBooking ? 'Booking...' : `Book ${selectedSlot.displayTime} Call`}
+                    </Button>
+
+                    {/* Success Message */}
+                    {bookingStatus === 'success' && bookingResult && (
+                      <div className="p-6 bg-green-500/20 border border-green-500/30 rounded-xl animate-pulse">
+                        <div className="flex items-center gap-3 mb-4">
+                          <CheckCircle className="w-6 h-6 text-green-400" />
+                          <div>
+                            <h3 className="text-green-400 font-semibold text-lg">Call Booked Successfully! 🎉</h3>
+                            <p className="text-green-300 text-sm mt-1">
+                              Your meeting is confirmed for {selectedSlot?.displayDate} at {selectedSlot?.displayTime}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="pt-4 border-t border-green-500/30 space-y-3">
+                          {bookingResult.meetingLink && (
+                            <a
+                              href={bookingResult.meetingLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl text-center"
+                            >
+                              Join Zoom Meeting
+                              <ExternalLink className="w-4 h-4 inline ml-2" />
+                            </a>
+                          )}
+                          {bookingResult.calendarLink && (
+                            <a
+                              href={bookingResult.calendarLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block w-full px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 text-center"
+                            >
+                              Add to Calendar
+                              <ExternalLink className="w-4 h-4 inline ml-2" />
+                            </a>
+                          )}
+                          <p className="text-green-200 text-xs text-center">
+                            You&apos;ll receive confirmation emails with all meeting details.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Error Message */}
+                    {bookingStatus === 'error' && (
+                      <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl">
+                        <div className="flex items-center gap-3">
+                          <AlertCircle className="w-6 h-6 text-red-400" />
+                          <div>
+                            <h3 className="text-red-400 font-semibold">Booking Failed</h3>
+                            <p className="text-red-300 text-sm">Please try again or email us directly at hello@intelllx.com</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </form>
+                </div>
+              )}
+
+              {/* Prompt to select time if none selected */}
+              {!selectedSlot && (
+                <div className="p-6 bg-blue-500/10 border border-blue-500/20 rounded-xl text-center">
+                  <Calendar className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                  <p className="text-gray-300 text-sm">Select a date and time above to continue</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

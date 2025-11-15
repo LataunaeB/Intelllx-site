@@ -6,7 +6,7 @@ import { OAuth2Client } from 'google-auth-library';
 export async function POST(request: NextRequest) {
   try {
     const { 
-      accessToken, 
+      accessToken, // Optional - for user OAuth flow
       startTime, 
       endTime, 
       attendeeEmail, 
@@ -15,26 +15,63 @@ export async function POST(request: NextRequest) {
       meetingDescription = 'Discovery call to discuss your LeadFlow chatbot needs'
     } = await request.json();
 
-    if (!accessToken || !startTime || !endTime || !attendeeEmail) {
+    if (!startTime || !endTime || !attendeeEmail) {
       return NextResponse.json(
-        { error: 'Missing required fields: accessToken, startTime, endTime, attendeeEmail' },
+        { error: 'Missing required fields: startTime, endTime, attendeeEmail' },
         { status: 400 }
       );
     }
 
-    // Create OAuth2 client
-    const oauth2Client = new OAuth2Client(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET
-    );
+    let calendar;
+    const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary';
 
-    // Set the access token
-    oauth2Client.setCredentials({
-      access_token: accessToken
-    });
+    // Try service account first (preferred for server-side booking)
+    const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+    const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
-    // Create Calendar API instance
-    const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+    if (serviceAccountEmail && serviceAccountKey) {
+      // Use service account (no user auth needed)
+      const auth = new google.auth.JWT({
+        email: serviceAccountEmail,
+        key: serviceAccountKey.replace(/\\n/g, '\n'),
+        scopes: ['https://www.googleapis.com/auth/calendar.events'],
+      });
+
+      calendar = google.calendar({ version: 'v3', auth });
+    } else if (process.env.GOOGLE_REFRESH_TOKEN) {
+      // Use stored refresh token
+      const oauth2Client = new OAuth2Client(
+        process.env.GOOGLE_CLIENT_ID,
+        process.env.GOOGLE_CLIENT_SECRET
+      );
+
+      oauth2Client.setCredentials({
+        refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+      });
+
+      // Get new access token
+      const { credentials } = await oauth2Client.refreshAccessToken();
+      oauth2Client.setCredentials(credentials);
+
+      calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+    } else if (accessToken) {
+      // Fallback to user-provided access token (OAuth flow)
+      const oauth2Client = new OAuth2Client(
+        process.env.GOOGLE_CLIENT_ID,
+        process.env.GOOGLE_CLIENT_SECRET
+      );
+
+      oauth2Client.setCredentials({
+        access_token: accessToken
+      });
+
+      calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+    } else {
+      return NextResponse.json(
+        { error: 'No Google Calendar credentials configured. Please set up service account or refresh token.' },
+        { status: 500 }
+      );
+    }
 
     // Create Zoom meeting if credentials are available
     let zoomMeeting = null;
@@ -107,7 +144,7 @@ export async function POST(request: NextRequest) {
 
     // Insert the event
     const response = await calendar.events.insert({
-      calendarId: 'primary',
+      calendarId: calendarId,
       requestBody: event,
       conferenceDataVersion: zoomMeeting ? 0 : 1, // Don't use conferenceDataVersion for Zoom
     });
