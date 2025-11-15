@@ -227,8 +227,23 @@ function generateTimeSlots(
     }
 
     // Generate slots for this day
-    const dateStr = current.toISOString().split('T')[0];
-    const displayDate = current.toLocaleDateString('en-US', {
+    // Get the date in PST timezone to avoid timezone issues
+    const dateStrPST = current.toLocaleDateString('en-CA', { timeZone: timezone }); // YYYY-MM-DD format
+    const dateStr = dateStrPST; // Use PST date string
+    
+    // Extract date components for use later
+    const [year, month, day] = dateStrPST.split('-');
+    
+    // Format display date directly from PST date components to avoid timezone conversion issues
+    // Create a date in PST by using noon PST (to avoid date boundary issues)
+    const dateStrPSTNoon = `${dateStrPST}T12:00:00`;
+    // Get UTC offset for PST/PDT on this date
+    const isDST = isDaylightSavingTime(parseInt(year), parseInt(month), parseInt(day));
+    const offset = isDST ? '-07:00' : '-08:00';
+    const dateInPST = new Date(`${dateStrPSTNoon}${offset}`);
+    
+    // Format display date in PST timezone
+    const displayDate = dateInPST.toLocaleDateString('en-US', {
       weekday: 'long',
       month: 'long',
       day: 'numeric',
@@ -252,12 +267,10 @@ function generateTimeSlots(
           continue; // Skip this slot as it extends past business hours
         }
         
-        // Get the date components in PST timezone
-        const dateStrPST = current.toLocaleDateString('en-CA', { timeZone: timezone }); // YYYY-MM-DD format
-        const [year, month, day] = dateStrPST.split('-');
+        // Use the PST date components already extracted above
+        const yearNum = parseInt(year);
         const monthNum = parseInt(month);
         const dayNum = parseInt(day);
-        const yearNum = parseInt(year);
         
         // Create time string in HH:MM format
         const timeStr = `${String(slotHour).padStart(2, '0')}:${String(slotMinutes).padStart(2, '0')}:00`;
