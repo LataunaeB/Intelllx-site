@@ -124,39 +124,70 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
     return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
   };
 
-  // Calendar grid generation
+  // Calendar grid generation - Only show days from current month
   const getCalendarDays = () => {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
     
     const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
+    const lastDay = new Date(year, month + 1, 0); // Last day of current month
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     
-    const startDate = new Date(firstDay);
-    const dayOfWeek = startDate.getDay();
-    startDate.setDate(startDate.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1)); // Start from Monday
+    // Get the day of week for the first day of the month (0 = Sunday, 1 = Monday, etc.)
+    const firstDayOfWeek = firstDay.getDay();
+    // Convert Sunday (0) to 7 for easier calculation
+    const firstDayOfWeekMonday = firstDayOfWeek === 0 ? 7 : firstDayOfWeek;
     
-    const days = [];
-    const currentDate = new Date(startDate);
+    const days: Array<{
+      date: Date;
+      dateStr: string;
+      isCurrentMonth: boolean;
+      isWeekend: boolean;
+      hasSlots: boolean;
+      isEmpty: boolean;
+      isPast: boolean;
+    }> = [];
     
-    for (let i = 0; i < 42; i++) { // 6 weeks * 7 days
+    // Add empty cells for days before the first day of the month
+    for (let i = 1; i < firstDayOfWeekMonday; i++) {
+      days.push({
+        date: new Date(0), // Empty date
+        dateStr: '',
+        isCurrentMonth: false,
+        isWeekend: false,
+        hasSlots: false,
+        isEmpty: true,
+        isPast: false
+      });
+    }
+    
+    // Add all days from the current month only
+    const currentDate = new Date(firstDay);
+    while (currentDate <= lastDay) {
       const dateStr = currentDate.toISOString().split('T')[0];
-      const isCurrentMonth = currentDate.getMonth() === month;
-      const isWeekend = currentDate.getDay() === 0 || currentDate.getDay() === 6;
+      const dayOfWeek = currentDate.getDay();
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
       const hasSlots = availableDates.includes(dateStr);
-      const isPast = currentDate < new Date(new Date().setHours(0, 0, 0, 0));
+      const dateOnly = new Date(currentDate);
+      dateOnly.setHours(0, 0, 0, 0);
+      const isPast = dateOnly < today;
       
       days.push({
         date: new Date(currentDate),
         dateStr,
-        isCurrentMonth,
+        isCurrentMonth: true,
         isWeekend,
         hasSlots,
+        isEmpty: false,
         isPast
       });
       
       currentDate.setDate(currentDate.getDate() + 1);
     }
+    
+    // Fill remaining cells to complete the grid (optional - for consistent layout)
+    // We'll let it wrap naturally with CSS grid
     
     return days;
   };
@@ -206,12 +237,22 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
         ))}
         
         {calendarDays.map((day, index) => {
+          // Empty cell - no day from this month
+          if (day.isEmpty) {
+            return (
+              <div
+                key={`empty-${index}`}
+                className="aspect-square p-2 rounded-lg text-sm"
+              />
+            );
+          }
+          
           const isSelectable = day.hasSlots && !day.isPast && day.isCurrentMonth;
           const isSelected = selectedDate === day.dateStr;
           
           return (
             <button
-              key={index}
+              key={day.dateStr || index}
               onClick={() => {
                 if (isSelectable) {
                   setSelectedDate(day.dateStr);
@@ -220,12 +261,13 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
               disabled={!isSelectable}
               className={`
                 aspect-square p-2 rounded-lg text-sm font-medium transition-all
-                ${!day.isCurrentMonth ? 'text-gray-600' : ''}
                 ${day.isWeekend && !day.hasSlots ? 'text-gray-600 cursor-not-allowed' : ''}
                 ${day.isPast ? 'text-gray-700 cursor-not-allowed opacity-50' : ''}
                 ${day.hasSlots && !day.isPast && day.isCurrentMonth
                   ? 'text-white hover:bg-blue-500/20 hover:border-blue-500/50 cursor-pointer border border-transparent'
-                  : 'cursor-not-allowed'
+                  : day.isCurrentMonth && !day.isPast
+                  ? 'text-gray-300 cursor-not-allowed border border-transparent'
+                  : 'text-gray-600 cursor-not-allowed'
                 }
                 ${isSelected
                   ? 'bg-blue-500 border-blue-500 text-white ring-2 ring-blue-400'
