@@ -15,7 +15,7 @@ import { OAuth2Client } from 'google-auth-library';
  * - Monday-Friday only (no weekends)
  * - 9 AM - 6 PM PST
  * - 30-minute meetings
- * - 2 weeks advance booking limit
+ * - 1 month (30 days) advance booking limit
  */
 export async function GET(request: NextRequest) {
   try {
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     const BUSINESS_START_HOUR = 9; // 9 AM
     const BUSINESS_END_HOUR = 18; // 6 PM (18:00)
     const MEETING_DURATION_MINUTES = 30;
-    const ADVANCE_BOOKING_DAYS = 14; // 2 weeks
+    const ADVANCE_BOOKING_DAYS = 30; // 1 month
 
     // Calculate date range
     const now = new Date();
