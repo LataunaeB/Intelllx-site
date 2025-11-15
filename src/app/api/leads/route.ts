@@ -336,6 +336,129 @@ export async function POST(request: NextRequest) {
       console.warn('[API /leads] RESEND_API_KEY not configured - skipping email');
     }
 
+    // 5. Calculate lead score and send automated welcome email to customer
+    if (resendApiKey && trimmedEmail) {
+      try {
+        // Calculate lead score (0-100)
+        let leadScore = 0;
+        
+        // Base score for submitting form
+        leadScore += 10;
+        
+        // Service interest scoring
+        if (trimmedService === 'leadflow-chatbot') leadScore += 20;
+        if (trimmedService === 'both') leadScore += 30;
+        if (trimmedService === 'website-development') leadScore += 15;
+        
+        // Message quality scoring
+        if (trimmedMessage) {
+          const messageLength = trimmedMessage.length;
+          if (messageLength > 200) leadScore += 25;
+          else if (messageLength > 100) leadScore += 15;
+          else if (messageLength > 50) leadScore += 10;
+          
+          // Keywords indicating high intent
+          const highIntentKeywords = ['ready', 'interested', 'want', 'need', 'asap', 'urgent', 'start', 'immediately', 'now', 'today'];
+          const lowerMessage = trimmedMessage.toLowerCase();
+          const keywordMatches = highIntentKeywords.filter(keyword => lowerMessage.includes(keyword)).length;
+          leadScore += keywordMatches * 5;
+        }
+        
+        // Preferred date/time indicates urgency
+        if (trimmedPreferredDate || trimmedPreferredTime) {
+          leadScore += 15;
+        }
+        
+        // Company indicates business intent
+        if (trimmedCompany) {
+          leadScore += 10;
+        }
+        
+        // Cap score at 100
+        leadScore = Math.min(leadScore, 100);
+        
+        // Determine lead temperature
+        let leadTemperature: 'hot' | 'warm' | 'cold';
+        if (leadScore >= 70) {
+          leadTemperature = 'hot';
+        } else if (leadScore >= 40) {
+          leadTemperature = 'warm';
+        } else {
+          leadTemperature = 'cold';
+        }
+        
+        console.log('[API /leads] Lead scoring:', {
+          email: trimmedEmail,
+          score: leadScore,
+          temperature: leadTemperature,
+          service: trimmedService,
+          messageLength: trimmedMessage?.length || 0
+        });
+        
+        // Send automated welcome email to customer
+        try {
+          // Import email template functionality
+          const { emailTemplates, processEmailTemplate } = await import('@/lib/email-templates');
+          const siteConfig = await import('@/config/site');
+          
+          // Select template based on lead temperature
+          let template;
+          switch (leadTemperature) {
+            case 'hot':
+              template = emailTemplates.hotLead;
+              break;
+            case 'warm':
+              template = emailTemplates.warmLead;
+              break;
+            case 'cold':
+              template = emailTemplates.coldLead;
+              break;
+            default:
+              template = emailTemplates.coldLead;
+          }
+          
+          // Process template with variables
+          const processedTemplate = processEmailTemplate(template, {
+            name: trimmedName || 'there',
+            calendlyLink: siteConfig.site.calendly,
+            leadScore: leadScore.toString()
+          });
+          
+          // Send email via Resend
+          const resend = new Resend(resendApiKey);
+          
+          console.log('[API /leads] Sending automated welcome email:', {
+            to: trimmedEmail,
+            temperature: leadTemperature,
+            score: leadScore,
+            template: leadTemperature
+          });
+          
+          const emailResult = await resend.emails.send({
+            from: resendFrom,
+            to: trimmedEmail,
+            subject: processedTemplate.subject,
+            html: processedTemplate.html,
+            text: processedTemplate.text,
+            replyTo: resendFrom
+          });
+          
+          console.log('[API /leads] Welcome email sent successfully:', {
+            emailId: emailResult.data?.id,
+            to: trimmedEmail,
+            temperature: leadTemperature,
+            score: leadScore
+          });
+        } catch (welcomeEmailError) {
+          // Don't fail the main request if welcome email fails
+          console.error('[API /leads] Failed to send welcome email:', welcomeEmailError);
+        }
+      } catch (scoringError) {
+        // Don't fail the main request if scoring fails
+        console.error('[API /leads] Lead scoring error:', scoringError);
+      }
+    }
+
     // Return success (with debug info in non-production)
     return NextResponse.json({ 
       ok: true,
