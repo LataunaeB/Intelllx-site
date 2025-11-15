@@ -9,7 +9,7 @@ import { OAuth2Client } from 'google-auth-library';
  * 
  * Query params:
  * - startDate: ISO date string (optional, defaults to today)
- * - endDate: ISO date string (optional, defaults to 2 weeks from today)
+ * - endDate: ISO date string (optional, defaults to 1 month from today)
  * 
  * Business Rules:
  * - Monday-Friday only (no weekends)
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       ? new Date(endDateParam)
       : maxAdvanceDate;
 
-    // Ensure we don't go beyond 2 weeks
+    // Ensure we don't go beyond 1 month (30 days)
     const queryEndDate = endDate > maxAdvanceDate ? maxAdvanceDate : endDate;
 
     // Check if we have service account credentials (preferred) or need OAuth token
