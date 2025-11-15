@@ -170,6 +170,41 @@ export async function GET(request: NextRequest) {
 }
 
 /**
+ * Check if a date is in daylight saving time for Pacific timezone (America/Los_Angeles)
+ * DST: 2nd Sunday in March to 1st Sunday in November
+ */
+function isDaylightSavingTime(year: number, month: number, day: number): boolean {
+  // DST in Pacific timezone (America/Los_Angeles):
+  // Starts: 2nd Sunday in March at 2:00 AM
+  // Ends: 1st Sunday in November at 2:00 AM
+  
+  // Get 2nd Sunday in March
+  const marchSecondSunday = getNthSundayInMonth(year, 3, 2);
+  // Get 1st Sunday in November
+  const novemberFirstSunday = getNthSundayInMonth(year, 11, 1);
+  
+  // Create date objects for comparison (using UTC to avoid local timezone issues)
+  const testDate = new Date(Date.UTC(year, month - 1, day));
+  const dstStart = new Date(Date.UTC(year, 2, marchSecondSunday, 10)); // March 2nd Sunday, 2 AM PST = 10 AM UTC
+  const dstEnd = new Date(Date.UTC(year, 10, novemberFirstSunday, 9)); // November 1st Sunday, 2 AM PDT = 9 AM UTC
+  
+  // DST is active from 2nd Sunday March to 1st Sunday November
+  return testDate >= dstStart && testDate < dstEnd;
+}
+
+/**
+ * Get the date of the Nth Sunday in a given month
+ */
+function getNthSundayInMonth(year: number, month: number, n: number): number {
+  // Find first Sunday of the month
+  const firstDay = new Date(year, month - 1, 1);
+  const firstSunday = 1 + (7 - firstDay.getDay()) % 7;
+  
+  // Get Nth Sunday
+  return firstSunday + (n - 1) * 7;
+}
+
+/**
  * Generate all possible time slots within business hours
  */
 function generateTimeSlots(
@@ -217,18 +252,35 @@ function generateTimeSlots(
           continue; // Skip this slot as it extends past business hours
         }
         
-        // Create date in the timezone
-        const slotDate = new Date(current);
-        slotDate.setHours(slotHour, slotMinutes, 0, 0);
+        // Get the date components in PST timezone
+        const dateStrPST = current.toLocaleDateString('en-CA', { timeZone: timezone }); // YYYY-MM-DD format
+        const [year, month, day] = dateStrPST.split('-');
+        const monthNum = parseInt(month);
+        const dayNum = parseInt(day);
+        const yearNum = parseInt(year);
         
-        // Convert to ISO for timezone handling
-        const slotStartISO = slotDate.toISOString();
-        const slotEndDate = new Date(slotDate);
+        // Create time string in HH:MM format
+        const timeStr = `${String(slotHour).padStart(2, '0')}:${String(slotMinutes).padStart(2, '0')}:00`;
+        
+        // Create a date string that represents the time in PST
+        // Format: YYYY-MM-DDTHH:MM:SS
+        const dateTimeStrPST = `${dateStrPST}T${timeStr}`;
+        
+        // Check if DST applies (PST is -08:00, PDT is -07:00)
+        // DST in US Pacific: 2nd Sunday in March to 1st Sunday in November
+        const isDST = isDaylightSavingTime(yearNum, monthNum, dayNum);
+        const offset = isDST ? '-07:00' : '-08:00';
+        
+        // Create date with proper PST/PDT offset
+        const slotDateCorrect = new Date(`${dateTimeStrPST}${offset}`);
+        const slotStartISO = slotDateCorrect.toISOString();
+        
+        const slotEndDate = new Date(slotDateCorrect);
         slotEndDate.setMinutes(slotEndDate.getMinutes() + durationMinutes);
         const slotEndISO = slotEndDate.toISOString();
 
-        // Format display time
-        const displayTime = slotDate.toLocaleTimeString('en-US', {
+        // Format display time in PST (should match slotHour:slotMinutes)
+        const displayTime = slotDateCorrect.toLocaleTimeString('en-US', {
           hour: 'numeric',
           minute: '2-digit',
           hour12: true,
