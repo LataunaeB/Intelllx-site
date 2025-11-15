@@ -247,8 +247,10 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
             );
           }
           
-          const isSelectable = day.hasSlots && !day.isPast && day.isCurrentMonth;
+          // Weekends are never selectable - no availability
+          const isSelectable = day.hasSlots && !day.isPast && day.isCurrentMonth && !day.isWeekend;
           const isSelected = selectedDate === day.dateStr;
+          const isWeekendDisabled = day.isWeekend;
           
           return (
             <button
@@ -258,25 +260,28 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
                   setSelectedDate(day.dateStr);
                 }
               }}
-              disabled={!isSelectable}
+              disabled={!isSelectable || isWeekendDisabled}
               className={`
                 aspect-square p-2 rounded-lg text-sm font-medium transition-all
-                ${day.isWeekend && !day.hasSlots ? 'text-gray-600 cursor-not-allowed' : ''}
+                ${isWeekendDisabled ? 'text-gray-600 opacity-40 cursor-not-allowed' : ''}
                 ${day.isPast ? 'text-gray-700 cursor-not-allowed opacity-50' : ''}
-                ${day.hasSlots && !day.isPast && day.isCurrentMonth
+                ${day.hasSlots && !day.isPast && day.isCurrentMonth && !day.isWeekend
                   ? 'text-white hover:bg-blue-500/20 hover:border-blue-500/50 cursor-pointer border border-transparent'
-                  : day.isCurrentMonth && !day.isPast
+                  : day.isCurrentMonth && !day.isPast && !day.isWeekend
                   ? 'text-gray-300 cursor-not-allowed border border-transparent'
-                  : 'text-gray-600 cursor-not-allowed'
+                  : !day.isWeekend
+                  ? 'text-gray-600 cursor-not-allowed'
+                  : ''
                 }
                 ${isSelected
                   ? 'bg-blue-500 border-blue-500 text-white ring-2 ring-blue-400'
                   : ''
                 }
               `}
+              title={isWeekendDisabled ? 'No weekend availability' : ''}
             >
               {day.date.getDate()}
-              {day.hasSlots && !day.isPast && (
+              {day.hasSlots && !day.isPast && !day.isWeekend && (
                 <div className="w-1 h-1 mx-auto mt-1 bg-blue-400 rounded-full" />
               )}
             </button>
