@@ -52,22 +52,13 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       
-      // Calculate 30 days from today (1 month advance booking)
-      const maxAdvanceDate = new Date(today);
-      maxAdvanceDate.setDate(today.getDate() + 30);
-      
       const startDate = new Date(currentMonth);
       startDate.setDate(1); // Start of month
       
-      // Don't allow fetching dates beyond 30 days from today
-      let endDate = new Date(currentMonth);
+      // Fetch entire month (year-round booking allowed)
+      const endDate = new Date(currentMonth);
       endDate.setMonth(endDate.getMonth() + 1); // Next month
       endDate.setDate(0); // Last day of current month
-      
-      // Cap endDate at 30 days from today
-      if (endDate > maxAdvanceDate) {
-        endDate = new Date(maxAdvanceDate);
-      }
       
       // Don't fetch past dates
       if (startDate < today) {
@@ -215,18 +206,8 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
         ))}
         
         {calendarDays.map((day, index) => {
-          // Check if date is within 30 days from today
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          const maxAdvanceDate = new Date(today);
-          maxAdvanceDate.setDate(today.getDate() + 30);
-          const dayDate = new Date(day.date);
-          dayDate.setHours(0, 0, 0, 0);
-          const isWithin30Days = dayDate <= maxAdvanceDate;
-          
-          const isSelectable = day.hasSlots && !day.isPast && day.isCurrentMonth && isWithin30Days;
+          const isSelectable = day.hasSlots && !day.isPast && day.isCurrentMonth;
           const isSelected = selectedDate === day.dateStr;
-          const isTooFarInFuture = !day.isPast && !isWithin30Days;
           
           return (
             <button
@@ -242,8 +223,7 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
                 ${!day.isCurrentMonth ? 'text-gray-600' : ''}
                 ${day.isWeekend && !day.hasSlots ? 'text-gray-600 cursor-not-allowed' : ''}
                 ${day.isPast ? 'text-gray-700 cursor-not-allowed opacity-50' : ''}
-                ${isTooFarInFuture ? 'text-gray-600 cursor-not-allowed opacity-50' : ''}
-                ${day.hasSlots && !day.isPast && day.isCurrentMonth && isWithin30Days
+                ${day.hasSlots && !day.isPast && day.isCurrentMonth
                   ? 'text-white hover:bg-blue-500/20 hover:border-blue-500/50 cursor-pointer border border-transparent'
                   : 'cursor-not-allowed'
                 }
@@ -252,10 +232,9 @@ export default function BookingCalendar({ onTimeSlotSelect, selectedSlot }: Book
                   : ''
                 }
               `}
-              title={isTooFarInFuture ? 'Bookings available up to 30 days in advance' : ''}
             >
               {day.date.getDate()}
-              {day.hasSlots && !day.isPast && isWithin30Days && (
+              {day.hasSlots && !day.isPast && (
                 <div className="w-1 h-1 mx-auto mt-1 bg-blue-400 rounded-full" />
               )}
             </button>

@@ -9,13 +9,13 @@ import { OAuth2Client } from 'google-auth-library';
  * 
  * Query params:
  * - startDate: ISO date string (optional, defaults to today)
- * - endDate: ISO date string (optional, defaults to 1 month from today)
+ * - endDate: ISO date string (optional, defaults to 1 year from today for year-round booking)
  * 
  * Business Rules:
  * - Monday-Friday only (no weekends)
  * - 9 AM - 6 PM PST
  * - 30-minute meetings
- * - 1 month (30 days) advance booking limit
+ * - Year-round booking (no advance limit)
  */
 export async function GET(request: NextRequest) {
   try {
@@ -28,7 +28,6 @@ export async function GET(request: NextRequest) {
     const BUSINESS_START_HOUR = 9; // 9 AM
     const BUSINESS_END_HOUR = 18; // 6 PM (18:00)
     const MEETING_DURATION_MINUTES = 30;
-    const ADVANCE_BOOKING_DAYS = 30; // 1 month
 
     // Calculate date range
     const now = new Date();
@@ -39,15 +38,15 @@ export async function GET(request: NextRequest) {
       ? new Date(startDateParam)
       : today;
     
-    const maxAdvanceDate = new Date(today);
-    maxAdvanceDate.setDate(today.getDate() + ADVANCE_BOOKING_DAYS);
+    // Default to 1 year ahead if no endDate specified (year-round booking)
+    const defaultEndDate = new Date(today);
+    defaultEndDate.setFullYear(today.getFullYear() + 1);
     
     const endDate = endDateParam 
       ? new Date(endDateParam)
-      : maxAdvanceDate;
+      : defaultEndDate;
 
-    // Ensure we don't go beyond 1 month (30 days)
-    const queryEndDate = endDate > maxAdvanceDate ? maxAdvanceDate : endDate;
+    const queryEndDate = endDate;
 
     // Check if we have service account credentials (preferred) or need OAuth token
     const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
