@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
 
     // Get Resend configuration
     const resendApiKey = process.env.RESEND_API_KEY;
-    // Use your verified intelllx.com domain (from Resend dashboard)
-    const resendFrom = process.env.RESEND_FROM || process.env.EMAIL_FROM || 'hello@intelllx.com';
+    // Use your verified send.intelllx.com domain (from Resend dashboard)
+    const resendFrom = process.env.RESEND_FROM || process.env.EMAIL_FROM || 'hello@send.intelllx.com';
 
     if (!resendApiKey) {
       console.error('[API /send-welcome-email] RESEND_API_KEY not configured');

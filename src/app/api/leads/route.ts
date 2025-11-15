@@ -171,7 +171,7 @@ export async function POST(request: NextRequest) {
     const resendFrom =
       process.env.RESEND_FROM?.trim() ||
       process.env.EMAIL_FROM?.trim() ||
-      'hello@intelllx.com';
+      'hello@send.intelllx.com';
     const resendTo = process.env.RESEND_TO || process.env.EMAIL_TO || 'hello@intelllx.com';
 
     console.log('[API /leads] Email config check:', {
