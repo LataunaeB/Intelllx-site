@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
 import { zoomAPI } from '@/lib/zoom-api';
 import { OAuth2Client } from 'google-auth-library';
+import { Resend } from 'resend';
 
 export async function POST(request: NextRequest) {
   try {
@@ -153,6 +154,91 @@ export async function POST(request: NextRequest) {
     if (!meetingLink && response.data.conferenceData?.entryPoints?.[0]?.uri) {
       meetingLink = response.data.conferenceData.entryPoints[0].uri;
     }
+
+    // Send booking confirmation email via Resend (non-blocking)
+    (async () => {
+      try {
+        const resendApiKey = process.env.RESEND_API_KEY;
+        if (!resendApiKey) return;
+        const resendFrom =
+          (process.env.RESEND_FROM?.trim() ||
+            process.env.EMAIL_FROM?.trim() ||
+            'hello@send.intelllx.com');
+        const ccEmail = 'hello@intelllx.com';
+        const timezone = 'America/Los_Angeles';
+
+        const start = new Date(startTime);
+        const end = new Date(endTime);
+        const displayDate = start.toLocaleDateString('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          timeZone: timezone,
+        });
+        const displayTime = `${start.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+          timeZone: timezone,
+        })} – ${end.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+          timeZone: timezone,
+        })} ${Intl.DateTimeFormat('en-US', { timeZoneName: 'short', timeZone: timezone }).format(start).split(' ').pop()}`;
+
+        const calendarLink = response.data.htmlLink as string | undefined;
+        const addToCalendarUrl = calendarLink || meetingLink;
+        const isGoogleMeet = !zoomMeeting;
+        const meetingType = isGoogleMeet ? 'Google Meet (video)' : 'Zoom (video)';
+
+        const html = `
+          <!DOCTYPE html>
+          <html>
+            <body style="font-family: Arial, sans-serif; color: #111; line-height: 1.6;">
+              <h2 style="margin:0 0 10px;">Your meeting is confirmed</h2>
+              <p style="margin:0 0 16px;">Hi ${attendeeName || ''}, thanks for booking with Intelllx.</p>
+              <div style="background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:16px; margin-bottom:16px;">
+                <p style="margin:0 0 8px;"><strong>Topic:</strong> ${meetingTitle}</p>
+                <p style="margin:0 0 8px;"><strong>When:</strong> ${displayDate}, ${displayTime}</p>
+                <p style="margin:0 0 8px;"><strong>Meeting type:</strong> ${meetingType}</p>
+                <p style="margin:0;"><strong>Join link:</strong> <a href="${meetingLink}" target="_blank" rel="noopener">${meetingLink}</a></p>
+              </div>
+              <p style="margin:0 0 16px;">We’ll meet on ${isGoogleMeet ? 'Google Meet' : 'Zoom'}. Please join a few minutes early to test audio/video.</p>
+              ${addToCalendarUrl ? `<p style="margin:0 0 16px;">
+                <a href="${addToCalendarUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#2563eb;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600;">Add to Calendar</a>
+              </p>` : ''}
+              ${meetingDescription ? `<p style="margin:16px 0 0;"><strong>Notes:</strong><br/>${meetingDescription.replace(/\n/g, '<br/>')}</p>` : ''}
+              <p style="margin:24px 0 0; font-size:12px; color:#6b7280;">If you need to reschedule, just reply to this email.</p>
+            </body>
+          </html>
+        `;
+
+        const text = `
+Your meeting is confirmed.
+
+Topic: ${meetingTitle}
+When: ${displayDate}, ${displayTime}
+Meeting type: ${meetingType}
+Join link: ${meetingLink}
+${meetingDescription ? `\nNotes:\n${meetingDescription}\n` : ''}
+Add to calendar: ${addToCalendarUrl || meetingLink}
+        `.trim();
+
+        const resend = new Resend(resendApiKey);
+        await resend.emails.send({
+          from: resendFrom,
+          to: attendeeEmail,
+          cc: ccEmail,
+          subject: `Confirmed: ${meetingTitle} — ${displayDate}`,
+          html,
+          text,
+          replyTo: ccEmail,
+        });
+      } catch (emailError) {
+        console.warn('Booking confirmation email failed:', emailError);
+      }
+    })();
 
     return NextResponse.json({
       success: true,
