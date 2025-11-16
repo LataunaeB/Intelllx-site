@@ -12,7 +12,7 @@ export interface EmailTemplate {
 export const emailTemplates = {
   // HOT LEAD - Immediate response
   hotLead: {
-    subject: "🚀 Ready to transform your business? Let's talk!",
+    subject: "🚀 Websites + Chatbots that get you booked — let’s talk!",
     html: `
       <!DOCTYPE html>
       <html>
@@ -34,21 +34,21 @@ export const emailTemplates = {
           <div class="content">
             <p>Hi {{name}},</p>
             
-            <p>I'm excited you reached out about our LeadFlow chatbot service! Based on your inquiry, I can tell you're serious about growing your business with AI.</p>
+            <p>I'm excited you reached out about our services. We build <strong>high-converting websites</strong> and <strong>LeadFlow AI chatbots</strong> that work together to turn visitors into booked meetings.</p>
             
             <div class="highlight">
-              <strong>🎯 Here's what I can do for you:</strong>
+              <strong>🎯 Here's what we can do for you:</strong>
               <ul>
-                <li>Design a custom AI conversation that matches your brand</li>
-                <li>Set up automated lead capture and calendar booking</li>
-                <li>Integrate with your existing CRM and tools</li>
-                <li>Provide ongoing optimization and support</li>
+                <li><strong>Web Development:</strong> Modern, fast, mobile-first websites optimized for conversion (speed, SEO, UX, trust signals)</li>
+                <li><strong>AI Chatbots:</strong> Custom conversations that qualify leads, answer questions, and <em>book meetings</em> 24/7</li>
+                <li><strong>Integrations:</strong> Google Calendar/Meet, Zoom, HubSpot/Pipedrive, email, and analytics</li>
+                <li><strong>Automation:</strong> Instant notifications, automated follow-ups, and lead scoring</li>
               </ul>
             </div>
             
             <p><strong>Next steps:</strong></p>
             <ol>
-              <li>Book a 15-minute strategy call (I'll send you the link)</li>
+              <li>Book a 15-minute strategy call</li>
               <li>We'll discuss your specific needs and goals</li>
               <li>I'll create a custom proposal for your business</li>
             </ol>
@@ -57,7 +57,7 @@ export const emailTemplates = {
               <a href="{{calendlyLink}}" class="cta-button">Book Your Strategy Call</a>
             </div>
             
-            <p>I typically respond to high-priority inquiries like yours within 2 hours. If you need to reach me directly, reply to this email.</p>
+            <p>I typically respond to high-priority inquiries within 2 hours. If you need to reach me directly, reply to this email.</p>
             
             <p>Looking forward to helping you capture more leads!</p>
             
@@ -76,13 +76,13 @@ export const emailTemplates = {
       
       Hi {{name}},
       
-      I'm excited you reached out about our LeadFlow chatbot service! Based on your inquiry, I can tell you're serious about growing your business with AI.
+      I'm excited you reached out. We build high-converting websites and LeadFlow AI chatbots that work together to turn visitors into booked meetings.
       
-      Here's what I can do for you:
-      • Design a custom AI conversation that matches your brand
-      • Set up automated lead capture and calendar booking
-      • Integrate with your existing CRM and tools
-      • Provide ongoing optimization and support
+      Here's what we can do for you:
+      • Web Development: Modern, fast, mobile-first websites optimized for conversion (speed, SEO, UX, trust)
+      • AI Chatbots: Custom conversations that qualify leads and book meetings 24/7
+      • Integrations: Google Calendar/Meet or Zoom, CRM, email, analytics
+      • Automation: Instant notifications, automated follow-ups, lead scoring
       
       Next steps:
       1. Book a 15-minute strategy call: {{calendlyLink}}
@@ -104,7 +104,7 @@ export const emailTemplates = {
 
   // WARM LEAD - Nurture sequence
   warmLead: {
-    subject: "Thanks for your interest! Here's how we can help...",
+    subject: "Thanks for your interest! Websites + chatbots that convert",
     html: `
       <!DOCTYPE html>
       <html>
@@ -126,9 +126,9 @@ export const emailTemplates = {
           <div class="content">
             <p>Hi {{name}},</p>
             
-            <p>Thank you for your interest in INTELLLX! I appreciate you taking the time to reach out.</p>
+            <p>Thank you for your interest in INTELLLX! We help businesses grow with <strong>conversion-focused websites</strong> and <strong>LeadFlow AI chatbots</strong>.</p>
             
-            <p>I've helped dozens of businesses like yours capture more leads and grow their revenue with AI chatbots. Here are some resources that might be helpful:</p>
+            <p>Here are a few helpful resources to see how we think about growth and conversions:</p>
             
             <div class="resources">
               <h3>📚 Free Resources:</h3>
@@ -141,17 +141,17 @@ export const emailTemplates = {
             
             <p><strong>What makes INTELLLX different:</strong></p>
             <ul>
-              <li>✅ Custom AI conversations tailored to your business</li>
-              <li>✅ Professional setup included (no technical work for you)</li>
-              <li>✅ Automated lead capture and calendar booking</li>
-              <li>✅ Ongoing optimization and support</li>
+              <li>✅ <strong>Websites that convert:</strong> Clear messaging, speed, SEO, trust, and UX that drives action</li>
+              <li>✅ <strong>AI chatbots that book meetings:</strong> Qualification, answers, and calendar booking 24/7</li>
+              <li>✅ <strong>Professional setup included:</strong> We do it for you, end-to-end</li>
+              <li>✅ <strong>Automation + analytics:</strong> Follow-ups, notifications, and insight into what’s working</li>
             </ul>
             
             <div style="text-align: center;">
               <a href="{{calendlyLink}}" class="cta-button">Schedule a Free Consultation</a>
             </div>
             
-            <p>I'll send you a follow-up email in a few days with more insights about AI chatbots for businesses like yours.</p>
+            <p>I'll send you a follow-up email with tactical tips on improving both website conversion and AI-driven lead capture.</p>
             
             <p>Feel free to reply with any questions!</p>
             
@@ -170,9 +170,9 @@ export const emailTemplates = {
       
       Hi {{name}},
       
-      Thank you for your interest in INTELLLX! I appreciate you taking the time to reach out.
+      Thanks for your interest in INTELLLX! We help businesses grow with conversion-focused websites and LeadFlow AI chatbots.
       
-      I've helped dozens of businesses like yours capture more leads and grow their revenue with AI chatbots. Here are some resources that might be helpful:
+      Here are a few resources to get you started:
       
       Free Resources:
       • Lead Leakage Calculator: https://intelllx.com/resources/lead-leakage-calculator
@@ -180,14 +180,14 @@ export const emailTemplates = {
       • 5 Questions Your Chatbot Should Answer: https://intelllx.com/resources/5-critical-questions
       
       What makes INTELLLX different:
-      ✅ Custom AI conversations tailored to your business
-      ✅ Professional setup included (no technical work for you)
-      ✅ Automated lead capture and calendar booking
-      ✅ Ongoing optimization and support
+      ✅ Websites that convert (speed, SEO, UX, trust)
+      ✅ AI chatbots that qualify and book meetings 24/7
+      ✅ Professional setup done for you
+      ✅ Automation + analytics baked in
       
       Schedule a Free Consultation: {{calendlyLink}}
       
-      I'll send you a follow-up email in a few days with more insights about AI chatbots for businesses like yours.
+      I’ll follow up with practical tips to boost conversions via your website and AI automation.
       
       Feel free to reply with any questions!
       
@@ -202,7 +202,7 @@ export const emailTemplates = {
 
   // COLD LEAD - Nurture content
   coldLead: {
-    subject: "Welcome! Here's how AI chatbots can grow your business",
+    subject: "Welcome! Websites + chatbots that actually convert",
     html: `
       <!DOCTYPE html>
       <html>
@@ -224,9 +224,9 @@ export const emailTemplates = {
           <div class="content">
             <p>Hi {{name}},</p>
             
-            <p>Welcome to INTELLLX! Thanks for your interest in our services.</p>
+            <p>Welcome to INTELLLX! We build <strong>conversion-focused websites</strong> and <strong>LeadFlow AI chatbots</strong> so your visitors turn into booked meetings.</p>
             
-            <p>Did you know that businesses using AI chatbots see an average of <strong>3-5x more qualified leads</strong>? Here's why:</p>
+            <p>Here’s how each helps:</p>
             
             <div class="tip-box">
               <h3>💡 AI Chatbot Benefits:</h3>
@@ -238,14 +238,24 @@ export const emailTemplates = {
               </ul>
             </div>
             
+            <div class="tip-box" style="border-left-color:#22c55e;">
+              <h3>💡 Website Benefits:</h3>
+              <ul>
+                <li><strong>Conversion-first Design:</strong> Clear messaging and trust signals</li>
+                <li><strong>Speed + SEO:</strong> Fast loads and structure that ranks</li>
+                <li><strong>Mobile-first UX:</strong> Smooth experience on every device</li>
+                <li><strong>Analytics:</strong> See what’s working and where to optimize</li>
+              </ul>
+            </div>
+            
             <p><strong>Here's what I recommend:</strong></p>
             <ol>
-              <li>Check out our <a href="https://intelllx.com/resources/lead-leakage-calculator">Lead Leakage Calculator</a> to see your potential revenue loss</li>
-              <li>Read our <a href="https://intelllx.com/resources/leadflow-vs-generic">comparison guide</a> to understand why custom AI works better</li>
+              <li>Check your <a href="https://intelllx.com/resources/lead-leakage-calculator">Lead Leakage</a> — see potential revenue left on the table</li>
+              <li>Read <a href="https://intelllx.com/resources/leadflow-vs-generic">LeadFlow vs Generic</a> — why custom AI converts better</li>
               <li>When you're ready, <a href="{{calendlyLink}}">schedule a free consultation</a></li>
             </ol>
             
-            <p>I'll send you valuable tips and insights about AI chatbots over the next few weeks. No pressure, just helpful content!</p>
+            <p>I’ll send simple, practical tips to improve both your website conversion and AI automation over the next few weeks.</p>
             
             <div style="text-align: center;">
               <a href="{{calendlyLink}}" class="cta-button">Learn More</a>
@@ -268,9 +278,9 @@ export const emailTemplates = {
       
       Hi {{name}},
       
-      Welcome to INTELLLX! Thanks for your interest in our services.
+      Welcome to INTELLLX! We build conversion-focused websites and LeadFlow AI chatbots so your visitors turn into booked meetings.
       
-      Did you know that businesses using AI chatbots see an average of 3-5x more qualified leads? Here's why:
+      How each helps:
       
       AI Chatbot Benefits:
       • 24/7 Lead Capture: Never miss another opportunity
@@ -278,12 +288,18 @@ export const emailTemplates = {
       • Automated Follow-up: Nurture leads while you sleep
       • Brand Consistency: Every interaction reflects your quality
       
+      Website Benefits:
+      • Conversion-first design (messaging, trust, CTAs)
+      • Speed + SEO to rank and load fast
+      • Mobile-first UX on every device
+      • Analytics to see what works
+      
       Here's what I recommend:
       1. Check out our Lead Leakage Calculator: https://intelllx.com/resources/lead-leakage-calculator
       2. Read our comparison guide: https://intelllx.com/resources/leadflow-vs-generic
       3. When you're ready, schedule a free consultation: {{calendlyLink}}
       
-      I'll send you valuable tips and insights about AI chatbots over the next few weeks. No pressure, just helpful content!
+      I’ll send useful tips on improving both your website and AI capture over the next few weeks.
       
       Learn More: {{calendlyLink}}
       
