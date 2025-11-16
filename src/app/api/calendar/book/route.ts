@@ -226,6 +226,36 @@ Add to calendar: ${addToCalendarUrl || meetingLink}
         `.trim();
 
         const resend = new Resend(resendApiKey);
+        // Build universal .ics calendar attachment
+        const toUtcStamp = (d: Date) =>
+          d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        const dtStamp = toUtcStamp(new Date());
+        const dtStart = toUtcStamp(new Date(startTime));
+        const dtEnd = toUtcStamp(new Date(endTime));
+        const uid = `intelllx-${response.data.id || Date.now()}@intelllx.com`;
+        const organizerEmail = ccEmail;
+        const safeDescription = (meetingDescription || '')
+          .replace(/\r?\n/g, '\\n')
+          .replace(/,/g, '\\,');
+        const icsContent =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Intelllx//Booking//EN
+METHOD:REQUEST
+BEGIN:VEVENT
+UID:${uid}
+DTSTAMP:${dtStamp}
+DTSTART:${dtStart}
+DTEND:${dtEnd}
+SUMMARY:${meetingTitle}
+DESCRIPTION:${safeDescription}\\nJoin link: ${meetingLink}
+LOCATION:${meetingLink}
+ORGANIZER;CN=Intelllx:MAILTO:${organizerEmail}
+ATTENDEE;CN=${attendeeName || attendeeEmail};ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:MAILTO:${attendeeEmail}
+END:VEVENT
+END:VCALENDAR`;
+        const icsBase64 = Buffer.from(icsContent, 'utf8').toString('base64');
+
         await resend.emails.send({
           from: resendFrom,
           to: attendeeEmail,
@@ -234,6 +264,13 @@ Add to calendar: ${addToCalendarUrl || meetingLink}
           html,
           text,
           replyTo: ccEmail,
+          attachments: [
+            {
+              filename: 'meeting.ics',
+              content: icsBase64,
+              contentType: 'text/calendar; charset=utf-8; method=REQUEST'
+            }
+          ]
         });
       } catch (emailError) {
         console.warn('Booking confirmation email failed:', emailError);
