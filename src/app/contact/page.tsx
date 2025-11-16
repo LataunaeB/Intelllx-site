@@ -635,33 +635,9 @@ export default function Contact() {
                             </p>
                           </div>
                         </div>
-                        <div className="pt-4 border-t border-green-500/30 space-y-3">
-                          {bookingResult.meetingLink && (
-                            <a
-                              href={bookingResult.meetingLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl text-center"
-                            >
-                              Join Zoom Meeting
-                              <ExternalLink className="w-4 h-4 inline ml-2" />
-                            </a>
-                          )}
-                          {bookingResult.calendarLink && (
-                            <a
-                              href={bookingResult.calendarLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block w-full px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 text-center"
-                            >
-                              Add to Calendar
-                              <ExternalLink className="w-4 h-4 inline ml-2" />
-                            </a>
-                          )}
-                          <p className="text-green-200 text-xs text-center">
-                            You&apos;ll receive confirmation emails with all meeting details.
-                          </p>
-                        </div>
+                        <p className="text-green-200 text-xs text-center">
+                          You&apos;ll receive an email with all meeting details and an add-to-calendar attachment.
+                        </p>
                       </div>
                     )}
 
