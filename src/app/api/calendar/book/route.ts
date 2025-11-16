@@ -138,6 +138,7 @@ export async function POST(request: NextRequest) {
         useDefault: false,
         overrides: [
           { method: 'email', minutes: 24 * 60 }, // 24 hours before
+          { method: 'email', minutes: 60 }, // 1 hour before
           { method: 'popup', minutes: 10 }, // 10 minutes before
         ],
       },
