@@ -62,6 +62,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [isBooking, setIsBooking] = useState(false);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [bookingError, setBookingError] = useState<string>('');
   const [bookingResult, setBookingResult] = useState<{
     meetingLink?: string;
     calendarLink?: string;
@@ -231,7 +232,9 @@ export default function Contact() {
       const bookingData = await bookingResponse.json();
       
       if (!bookingResponse.ok || !bookingData.success) {
-        throw new Error(bookingData.error || 'Failed to book calendar event');
+        console.error('Booking API error:', bookingData);
+        const errorMessage = bookingData.error || bookingData.message || 'Failed to book calendar event';
+        throw new Error(errorMessage);
       }
 
       // Success!
@@ -276,6 +279,8 @@ export default function Contact() {
       
     } catch (error) {
       console.error('Booking error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      setBookingError(errorMessage);
       setBookingStatus('error');
     } finally {
       setIsBooking(false);
@@ -663,11 +668,12 @@ export default function Contact() {
                     {/* Error Message */}
                     {bookingStatus === 'error' && (
                       <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl">
-                        <div className="flex items-center gap-3">
-                          <AlertCircle className="w-6 h-6 text-red-400" />
-                          <div>
-                            <h3 className="text-red-400 font-semibold">Booking Failed</h3>
-                            <p className="text-red-300 text-sm">Please try again or email us directly at hello@intelllx.com</p>
+                        <div className="flex items-start gap-3">
+                          <AlertCircle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <h3 className="text-red-400 font-semibold mb-1">Booking Failed</h3>
+                            <p className="text-red-300 text-sm mb-2">{bookingError || 'An unexpected error occurred'}</p>
+                            <p className="text-red-200 text-xs">Please try again or email us directly at <a href="mailto:hello@intelllx.com" className="underline hover:text-red-100">hello@intelllx.com</a></p>
                           </div>
                         </div>
                       </div>

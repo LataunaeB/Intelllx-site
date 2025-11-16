@@ -165,8 +165,17 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Calendar booking error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to create calendar event';
+    const errorDetails = error instanceof Error && 'response' in error 
+      ? (error as any).response?.data 
+      : null;
+    
     return NextResponse.json(
-      { error: 'Failed to create calendar event' },
+      { 
+        success: false,
+        error: errorMessage,
+        details: errorDetails || (error instanceof Error ? error.stack : undefined)
+      },
       { status: 500 }
     );
   }
