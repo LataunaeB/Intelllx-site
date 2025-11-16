@@ -635,9 +635,14 @@ export default function Contact() {
                             </p>
                           </div>
                         </div>
-                        <p className="text-green-200 text-xs text-center">
-                          You&apos;ll receive an email with all meeting details and an add-to-calendar attachment.
-                        </p>
+                        <div className="mt-2 text-center">
+                          <p className="text-green-200 text-xs">
+                            You&apos;ll receive an email with all meeting details and an add-to-calendar attachment.
+                          </p>
+                          <p className="text-green-200/80 text-xs mt-1">
+                            Tip: If you don&apos;t see it in a minute, check your Spam/Junk folder and mark it as &quot;Not Spam&quot;.
+                          </p>
+                        </div>
                       </div>
                     )}
 

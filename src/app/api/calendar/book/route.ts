@@ -188,7 +188,11 @@ export async function POST(request: NextRequest) {
         })} ${Intl.DateTimeFormat('en-US', { timeZoneName: 'short', timeZone: timezone }).format(start).split(' ').pop()}`;
 
         const calendarLink = response.data.htmlLink as string | undefined;
-        const addToCalendarUrl = calendarLink || meetingLink;
+        // Build Google Calendar "Add" link as a template URL
+        const gcalAddUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(meetingTitle)}&dates=${dtStart}/${dtEnd}&details=${encodeURIComponent(meetingDescription || '')}%0AJoin%20link:%20${encodeURIComponent(meetingLink)}&location=${encodeURIComponent(meetingLink)}&ctz=America/Los_Angeles`;
+        // Build an absolute ICS download URL for Apple/Outlook users
+        const origin = new URL(request.url).origin;
+        const icsDownloadUrl = `${origin}/api/calendar/ics?title=${encodeURIComponent(meetingTitle)}&start=${encodeURIComponent(dtStart)}&end=${encodeURIComponent(dtEnd)}&desc=${encodeURIComponent(meetingDescription || '')}&loc=${encodeURIComponent(meetingLink)}&attendee=${encodeURIComponent(attendeeEmail)}&uid=${encodeURIComponent(uid)}`;
         const isGoogleMeet = !zoomMeeting;
         const meetingType = isGoogleMeet ? 'Google Meet (video)' : 'Zoom (video)';
 
@@ -205,9 +209,10 @@ export async function POST(request: NextRequest) {
                 <p style="margin:0;"><strong>Join link:</strong> <a href="${meetingLink}" target="_blank" rel="noopener">${meetingLink}</a></p>
               </div>
               <p style="margin:0 0 16px;">We’ll meet on ${isGoogleMeet ? 'Google Meet' : 'Zoom'}. Please join a few minutes early to test audio/video.</p>
-              ${addToCalendarUrl ? `<p style="margin:0 0 16px;">
-                <a href="${addToCalendarUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#2563eb;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600;">Add to Calendar</a>
-              </p>` : ''}
+              <div style="margin:16px 0;">
+                <a href="${gcalAddUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#2563eb;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600;margin-right:8px;">Add to Google Calendar</a>
+                <a href="${icsDownloadUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#0ea5e9;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600;">Add to Apple/Outlook</a>
+              </div>
               ${meetingDescription ? `<p style="margin:16px 0 0;"><strong>Notes:</strong><br/>${meetingDescription.replace(/\n/g, '<br/>')}</p>` : ''}
               <p style="margin:24px 0 0; font-size:12px; color:#6b7280;">If you need to reschedule, just reply to this email.</p>
             </body>
