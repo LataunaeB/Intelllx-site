@@ -205,6 +205,76 @@ function getNthSundayInMonth(year: number, month: number, n: number): number {
 }
 
 /**
+ * Get the Nth weekday (0=Sunday, 1=Monday, etc.) in a given month
+ */
+function getNthWeekdayInMonth(year: number, month: number, weekday: number, n: number): number {
+  // Find first occurrence of the weekday in the month
+  const firstDay = new Date(year, month - 1, 1);
+  const firstWeekday = 1 + (weekday - firstDay.getDay() + 7) % 7;
+  
+  // Get Nth occurrence
+  return firstWeekday + (n - 1) * 7;
+}
+
+/**
+ * Get the last weekday (0=Sunday, 1=Monday, etc.) in a given month
+ */
+function getLastWeekdayInMonth(year: number, month: number, weekday: number): number {
+  // Start from the last day of the month
+  const lastDay = new Date(year, month, 0);
+  const lastDayOfWeek = lastDay.getDay();
+  
+  // Calculate how many days to go back to reach the target weekday
+  const daysBack = (lastDayOfWeek - weekday + 7) % 7;
+  
+  return lastDay.getDate() - daysBack;
+}
+
+/**
+ * Check if a date is a US federal holiday
+ * Returns true if the date is a holiday, false otherwise
+ */
+function isHoliday(year: number, month: number, day: number): boolean {
+  // New Year's Day (January 1)
+  if (month === 1 && day === 1) return true;
+  
+  // Martin Luther King Jr. Day (3rd Monday in January)
+  const mlkDay = getNthWeekdayInMonth(year, 1, 1, 3); // 1 = Monday, 3rd occurrence
+  if (month === 1 && day === mlkDay) return true;
+  
+  // Presidents' Day (3rd Monday in February)
+  const presidentsDay = getNthWeekdayInMonth(year, 2, 1, 3);
+  if (month === 2 && day === presidentsDay) return true;
+  
+  // Memorial Day (last Monday in May)
+  const memorialDay = getLastWeekdayInMonth(year, 5, 1);
+  if (month === 5 && day === memorialDay) return true;
+  
+  // Independence Day (July 4)
+  if (month === 7 && day === 4) return true;
+  
+  // Labor Day (1st Monday in September)
+  const laborDay = getNthWeekdayInMonth(year, 9, 1, 1);
+  if (month === 9 && day === laborDay) return true;
+  
+  // Columbus Day / Indigenous Peoples' Day (2nd Monday in October)
+  const columbusDay = getNthWeekdayInMonth(year, 10, 1, 2);
+  if (month === 10 && day === columbusDay) return true;
+  
+  // Veterans Day (November 11)
+  if (month === 11 && day === 11) return true;
+  
+  // Thanksgiving (4th Thursday in November)
+  const thanksgiving = getNthWeekdayInMonth(year, 11, 4, 4); // 4 = Thursday
+  if (month === 11 && day === thanksgiving) return true;
+  
+  // Christmas (December 25)
+  if (month === 12 && day === 25) return true;
+  
+  return false;
+}
+
+/**
  * Generate all possible time slots within business hours
  */
 function generateTimeSlots(
@@ -233,6 +303,15 @@ function generateTimeSlots(
     
     // Extract date components for use later
     const [year, month, day] = dateStrPST.split('-');
+    
+    // Skip holidays
+    const yearNum = parseInt(year);
+    const monthNum = parseInt(month);
+    const dayNum = parseInt(day);
+    if (isHoliday(yearNum, monthNum, dayNum)) {
+      current.setDate(current.getDate() + 1);
+      continue;
+    }
     
     // Format display date directly from PST date components to avoid timezone conversion issues
     // Create a date in PST by using noon PST (to avoid date boundary issues)
@@ -267,10 +346,7 @@ function generateTimeSlots(
           continue; // Skip this slot as it extends past business hours
         }
         
-        // Use the PST date components already extracted above
-        const yearNum = parseInt(year);
-        const monthNum = parseInt(month);
-        const dayNum = parseInt(day);
+        // Use the PST date components already extracted above (already parsed for holiday check)
         
         // Create time string in HH:MM format
         const timeStr = `${String(slotHour).padStart(2, '0')}:${String(slotMinutes).padStart(2, '0')}:00`;
