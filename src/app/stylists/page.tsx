@@ -10,8 +10,8 @@ export default function StylistsPage() {
       </div>
 
       {/* 1) HERO - Maximum Impact */}
-      <section className="relative max-w-7xl mx-auto px-6 pt-32 pb-40 md:pt-40 md:pb-52">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
+      <section className="relative max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-20">
+        <div className="max-w-4xl mx-auto text-center space-y-8 md:space-y-10">
           {/* Minimal brand */}
           <div className="flex items-center justify-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
@@ -45,8 +45,8 @@ export default function StylistsPage() {
       </section>
 
       {/* 2) THE PROBLEM - Build Urgency */}
-      <section className="relative max-w-5xl mx-auto px-6 py-32">
-        <div className="text-center space-y-16">
+      <section className="relative max-w-5xl mx-auto px-6 py-16 md:py-20">
+        <div className="text-center space-y-10 md:space-y-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
             Every Missed DM<br />Is Missed Money
           </h2>
@@ -79,8 +79,8 @@ export default function StylistsPage() {
       </section>
 
       {/* 3) THE SOLUTION - Visual First */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <section className="relative max-w-6xl mx-auto px-6 py-16 md:py-20">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left: Demo - The Best One */}
           <div className="order-2 lg:order-1">
             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
@@ -122,7 +122,7 @@ export default function StylistsPage() {
           </div>
 
           {/* Right: Minimal Copy */}
-          <div className="order-1 lg:order-2 space-y-8">
+          <div className="order-1 lg:order-2 space-y-6 md:space-y-8">
             <h3 className="text-5xl md:text-6xl font-black tracking-tight leading-tight">
               One Link.<br />Zero Stress.
             </h3>
@@ -134,9 +134,9 @@ export default function StylistsPage() {
       </section>
 
       {/* 4) THE OFFER - Close With Urgency */}
-      <section className="relative max-w-4xl mx-auto px-6 py-32">
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-12 md:p-16 shadow-2xl">
-          <div className="text-center space-y-12">
+      <section className="relative max-w-4xl mx-auto px-6 py-16 md:py-20">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+          <div className="text-center space-y-8 md:space-y-10">
             {/* Urgency header */}
             <div className="space-y-4">
               <p className="text-sm font-semibold text-[#06B6D4] uppercase tracking-widest">Founding Stylist Offer</p>
