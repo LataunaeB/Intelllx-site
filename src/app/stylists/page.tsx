@@ -1,322 +1,186 @@
 import Link from "next/link";
-import { MessageSquare, Scissors, CheckCircle2, ArrowRight } from "lucide-react";
+import { Scissors, CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function StylistsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0F172A] via-[#1B2A45] to-[#0F172A] text-white">
-      {/* 1) HERO */}
-      <section className="relative max-w-6xl mx-auto px-4 pt-16 pb-20 md:pt-24 md:pb-24">
-        {/* Soft purple glow */}
-        <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#6D28D9]/30 blur-[120px] rounded-full" />
+    <main className="min-h-screen bg-[#0F172A] text-white overflow-hidden">
+      {/* Ambient glow - subtle luxury */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#6D28D9]/10 blur-[140px] rounded-full" />
+      </div>
 
-        {/* Top mini brand row */}
-        <div className="relative mb-10 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-xs font-semibold tracking-wide">
-              <span className="text-[#06B6D4]">IX</span>
+      {/* 1) HERO - Maximum Impact */}
+      <section className="relative max-w-7xl mx-auto px-6 pt-32 pb-40 md:pt-40 md:pb-52">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          {/* Minimal brand */}
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+              <span className="text-[#06B6D4] text-sm font-bold">IX</span>
             </div>
-            <span className="text-sm font-semibold tracking-wide text-[#D1D5DB]">
-              INTELLLX • AI FOR STYLISTS
-            </span>
-          </div>
-        </div>
-
-        <div className="relative grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
-          {/* Left: Copy */}
-          <div className="space-y-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#06B6D4]">
-              AI BOOKING ASSISTANT FOR HAIRSTYLISTS
-            </p>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight space-y-2">
-              <span className="block">
-                Get fully booked without babysitting
-              </span>
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] animate-pulse">
-                your DMs.
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-gray-300 max-w-xl">
-              Your Stylist AI Booking Assistant answers new messages, shares your openings, sends your booking link and helps keep your chair filled while you focus on the hair and your income.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              {/* Main CTA */}
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-[#06B6D4] bg-white/5 px-7 py-3 text-sm sm:text-base font-semibold text-white backdrop-blur-xl shadow-lg shadow-black/40 hover:bg-[#06B6D4]/10 hover:border-[#06B6D4] transition-colors"
-              >
-                Get My Stylist AI Booking System
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-
-              {/* Demo scroll button */}
-              <a
-                href="#demo"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-sm sm:text-base font-medium text-[#D1D5DB] hover:bg-white/5 transition-colors"
-              >
-                Watch 60 second demo
-              </a>
-            </div>
-
-            <p className="text-xs sm:text-sm text-gray-400">
-              Limited founding stylist spots → locked in at 247 dollars while I build case studies.
-            </p>
+            <span className="text-sm font-medium text-gray-400 tracking-wide">INTELLLX</span>
           </div>
 
-          {/* Right: Glassmorphic mockup */}
-          <div className="relative">
-            <div className="mx-auto max-w-sm">
-              {/* Floating card */}
-              <div className="relative rounded-3xl bg-white/10 border border-white/15 backdrop-blur-2xl p-5 shadow-2xl shadow-black/40">
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-[#06B6D4] to-[#6D28D9] flex items-center justify-center">
-                      <Scissors className="h-4 w-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-[#D1D5DB]">Stylist AI Booking System</p>
-                      <p className="text-[11px] text-gray-400">Live demo preview</p>
-                    </div>
-                  </div>
-                  <span className="rounded-full bg-black/40 px-3 py-1 text-[10px] font-medium text-gray-200">
-                    24/7 online
-                  </span>
-                </div>
+          {/* Massive headline - Apple/Dyson style */}
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight">
+            <span className="block">Get Fully Booked</span>
+            <span className="block mt-3 text-[#06B6D4]">Without the DMs</span>
+          </h1>
 
-                <div className="space-y-3 text-[13px]">
-                  <div className="flex justify-start">
-                    <div className="max-w-[80%] rounded-2xl bg-white/10 px-3 py-2">
-                      <p className="text-gray-100">
-                        Hey do you have anything Saturday for a silk press
-                      </p>
-                    </div>
-                  </div>
+          {/* Single powerful subheadline */}
+          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+            Your AI assistant handles every booking inquiry—instantly, professionally, automatically—so you can stay behind the chair, not the phone.
+          </p>
 
-                  <div className="flex justify-end">
-                    <div className="max-w-[80%] rounded-2xl bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] px-3 py-2">
-                      <p className="text-white">
-                        Yes I have 10:30am or 1:00pm open → which time works best for you
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-start">
-                    <div className="max-w-[80%] rounded-2xl bg-white/10 px-3 py-2">
-                      <p className="text-gray-100">10:30 works for me thank you</p>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end">
-                    <div className="max-w-[80%] rounded-2xl bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] px-3 py-2">
-                      <p className="text-white">
-                        Locked in → your confirmation will be sent to your email and phone
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex items-center justify-between text-[11px] text-gray-300">
-                  <span>IG traffic → booked appointments</span>
-                  <span className="text-[#06B6D4] font-medium">All on autopilot</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2) PROBLEMS + PROMISE */}
-      <section className="max-w-5xl mx-auto px-4 pb-16 md:pb-20">
-        <div className="grid gap-10 md:grid-cols-2">
-          {/* Problems */}
-          <div className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold">
-              If you are a stylist this probably sounds familiar
-            </h2>
-            <ul className="space-y-2 text-sm sm:text-base text-gray-300">
-              <li>→ Missed DMs quietly turn into missed money</li>
-              <li>→ Clients repeat the same questions every single day</li>
-              <li>→ Bookings live across IG text and different apps</li>
-              <li>→ You are doing hair and customer service at the same time</li>
-              <li>→ Tech feels overwhelming and time consuming</li>
-            </ul>
-            <p className="text-sm text-gray-400">
-              You do not need another app → you need one link that handles it.
-            </p>
-          </div>
-
-          {/* Promise / Solution */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold">
-              Meet your 24/7 Booking Assistant
-            </h3>
-            <p className="text-sm sm:text-base text-gray-300">
-              Simple automated and built for hairstylists. One link. One system. Your bookings handled.
-            </p>
-            <ul className="space-y-2 text-sm sm:text-base text-gray-300">
-              <li>→ Replies instantly when clients reach out</li>
-              <li>→ Shares your openings and booking rules</li>
-              <li>→ Sends your booking link so clients can lock in times</li>
-              <li>→ Reduces no shows with clear expectations</li>
-              <li>→ Matches your brand so it feels like you</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* 3) OFFER + HOW IT WORKS */}
-      <section className="max-w-5xl mx-auto px-4 pb-16 md:pb-20">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
-          {/* Offer */}
-          <div className="rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-8 shadow-xl shadow-black/40">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#06B6D4] mb-2">
-              FOUNDING STYLIST OFFER
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
-              Founding Stylist Rate - 247 dollars
-            </h2>
-            <p className="text-sm sm:text-base text-gray-300 mb-5">
-              Limited spots while I build case studies for the Stylist AI Booking System.
-            </p>
-            <ul className="space-y-2 text-sm sm:text-base text-gray-200 mb-6">
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-[3px] h-4 w-4 text-[#06B6D4]" />
-                <span>Custom 1 page booking site for your stylist brand</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-[3px] h-4 w-4 text-[#06B6D4]" />
-                <span>AI assistant script for your most common DMs</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-[3px] h-4 w-4 text-[#06B6D4]" />
-                <span>Connection to your booking app or a simple request form</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-[3px] h-4 w-4 text-[#06B6D4]" />
-                <span>Basic reminder and follow up flow outline</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-[3px] h-4 w-4 text-[#06B6D4]" />
-                <span>Set up and walkthrough in clear language</span>
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-[3px] h-4 w-4 text-[#06B6D4]" />
-                <span>30 days of support after launch</span>
-              </li>
-            </ul>
-            <p className="text-xs sm:text-sm text-gray-400 mb-6">
-              No long contracts. Just a clean system that helps you book more clients.
-            </p>
+          {/* One CTA - luxury style */}
+          <div className="pt-4">
             <Link
               href="/contact"
-              className="inline-flex w-full items-center justify-center rounded-full border border-[#06B6D4] bg-white/5 px-7 py-3 text-sm sm:text-base font-semibold text-white backdrop-blur-xl hover:bg-[#06B6D4]/10 transition-colors"
+              className="inline-flex items-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-10 py-5 rounded-full text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
             >
-              Get My Stylist AI Booking System
+              Get Started
+              <ArrowRight className="w-5 h-5" />
             </Link>
-          </div>
-
-          {/* How it works */}
-          <div className="space-y-5">
-            <h3 className="text-xl sm:text-2xl font-bold">
-              How it works in three simple steps
-            </h3>
-            <ol className="space-y-4 text-sm sm:text-base text-gray-300">
-              <li>
-                <span className="font-semibold text-white">1 → Quick 10 to 15 minute call</span>
-                <br />
-                We talk through your services, prices, booking rules and the way you like to work.
-              </li>
-              <li>
-                <span className="font-semibold text-white">2 → I build your Stylist AI Booking System</span>
-                <br />
-                Your booking site and AI assistant are set up to match your brand and your policies.
-              </li>
-              <li>
-                <span className="font-semibold text-white">3 → You add your link to Instagram and TikTok</span>
-                <br />
-                Your link lives in your bio and stories so your traffic moves straight into booked appointments.
-              </li>
-            </ol>
           </div>
         </div>
       </section>
 
-      {/* 4) DEMO + FINAL CTA */}
-      <section id="demo" className="max-w-5xl mx-auto px-4 pb-20 md:pb-24">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-center">
-          {/* Demo card */}
-          <div className="rounded-3xl bg-white/10 border border-white/15 backdrop-blur-2xl p-6 sm:p-8 shadow-2xl shadow-black/50">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-[#06B6D4] to-[#6D28D9] flex items-center justify-center">
-                <MessageSquare className="h-4 w-4 text-white" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-[#D1D5DB]">Real style of DM conversation</p>
-                <p className="text-[11px] text-gray-400">Example of a booking handled for you</p>
-              </div>
-            </div>
+      {/* 2) THE PROBLEM - Build Urgency */}
+      <section className="relative max-w-5xl mx-auto px-6 py-32">
+        <div className="text-center space-y-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
+            Every Missed DM<br />Is Missed Money
+          </h2>
 
-            <div className="space-y-3 text-[13px]">
-              <div className="flex justify-start">
-                <div className="max-w-[80%] rounded-2xl bg-white/10 px-3 py-2">
-                  <p className="text-gray-100">
-                    Hey I found you on Instagram can I book a silk press for this weekend
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-end">
-                <div className="max-w-[80%] rounded-2xl bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] px-3 py-2">
-                  <p className="text-white">
-                    Yes I have Saturday at 10:30am or 1:00pm → which time do you prefer
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-start">
-                <div className="max-w-[80%] rounded-2xl bg-white/10 px-3 py-2">
-                  <p className="text-gray-100">
-                    10:30am please and my name is Aaliyah
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-end">
-                <div className="max-w-[80%] rounded-2xl bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] px-3 py-2">
-                  <p className="text-white">
-                    Locked in Aaliyah → you are booked for Saturday at 10:30am. A confirmation link will be sent to you.
-                  </p>
-                </div>
-              </div>
+          {/* Tight pain points - 4 max */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="text-left space-y-2">
+              <p className="text-xl font-semibold text-white">Lost Revenue</p>
+              <p className="text-gray-400">You miss messages while working—those clients book elsewhere.</p>
             </div>
-
-            <p className="mt-4 text-[11px] text-gray-300">
-              Your assistant is customized to your voice and booking rules so it feels like you while it works for you.
-            </p>
+            <div className="text-left space-y-2">
+              <p className="text-xl font-semibold text-white">Constant Interruptions</p>
+              <p className="text-gray-400">Repeating the same answers breaks your flow and drains your energy.</p>
+            </div>
+            <div className="text-left space-y-2">
+              <p className="text-xl font-semibold text-white">Scattered Systems</p>
+              <p className="text-gray-400">Bookings live in DMs, texts, apps—nothing feels organized.</p>
+            </div>
+            <div className="text-left space-y-2">
+              <p className="text-xl font-semibold text-white">Tech Overwhelm</p>
+              <p className="text-gray-400">You know you need automation but don't know where to start.</p>
+            </div>
           </div>
 
-          {/* Final pitch */}
-          <div className="space-y-5">
-            <h2 className="text-2xl sm:text-3xl font-bold">
-              Ready to stop losing clients in your DMs
-            </h2>
-            <p className="text-sm sm:text-base text-gray-300">
-              Your system handles the questions the openings and the booking steps so you can focus on great hair and building wealth.
+          {/* Urgency line */}
+          <p className="text-xl md:text-2xl text-[#06B6D4] font-medium">
+            Stop losing clients. Start booking automatically.
+          </p>
+        </div>
+      </section>
+
+      {/* 3) THE SOLUTION - Visual First */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Left: Demo - The Best One */}
+          <div className="order-2 lg:order-1">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+              <div className="mb-6 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center">
+                    <Scissors className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">Your AI Assistant</p>
+                    <p className="text-xs text-gray-400">24/7 Active</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex justify-start">
+                  <div className="max-w-[75%] bg-white/10 rounded-2xl px-4 py-3">
+                    <p className="text-sm text-gray-100">Hey, do you have anything Saturday for a silk press?</p>
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <div className="max-w-[75%] bg-[#06B6D4] rounded-2xl px-4 py-3">
+                    <p className="text-sm text-white font-medium">Yes! I have 10:30am or 1:00pm available. Which works for you?</p>
+                  </div>
+                </div>
+                <div className="flex justify-start">
+                  <div className="max-w-[75%] bg-white/10 rounded-2xl px-4 py-3">
+                    <p className="text-sm text-gray-100">10:30 works!</p>
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <div className="max-w-[75%] bg-[#06B6D4] rounded-2xl px-4 py-3">
+                    <p className="text-sm text-white font-medium">Perfect. You're booked for Saturday at 10:30am. Confirmation sent.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Minimal Copy */}
+          <div className="order-1 lg:order-2 space-y-8">
+            <h3 className="text-5xl md:text-6xl font-black tracking-tight leading-tight">
+              One Link.<br />Zero Stress.
+            </h3>
+            <p className="text-xl text-gray-300 leading-relaxed">
+              Your AI assistant replies instantly, shares openings, sends booking links, and confirms appointments—all while you focus on the work that pays.
             </p>
-            <div>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-[#06B6D4] bg-white/5 px-7 py-3 text-sm sm:text-base font-semibold text-white backdrop-blur-xl shadow-lg shadow-black/40 hover:bg-[#06B6D4]/10 transition-colors"
-              >
-                Get My Stylist AI Booking System
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-              <p className="mt-2 text-xs sm:text-sm text-gray-400">
-                Limited founding spots available.
+          </div>
+        </div>
+      </section>
+
+      {/* 4) THE OFFER - Close With Urgency */}
+      <section className="relative max-w-4xl mx-auto px-6 py-32">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-12 md:p-16 shadow-2xl">
+          <div className="text-center space-y-12">
+            {/* Urgency header */}
+            <div className="space-y-4">
+              <p className="text-sm font-semibold text-[#06B6D4] uppercase tracking-widest">Founding Stylist Offer</p>
+              <h2 className="text-5xl md:text-6xl font-black tracking-tight">
+                $247
+              </h2>
+              <p className="text-lg text-gray-300">
+                Limited to first 10 stylists. Price increases after.
               </p>
             </div>
-            <p className="text-xs sm:text-sm text-gray-500">
-              INTELLLX → AI booking systems for beauty and service pros.
-            </p>
+
+            {/* 4 Features Only */}
+            <div className="grid md:grid-cols-2 gap-6 text-left max-w-2xl mx-auto">
+              <div className="flex gap-3">
+                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
+                <p className="text-gray-300">Custom booking site</p>
+              </div>
+              <div className="flex gap-3">
+                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
+                <p className="text-gray-300">AI DM assistant</p>
+              </div>
+              <div className="flex gap-3">
+                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
+                <p className="text-gray-300">Booking app integration</p>
+              </div>
+              <div className="flex gap-3">
+                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
+                <p className="text-gray-300">30 days support</p>
+              </div>
+            </div>
+
+            {/* Single CTA - Final */}
+            <div className="pt-8">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-12 py-6 rounded-full text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
+              >
+                Claim Your $247 Spot
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <p className="mt-6 text-sm text-gray-400">
+                10 spots remaining
+              </p>
+            </div>
           </div>
         </div>
       </section>
