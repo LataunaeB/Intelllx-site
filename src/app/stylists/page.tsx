@@ -152,22 +152,22 @@ export default function StylistsPage() {
             </div>
 
             {/* 4 Features Only */}
-            <div className="grid md:grid-cols-2 gap-6 text-left max-w-2xl mx-auto">
-              <div className="flex gap-3">
-                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                <p className="text-gray-300">Custom booking site</p>
+            <div className="flex flex-col gap-5 items-center max-w-md mx-auto">
+              <div className="flex items-center gap-4 w-full">
+                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                <p className="text-base font-medium text-gray-200">Custom booking site</p>
               </div>
-              <div className="flex gap-3">
-                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                <p className="text-gray-300">AI DM assistant</p>
+              <div className="flex items-center gap-4 w-full">
+                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                <p className="text-base font-medium text-gray-200">AI DM assistant</p>
               </div>
-              <div className="flex gap-3">
-                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                <p className="text-gray-300">Booking app integration</p>
+              <div className="flex items-center gap-4 w-full">
+                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                <p className="text-base font-medium text-gray-200">Booking app integration</p>
               </div>
-              <div className="flex gap-3">
-                <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                <p className="text-gray-300">30 days support</p>
+              <div className="flex items-center gap-4 w-full">
+                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                <p className="text-base font-medium text-gray-200">30 days support</p>
               </div>
             </div>
 
