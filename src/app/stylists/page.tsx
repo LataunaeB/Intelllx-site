@@ -135,8 +135,11 @@ export default function StylistsPage() {
 
       {/* 4) THE OFFER - Close With Urgency */}
       <section className="relative max-w-4xl mx-auto px-6 py-16 md:py-20">
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
-          <div className="text-center space-y-8 md:space-y-10">
+        <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden">
+          {/* Subtle gradient accent */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#06B6D4]/20 to-[#6D28D9]/20 rounded-full blur-3xl" />
+          
+          <div className="relative text-center space-y-8 md:space-y-10">
             {/* Urgency header */}
             <div className="space-y-3">
               <p className="text-xs font-medium text-[#06B6D4] uppercase tracking-wider">Founder Price</p>
@@ -151,39 +154,44 @@ export default function StylistsPage() {
               </p>
             </div>
 
-            {/* 4 Features Only */}
-            <div className="flex flex-col gap-5 items-center max-w-md mx-auto">
-              <div className="flex items-center gap-4 w-full">
-                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                <p className="text-base font-medium text-gray-200">Custom booking site</p>
+            {/* Features + CTA Side by Side */}
+            <div className="grid md:grid-cols-[1.2fr,0.8fr] gap-8 md:gap-12 items-center max-w-3xl mx-auto">
+              {/* 4 Features - Left */}
+              <div className="flex flex-col gap-5">
+                <div className="flex items-center gap-4">
+                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-base font-medium text-gray-200 text-left">Custom booking site</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-base font-medium text-gray-200 text-left">AI DM assistant</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-base font-medium text-gray-200 text-left">Booking app integration</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-base font-medium text-gray-200 text-left">30 days support</p>
+                </div>
               </div>
-              <div className="flex items-center gap-4 w-full">
-                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                <p className="text-base font-medium text-gray-200">AI DM assistant</p>
-              </div>
-              <div className="flex items-center gap-4 w-full">
-                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                <p className="text-base font-medium text-gray-200">Booking app integration</p>
-              </div>
-              <div className="flex items-center gap-4 w-full">
-                <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                <p className="text-base font-medium text-gray-200">30 days support</p>
+
+              {/* CTA Button - Right */}
+              <div className="flex flex-col items-center justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full text-base transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
+                >
+                  Claim Your $497 Founder Spot
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
 
-            {/* Single CTA - Final */}
-            <div className="pt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-12 py-6 rounded-full text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
-              >
-                Claim Your $497 Founder Spot
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <p className="mt-6 text-sm text-gray-400">
-                10 spots remaining
-              </p>
-            </div>
+            {/* Urgency text - Underneath */}
+            <p className="text-sm text-gray-400">
+              10 spots remaining
+            </p>
           </div>
         </div>
       </section>
