@@ -157,7 +157,7 @@ export default function StylistContactPage() {
                     {/* What You Need */}
                     <div>
                       <label className="block text-xs font-semibold text-gray-300 mb-2 uppercase tracking-wider">
-                        What Do You Need Most Right Now
+                        What's Your Biggest Priority Right Now
                       </label>
                       <select
                         className="w-full rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
@@ -165,21 +165,24 @@ export default function StylistContactPage() {
                         required
                       >
                         <option value="" disabled className="bg-[#020617]">
-                          Choose one
+                          Choose your main priority
                         </option>
                         <option value="booked" className="bg-[#020617]">
-                          I want to be fully booked with the right clients
+                          Get fully booked with the right clients
                         </option>
                         <option value="dms" className="bg-[#020617]">
-                          I want to stop living in my DMs
+                          Stop living in my DMs - automate replies
                         </option>
-                        <option value="site" className="bg-[#020617]">
-                          I need a clean booking site for my brand
+                        <option value="professional" className="bg-[#020617]">
+                          Look more professional online with a booking site
                         </option>
-                        <option value="all" className="bg-[#020617]">
-                          I want the full Stylist AI system
+                        <option value="automation" className="bg-[#020617]">
+                          Full automation - site + AI assistant + everything
                         </option>
                       </select>
+                      <p className="text-xs text-gray-500 mt-1.5">
+                        All founder spots include the full system. This helps me understand your priority.
+                      </p>
                     </div>
 
                     {/* Description */}
