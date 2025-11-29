@@ -140,11 +140,16 @@ export default function StylistsPage() {
             {/* Urgency header */}
             <div className="space-y-4">
               <p className="text-sm font-semibold text-[#06B6D4] uppercase tracking-widest">Founder Price</p>
-              <h2 className="text-5xl md:text-6xl font-black tracking-tight">
-                $497
-              </h2>
+              <div className="space-y-2">
+                <h2 className="text-5xl md:text-6xl font-black tracking-tight">
+                  $497
+                </h2>
+                <p className="text-base text-gray-400">
+                  Save $1,000 off regular price
+                </p>
+              </div>
               <p className="text-lg text-gray-300">
-                Limited to first 10 stylists. Price increases to $897 after spots fill.
+                Limited to first 10 stylists. Regular price: $1,497 after spots fill.
               </p>
             </div>
 
