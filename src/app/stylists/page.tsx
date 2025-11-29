@@ -28,7 +28,7 @@ export default function StylistsPage() {
 
           {/* Single powerful subheadline */}
           <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
-            Your AI assistant handles every booking inquiry—instantly, professionally, automatically—so you can stay behind the chair, not the phone.
+            Your AI assistant handles every booking inquiry instantly, professionally, and automatically so you can stay behind the chair, not the phone.
           </p>
 
           {/* One CTA - luxury style */}
@@ -55,7 +55,7 @@ export default function StylistsPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <div className="text-left space-y-2">
               <p className="text-xl font-semibold text-white">Lost Revenue</p>
-              <p className="text-gray-400">You miss messages while working—those clients book elsewhere.</p>
+              <p className="text-gray-400">You miss messages while working and those clients book elsewhere.</p>
             </div>
             <div className="text-left space-y-2">
               <p className="text-xl font-semibold text-white">Constant Interruptions</p>
@@ -63,7 +63,7 @@ export default function StylistsPage() {
             </div>
             <div className="text-left space-y-2">
               <p className="text-xl font-semibold text-white">Scattered Systems</p>
-              <p className="text-gray-400">Bookings live in DMs, texts, apps—nothing feels organized.</p>
+              <p className="text-gray-400">Bookings live in DMs, texts, and apps with nothing feeling organized.</p>
             </div>
             <div className="text-left space-y-2">
               <p className="text-xl font-semibold text-white">Tech Overwhelm</p>
@@ -127,7 +127,7 @@ export default function StylistsPage() {
               One Link.<br />Zero Stress.
             </h3>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Your AI assistant replies instantly, shares openings, sends booking links, and confirms appointments—all while you focus on the work that pays.
+              Your AI assistant replies instantly, shares openings, sends booking links, and confirms appointments all while you focus on the work that pays.
             </p>
           </div>
         </div>
@@ -139,12 +139,12 @@ export default function StylistsPage() {
           <div className="text-center space-y-8 md:space-y-10">
             {/* Urgency header */}
             <div className="space-y-4">
-              <p className="text-sm font-semibold text-[#06B6D4] uppercase tracking-widest">Founding Stylist Offer</p>
+              <p className="text-sm font-semibold text-[#06B6D4] uppercase tracking-widest">Founder Price</p>
               <h2 className="text-5xl md:text-6xl font-black tracking-tight">
-                $247
+                $497
               </h2>
               <p className="text-lg text-gray-300">
-                Limited to first 10 stylists. Price increases after.
+                Limited to first 10 stylists. Price increases to $897 after spots fill.
               </p>
             </div>
 
@@ -174,7 +174,7 @@ export default function StylistsPage() {
                 href="/contact"
                 className="inline-flex items-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-12 py-6 rounded-full text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
               >
-                Claim Your $247 Spot
+                Claim Your $497 Founder Spot
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <p className="mt-6 text-sm text-gray-400">
