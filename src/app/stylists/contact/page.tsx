@@ -2,21 +2,87 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, Instagram, Phone, Mail, ArrowLeft, Scissors } from "lucide-react";
+import { CheckCircle2, Instagram, Phone, Mail, ArrowLeft, Scissors, AlertCircle } from "lucide-react";
+
+interface FormData {
+  name: string;
+  instagram: string;
+  email: string;
+  phone: string;
+  salonName: string;
+  cityState: string;
+  priority: string;
+  situation: string;
+}
 
 export default function StylistContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    instagram: '',
+    email: '',
+    phone: '',
+    salonName: '',
+    cityState: '',
+    priority: '',
+    situation: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setError(null); // Clear error on change
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
     setIsSubmitting(true);
     
-    // TODO: Wire this up to your form handler (Formspree, Resend, API route, etc.)
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
+    try {
+      // Build comprehensive message with all stylist-specific info
+      const message = `Stylist Inquiry - Founder Offer Application
+
+Instagram: ${formData.instagram}
+Salon/Business: ${formData.salonName || 'Not provided'}
+Location: ${formData.cityState || 'Not provided'}
+Priority: ${formData.priority || 'Not selected'}
+
+Current Booking Situation:
+${formData.situation || 'Not provided'}`;
+
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone,
+          company: formData.salonName || undefined,
+          message: message,
+          service: formData.priority || undefined,
+          source: 'stylist_contact',
+          pageUrl: typeof window !== 'undefined' ? window.location.href : undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || 'Failed to submit form. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to submit form. Please try again or email lataunaebrookss@icloud.com');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -85,6 +151,9 @@ export default function StylistContactPage() {
                       </label>
                       <input
                         type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
                         className="w-full rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
                         placeholder="Your name"
@@ -102,6 +171,9 @@ export default function StylistContactPage() {
                         </div>
                         <input
                           type="text"
+                          name="instagram"
+                          value={formData.instagram}
+                          onChange={handleChange}
                           required
                           className="flex-1 rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
                           placeholder="@yourstylistpage"
@@ -123,11 +195,38 @@ export default function StylistContactPage() {
                         </div>
                         <input
                           type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
                           required
                           className="flex-1 rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
                           placeholder="you@example.com"
                         />
                       </div>
+                    </div>
+
+                    {/* Phone Number */}
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-2 uppercase tracking-wider">
+                        Phone Number
+                      </label>
+                      <div className="flex items-center gap-3">
+                        <div className="inline-flex items-center justify-center rounded-xl bg-[#020617]/80 border border-white/10 px-3 py-3">
+                          <Phone className="w-4 h-4 text-[#06B6D4]" />
+                        </div>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          required
+                          className="flex-1 rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1.5">
+                        I may need to reach out to discuss your booking system.
+                      </p>
                     </div>
 
                     {/* Salon Info Grid */}
@@ -138,6 +237,9 @@ export default function StylistContactPage() {
                         </label>
                         <input
                           type="text"
+                          name="salonName"
+                          value={formData.salonName}
+                          onChange={handleChange}
                           className="w-full rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
                           placeholder="Your brand"
                         />
@@ -148,6 +250,9 @@ export default function StylistContactPage() {
                         </label>
                         <input
                           type="text"
+                          name="cityState"
+                          value={formData.cityState}
+                          onChange={handleChange}
                           className="w-full rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
                           placeholder="Long Beach, CA"
                         />
@@ -160,8 +265,10 @@ export default function StylistContactPage() {
                         What's Your Biggest Priority Right Now
                       </label>
                       <select
+                        name="priority"
+                        value={formData.priority}
+                        onChange={handleChange}
                         className="w-full rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all"
-                        defaultValue=""
                         required
                       >
                         <option value="" disabled className="bg-[#020617]">
@@ -191,11 +298,26 @@ export default function StylistContactPage() {
                         Current Booking Situation
                       </label>
                       <textarea
+                        name="situation"
+                        value={formData.situation}
+                        onChange={handleChange}
                         rows={4}
                         className="w-full rounded-xl bg-[#020617]/70 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all resize-none"
                         placeholder="Example: I book through IG DMs and a link in bio. I get a lot of messages and feel like I miss people."
                       />
                     </div>
+
+                    {/* Error Message */}
+                    {error && (
+                      <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl">
+                        <div className="flex items-start gap-3">
+                          <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <p className="text-red-400 text-sm">{error}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {/* CTA Button */}
                     <div className="pt-2">
