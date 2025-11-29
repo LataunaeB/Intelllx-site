@@ -34,7 +34,7 @@ export default function StylistsPage() {
           {/* One CTA - luxury style */}
           <div className="pt-4">
             <Link
-              href="/contact"
+              href="/stylists/contact"
               className="inline-flex items-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-10 py-5 rounded-full text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
             >
               Get Started
@@ -180,7 +180,7 @@ export default function StylistsPage() {
               {/* CTA Button - Right */}
               <div className="flex flex-col items-center justify-center">
                 <Link
-                  href="/contact"
+                  href="/stylists/contact"
                   className="inline-flex items-center gap-2 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-6 py-3 rounded-full text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#06B6D4]/40 w-full md:w-auto justify-center"
                 >
                   Claim Your $497 Founder Spot
