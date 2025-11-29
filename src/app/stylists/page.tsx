@@ -134,18 +134,19 @@ export default function StylistsPage() {
       </section>
 
       {/* 4) THE OFFER - Close With Urgency */}
-      <section className="relative max-w-4xl mx-auto px-6 py-16 md:py-20">
-        <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden">
-          {/* Subtle gradient accent */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#06B6D4]/20 to-[#6D28D9]/20 rounded-full blur-3xl" />
+      <section className="relative max-w-3xl mx-auto px-6 py-16 md:py-20">
+        <div className="relative bg-gradient-to-br from-white/5 via-white/5 to-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl overflow-hidden">
+          {/* Visible gradient accent - luxury feel */}
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-[#06B6D4]/30 to-[#6D28D9]/30 rounded-full blur-2xl" />
+          <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-[#6D28D9]/20 to-transparent rounded-full blur-xl" />
           
-          <div className="relative text-center space-y-8 md:space-y-10">
+          <div className="relative space-y-6">
             {/* Urgency header */}
-            <div className="space-y-3">
+            <div className="text-center space-y-2">
               <p className="text-xs font-medium text-[#06B6D4] uppercase tracking-wider">Founder Price</p>
               <div className="space-y-1">
                 <p className="text-sm text-gray-500 line-through">$1,497</p>
-                <h2 className="text-5xl md:text-6xl font-black tracking-tight">
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight">
                   $497
                 </h2>
               </div>
@@ -155,24 +156,24 @@ export default function StylistsPage() {
             </div>
 
             {/* Features + CTA Side by Side */}
-            <div className="grid md:grid-cols-[1.2fr,0.8fr] gap-8 md:gap-12 items-center max-w-3xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
               {/* 4 Features - Left */}
-              <div className="flex flex-col gap-5">
-                <div className="flex items-center gap-4">
-                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                  <p className="text-base font-medium text-gray-200 text-left">Custom booking site</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-sm font-medium text-gray-200">Custom booking site</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                  <p className="text-base font-medium text-gray-200 text-left">AI DM assistant</p>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-sm font-medium text-gray-200">AI DM assistant</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                  <p className="text-base font-medium text-gray-200 text-left">Booking app integration</p>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-sm font-medium text-gray-200">Booking app integration</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0" />
-                  <p className="text-base font-medium text-gray-200 text-left">30 days support</p>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0" />
+                  <p className="text-sm font-medium text-gray-200">30 days support</p>
                 </div>
               </div>
 
@@ -180,7 +181,7 @@ export default function StylistsPage() {
               <div className="flex flex-col items-center justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-8 py-4 rounded-full text-base transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/30"
+                  className="inline-flex items-center gap-2 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-6 py-3 rounded-full text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#06B6D4]/40 w-full md:w-auto justify-center"
                 >
                   Claim Your $497 Founder Spot
                   <ArrowRight className="w-4 h-4" />
@@ -189,7 +190,7 @@ export default function StylistsPage() {
             </div>
 
             {/* Urgency text - Underneath */}
-            <p className="text-sm text-gray-400">
+            <p className="text-center text-xs text-gray-400 pt-2">
               10 spots remaining
             </p>
           </div>
