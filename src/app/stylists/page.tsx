@@ -44,9 +44,9 @@ export default function StylistsPage() {
 
       {/* 1) HERO - Premium Luxury */}
       <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-40 md:pb-32">
-        <div className={`grid lg:grid-cols-2 gap-20 md:gap-24 items-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Left: Hero Copy - Massive Whitespace */}
-          <div className="space-y-10 md:space-y-12">
+        <div className={`grid lg:grid-cols-2 gap-12 md:gap-16 items-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Left: Hero Copy - Refined Spacing */}
+          <div className="space-y-6 md:space-y-8">
             {/* Minimal brand badge */}
             <div className="flex items-center gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20">
@@ -177,9 +177,9 @@ export default function StylistsPage() {
       </section>
 
       {/* 2) BEFORE/AFTER - Soft Elegant Contrast */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-32 md:py-40">
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-20 space-y-6 scroll-animate">
+          <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">The Transformation</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               You're Tired of Doing Hair<br />And Customer Service
@@ -249,8 +249,8 @@ export default function StylistsPage() {
       </section>
 
       {/* 3) THE SYSTEM - Premium Features */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 md:py-40">
-        <div className="text-center mb-20 space-y-6 scroll-animate">
+      <section className="relative max-w-6xl mx-auto px-6 py-20 md:py-28">
+        <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">Signature System</p>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
             A Premium Online Home<br />And Booking Assistant
@@ -325,9 +325,9 @@ export default function StylistsPage() {
       </section>
 
       {/* 4) SOCIAL PROOF - Testimonials */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-32 md:py-40">
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-20 space-y-6 scroll-animate">
+          <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">Trusted by Stylists</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               What Stylists Are Saying
@@ -367,7 +367,7 @@ export default function StylistsPage() {
       </section>
 
       {/* 5) THE OFFER - Split Premium Cards */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 md:py-40">
+      <section className="relative max-w-6xl mx-auto px-6 py-20 md:py-28">
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto scroll-animate">
           {/* Card 1: Price + Urgency */}
           <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/5 to-white/3 backdrop-blur-xl p-10 shadow-[0_30px_80px_rgba(0,0,0,0.8)] overflow-hidden">
@@ -434,7 +434,7 @@ export default function StylistsPage() {
       </section>
 
       {/* 6) FINAL CTA - Single Powerful Close */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-[#06B6D4]/5 to-transparent py-32 md:py-40">
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-[#06B6D4]/5 to-transparent py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-10 scroll-animate">
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
             Ready to Stop Losing<br />Clients in Your DMs?
