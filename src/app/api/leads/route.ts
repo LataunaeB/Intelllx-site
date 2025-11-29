@@ -401,20 +401,29 @@ export async function POST(request: NextRequest) {
           const { emailTemplates, processEmailTemplate } = await import('@/lib/email-templates');
           const siteConfig = await import('@/config/site');
           
-          // Select template based on lead temperature
+          // Check if this is a stylist booking
+          const isStylistBooking = trimmedSource === 'stylist_contact' || trimmedSource === 'stylist_calendar_booking';
+          
+          // Select template based on source (stylist vs general) and lead temperature
           let template;
-          switch (leadTemperature) {
-            case 'hot':
-              template = emailTemplates.hotLead;
-              break;
-            case 'warm':
-              template = emailTemplates.warmLead;
-              break;
-            case 'cold':
-              template = emailTemplates.coldLead;
-              break;
-            default:
-              template = emailTemplates.coldLead;
+          if (isStylistBooking) {
+            // Use stylist-specific template
+            template = emailTemplates.stylistWelcome;
+          } else {
+            // Use general templates based on lead temperature
+            switch (leadTemperature) {
+              case 'hot':
+                template = emailTemplates.hotLead;
+                break;
+              case 'warm':
+                template = emailTemplates.warmLead;
+                break;
+              case 'cold':
+                template = emailTemplates.coldLead;
+                break;
+              default:
+                template = emailTemplates.coldLead;
+            }
           }
           
           // Process template with variables
@@ -429,9 +438,11 @@ export async function POST(request: NextRequest) {
           
           console.log('[API /leads] Sending automated welcome email:', {
             to: trimmedEmail,
+            source: trimmedSource,
+            isStylist: isStylistBooking,
             temperature: leadTemperature,
             score: leadScore,
-            template: leadTemperature
+            template: isStylistBooking ? 'stylistWelcome' : leadTemperature
           });
           
           const emailResult = await resend.emails.send({
@@ -446,6 +457,8 @@ export async function POST(request: NextRequest) {
           console.log('[API /leads] Welcome email sent successfully:', {
             emailId: emailResult.data?.id,
             to: trimmedEmail,
+            source: trimmedSource,
+            isStylist: isStylistBooking,
             temperature: leadTemperature,
             score: leadScore
           });

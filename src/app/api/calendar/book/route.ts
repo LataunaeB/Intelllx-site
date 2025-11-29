@@ -196,8 +196,47 @@ export async function POST(request: NextRequest) {
         const icsDownloadUrl = `${origin}/api/calendar/ics?title=${encodeURIComponent(meetingTitle)}&start=${encodeURIComponent(dtStart)}&end=${encodeURIComponent(dtEnd)}&desc=${encodeURIComponent(meetingDescription || '')}&loc=${encodeURIComponent(meetingLink)}&attendee=${encodeURIComponent(attendeeEmail)}&uid=${encodeURIComponent(uid)}`;
         const isGoogleMeet = !zoomMeeting;
         const meetingType = isGoogleMeet ? 'Google Meet (video)' : 'Zoom (video)';
+        
+        // Detect if this is a stylist booking
+        const isStylistBooking = meetingTitle.toLowerCase().includes('stylist') || 
+                                  meetingDescription.toLowerCase().includes('stylist');
 
-        const html = `
+        // Stylist-specific email content
+        const html = isStylistBooking ? `
+          <!DOCTYPE html>
+          <html>
+            <body style="font-family: Arial, sans-serif; color: #111; line-height: 1.6;">
+              <div style="background: linear-gradient(135deg, #06B6D4 0%, #6D28D9 100%); color: white; padding: 24px; border-radius: 8px 8px 0 0; text-align: center;">
+                <h2 style="margin:0 0 8px; font-size: 24px;">✨ Your Discovery Call is Confirmed!</h2>
+                <p style="margin:0; opacity: 0.95;">Stylist AI Booking System</p>
+              </div>
+              <div style="background: #f9fafb; padding: 24px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
+                <p style="margin:0 0 16px; font-size: 16px;">Hi ${attendeeName || 'there'},</p>
+                <p style="margin:0 0 20px;">I'm excited to discuss your <strong>Stylist AI Booking System</strong>! This 30-minute call is where we'll map out exactly how to get your chair fully booked on autopilot.</p>
+                <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:20px; margin-bottom:20px;">
+                  <p style="margin:0 0 12px;"><strong style="color: #6D28D9;">📅 When:</strong> ${displayDate}, ${displayTime}</p>
+                  <p style="margin:0 0 12px;"><strong style="color: #6D28D9;">💻 Meeting:</strong> ${meetingType}</p>
+                  <p style="margin:0 0 12px;"><strong style="color: #6D28D9;">🔗 Join Link:</strong> <a href="${meetingLink}" target="_blank" rel="noopener" style="color: #06B6D4; text-decoration: underline;">${meetingLink}</a></p>
+                </div>
+                <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 6px; margin-bottom: 20px;">
+                  <p style="margin:0 0 8px; font-weight: 600;">💇🏽‍♀️ What to Expect:</p>
+                  <ul style="margin: 0; padding-left: 20px;">
+                    <li>We'll discuss your current booking situation</li>
+                    <li>I'll show you how the AI system works for stylists</li>
+                    <li>We'll map out your custom booking site + DM assistant</li>
+                    <li>You'll learn about the $497 founder offer</li>
+                  </ul>
+                </div>
+                <div style="margin:20px 0;">
+                  <a href="${gcalAddUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#06B6D4;color:#fff;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:600;margin-right:8px;">Add to Google Calendar</a>
+                  <a href="${icsDownloadUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#6D28D9;color:#fff;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:600;">Add to Apple/Outlook</a>
+                </div>
+                <p style="margin:20px 0 0; font-size: 14px; color: #6b7280;">Please join a few minutes early to test your audio/video. If you need to reschedule, just reply to this email.</p>
+                <p style="margin:16px 0 0; font-size: 14px;">Looking forward to helping you get fully booked!<br><strong>LaTaunae</strong><br>INTELLLX</p>
+              </div>
+            </body>
+          </html>
+        ` : `
           <!DOCTYPE html>
           <html>
             <body style="font-family: Arial, sans-serif; color: #111; line-height: 1.6;">
@@ -209,7 +248,7 @@ export async function POST(request: NextRequest) {
                 <p style="margin:0 0 8px;"><strong>Meeting type:</strong> ${meetingType}</p>
                 <p style="margin:0;"><strong>Join link:</strong> <a href="${meetingLink}" target="_blank" rel="noopener">${meetingLink}</a></p>
               </div>
-              <p style="margin:0 0 16px;">We’ll meet on ${isGoogleMeet ? 'Google Meet' : 'Zoom'}. Please join a few minutes early to test audio/video.</p>
+              <p style="margin:0 0 16px;">We'll meet on ${isGoogleMeet ? 'Google Meet' : 'Zoom'}. Please join a few minutes early to test audio/video.</p>
               <div style="margin:16px 0;">
                 <a href="${gcalAddUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#2563eb;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600;margin-right:8px;">Add to Google Calendar</a>
                 <a href="${icsDownloadUrl}" target="_blank" rel="noopener" style="display:inline-block;background:#0ea5e9;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600;">Add to Apple/Outlook</a>
@@ -220,7 +259,32 @@ export async function POST(request: NextRequest) {
           </html>
         `;
 
-        const text = `
+        const text = isStylistBooking ? `
+Your Stylist AI Booking System Discovery Call is Confirmed!
+
+Hi ${attendeeName || 'there'},
+
+I'm excited to discuss your Stylist AI Booking System! This 30-minute call is where we'll map out exactly how to get your chair fully booked on autopilot.
+
+When: ${displayDate}, ${displayTime}
+Meeting: ${meetingType}
+Join Link: ${meetingLink}
+
+What to Expect:
+• We'll discuss your current booking situation
+• I'll show you how the AI system works for stylists
+• We'll map out your custom booking site + DM assistant
+• You'll learn about the $497 founder offer
+
+Please join a few minutes early to test your audio/video. If you need to reschedule, just reply to this email.
+
+Looking forward to helping you get fully booked!
+
+LaTaunae
+INTELLLX
+
+Add to calendar: ${gcalAddUrl}
+        `.trim() : `
 Your meeting is confirmed.
 
 Topic: ${meetingTitle}

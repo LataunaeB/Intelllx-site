@@ -312,6 +312,103 @@ export const emailTemplates = {
       This email was sent because you submitted a contact form on intelllx.com
       INTELLLX - Websites and chatbots that simply get you booked.
     `
+  },
+
+  // STYLIST SPECIFIC TEMPLATES
+  stylistWelcome: {
+    subject: "✨ Welcome! Your Stylist AI Booking System Discovery Call",
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
+            .header { background: linear-gradient(135deg, #06B6D4 0%, #6D28D9 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px; }
+            .highlight { background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 20px 0; }
+            .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1 style="margin: 0; font-size: 28px;">Welcome to Your Stylist AI Booking System</h1>
+            <p style="margin: 10px 0 0 0; font-size: 18px;">Let's get your chair fully booked</p>
+          </div>
+          <div class="content">
+            <p>Hi {{name}},</p>
+            
+            <p>I'm excited you're interested in the <strong>Stylist AI Booking System</strong>! This is exactly what you need to stop losing clients in your DMs and get fully booked on autopilot.</p>
+            
+            <div class="highlight">
+              <strong>💇🏽‍♀️ What You're Getting:</strong>
+              <ul>
+                <li><strong>Custom booking site</strong> - One beautiful page that matches your brand</li>
+                <li><strong>AI DM assistant</strong> - Replies instantly, 24/7, handles bookings automatically</li>
+                <li><strong>Booking app integration</strong> - Connects to your existing system</li>
+                <li><strong>30 days support</strong> - I'll help you launch and optimize</li>
+              </ul>
+            </div>
+            
+            <p><strong>Founder Offer: $497</strong> (Regular price: $1,497)</p>
+            <p>This is a limited founding stylist price while I build case studies. You're getting the full system at a fraction of the cost.</p>
+            
+            <p><strong>What happens next:</strong></p>
+            <ol>
+              <li>I'll review your details and Instagram</li>
+              <li>We'll schedule your discovery call (if you haven't already)</li>
+              <li>I'll build your custom system around how you actually work</li>
+              <li>You add your link to Instagram and start booking automatically</li>
+            </ol>
+            
+            <p>I'll follow up within 24 hours with next steps. If you have questions before then, just reply to this email.</p>
+            
+            <p>Looking forward to helping you get fully booked!</p>
+            
+            <p>Best,<br>
+            <strong>LaTaunae</strong><br>
+            INTELLLX - AI Booking Systems for Stylists</p>
+          </div>
+          <div class="footer">
+            <p>This email was sent because you submitted a stylist inquiry on intelllx.com/stylists</p>
+            <p>INTELLLX - AI booking systems for beauty and service pros.</p>
+          </div>
+        </body>
+      </html>
+    `,
+    text: `
+      Welcome to Your Stylist AI Booking System
+      
+      Hi {{name}},
+      
+      I'm excited you're interested in the Stylist AI Booking System! This is exactly what you need to stop losing clients in your DMs and get fully booked on autopilot.
+      
+      What You're Getting:
+      • Custom booking site - One beautiful page that matches your brand
+      • AI DM assistant - Replies instantly, 24/7, handles bookings automatically
+      • Booking app integration - Connects to your existing system
+      • 30 days support - I'll help you launch and optimize
+      
+      Founder Offer: $497 (Regular price: $1,497)
+      This is a limited founding stylist price while I build case studies.
+      
+      What happens next:
+      1. I'll review your details and Instagram
+      2. We'll schedule your discovery call (if you haven't already)
+      3. I'll build your custom system around how you actually work
+      4. You add your link to Instagram and start booking automatically
+      
+      I'll follow up within 24 hours with next steps. If you have questions, just reply to this email.
+      
+      Looking forward to helping you get fully booked!
+      
+      Best,
+      LaTaunae
+      INTELLLX - AI Booking Systems for Stylists
+      
+      ---
+      This email was sent because you submitted a stylist inquiry on intelllx.com/stylists
+      INTELLLX - AI booking systems for beauty and service pros.
+    `
   }
 };
 
