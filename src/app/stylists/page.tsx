@@ -40,9 +40,14 @@ export default function StylistsPage() {
         <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[#6D28D9]/5 blur-[120px] rounded-full" />
       </div>
 
-      {/* 1) HERO - Premium Luxury */}
-      <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-40 md:pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+      {/* 1) HERO - Premium Luxury with Enhanced Visuals */}
+      <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+        {/* Enhanced Hero Background Glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-to-r from-[#06B6D4]/15 via-[#6D28D9]/15 to-[#06B6D4]/15 rounded-full blur-3xl animate-pulse-hero" />
+        </div>
+        
+        <div className="relative grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left: Hero Copy - Refined Spacing */}
           <div className="space-y-6 md:space-y-8">
             {/* Minimal brand badge */}
@@ -53,29 +58,34 @@ export default function StylistsPage() {
               <span className="text-xs font-semibold text-gray-400 tracking-[0.2em] uppercase">INTELLLX</span>
             </div>
 
-            {/* Premium Serif-Style Headline - Massive */}
-            <div className="space-y-6">
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.95] tracking-tight" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-                <span className="block text-white">Get Fully</span>
-                <span className="block mt-2 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent">
+            {/* Premium Serif-Style Headline - Enhanced with Animation */}
+            <div className="space-y-6 relative">
+              {/* Glow effect behind headline */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#06B6D4]/20 via-[#6D28D9]/20 to-[#06B6D4]/20 blur-2xl rounded-3xl -z-10 animate-pulse-glow" />
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.95] tracking-tight relative" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+                <span className="block text-white drop-shadow-[0_0_30px_rgba(6,182,212,0.3)]">Get Fully</span>
+                <span className="block mt-2 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent animate-gradient-shift drop-shadow-[0_0_40px_rgba(109,40,217,0.4)]">
                   Booked
                 </span>
-                <span className="block mt-2 text-white text-7xl sm:text-8xl md:text-9xl">Without the DMs</span>
+                <span className="block mt-2 text-white text-7xl sm:text-8xl md:text-9xl drop-shadow-[0_0_30px_rgba(6,182,212,0.2)]">Without the DMs</span>
               </h1>
             </div>
 
-            {/* Refined Subheadline */}
+            {/* Refined Subheadline with Emotional Touch */}
             <div>
               <p className="text-xl md:text-2xl text-gray-300 max-w-xl leading-relaxed font-light">
                 Your AI assistant handles every booking inquiry instantly, professionally, and automatically so you can stay behind the chair, not the phone.
               </p>
+              <p className="text-lg md:text-xl text-[#A5F3FC] max-w-xl leading-relaxed font-light mt-4">
+                Imagine your DMs quiet, your book full, and your focus where it belongs - on the hair.
+              </p>
             </div>
 
-            {/* Single Primary CTA - Premium */}
+            {/* Single Primary CTA - Enhanced for Mobile */}
             <div className="pt-4">
               <Link
                 href="/stylists/contact"
-                className="group inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-10 py-5 rounded-full text-lg transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/50"
+                className="group inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-bold px-10 py-5 rounded-full text-lg border-2 border-[#06B6D4] shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-500 hover:scale-[1.02] md:text-base text-base w-full sm:w-auto justify-center"
               >
                 Get My Stylist AI System
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
@@ -240,6 +250,10 @@ export default function StylistsPage() {
                   <CheckCircle2 className="w-5 h-5 text-[#06B6D4] mt-1 flex-shrink-0" />
                   <span>More time for what pays you most - the hair</span>
                 </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#06B6D4] mt-1 flex-shrink-0" />
+                  <span>Experience that feeling when your book is full and your DMs are quiet</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -375,7 +389,7 @@ export default function StylistsPage() {
 
               <Link
                 href="/stylists/contact"
-                className="group w-full inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-8 py-5 rounded-full text-base transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/50"
+                className="group w-full inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-bold px-8 py-5 rounded-full text-base border-2 border-[#06B6D4] shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-500 hover:scale-[1.02]"
               >
                 Claim Your $497 Spot
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
@@ -464,7 +478,7 @@ export default function StylistsPage() {
           </p>
           <Link
             href="/stylists/contact"
-            className="group inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-12 py-6 rounded-full text-lg transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/50"
+            className="group inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-bold px-12 py-6 rounded-full text-lg border-2 border-[#06B6D4] shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-500 hover:scale-[1.02] w-full sm:w-auto justify-center"
           >
             Get My Stylist AI Booking System
             <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
@@ -509,6 +523,35 @@ export default function StylistsPage() {
           }
         }
         
+        @keyframes pulse-hero {
+          0%, 100% {
+            opacity: 0.6;
+            transform: translate(-50%, -50%) scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(1.05);
+          }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+        
+        @keyframes gradient-shift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        
         .animate-fade-in {
           animation: fade-in 0.8s ease-out forwards;
         }
@@ -521,6 +564,19 @@ export default function StylistsPage() {
         .animate-slide-in-right {
           animation: slide-in-right 0.8s ease-out forwards;
           opacity: 0;
+        }
+        
+        .animate-pulse-hero {
+          animation: pulse-hero 4s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .animate-gradient-shift {
+          background-size: 200% 200%;
+          animation: gradient-shift 3s ease infinite;
         }
         
         .scroll-animate {

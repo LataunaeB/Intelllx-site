@@ -120,6 +120,11 @@ export default function Header() {
     return pathname === href;
   };
 
+  // Hide header on stylist page for focused conversion
+  if (pathname?.startsWith('/stylists')) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-50 transition-all duration-300 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800">
       <div className="absolute inset-0 backdrop-blur-md border-b border-white/10 shadow-lg"></div>
