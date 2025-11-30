@@ -1,20 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { Scissors, CheckCircle2, ArrowRight, MessageSquare, Sparkles, Zap, Shield, Star, Quote } from "lucide-react";
+import { Scissors, CheckCircle2, ArrowRight, MessageSquare, Sparkles, Zap, Shield, Star, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function StylistsPage() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsVisible(true);
-    
-    // Scroll animations
+    // Scroll animations - optimized
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -44,11 +42,11 @@ export default function StylistsPage() {
 
       {/* 1) HERO - Premium Luxury */}
       <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 md:pt-40 md:pb-32">
-        <div className={`grid lg:grid-cols-2 gap-12 md:gap-16 items-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Left: Hero Copy - Refined Spacing */}
           <div className="space-y-6 md:space-y-8">
             {/* Minimal brand badge */}
-            <div className="flex items-center gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20">
                 <span className="text-white text-xs font-bold">IX</span>
               </div>
@@ -56,7 +54,7 @@ export default function StylistsPage() {
             </div>
 
             {/* Premium Serif-Style Headline - Massive */}
-            <div className="space-y-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="space-y-6">
               <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.95] tracking-tight" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                 <span className="block text-white">Get Fully</span>
                 <span className="block mt-2 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent">
@@ -66,15 +64,15 @@ export default function StylistsPage() {
               </h1>
             </div>
 
-            {/* Refined Subheadline - More Space */}
-            <div className="opacity-0 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            {/* Refined Subheadline */}
+            <div>
               <p className="text-xl md:text-2xl text-gray-300 max-w-xl leading-relaxed font-light">
                 Your AI assistant handles every booking inquiry instantly, professionally, and automatically so you can stay behind the chair, not the phone.
               </p>
             </div>
 
             {/* Single Primary CTA - Premium */}
-            <div className="opacity-0 animate-fade-in pt-4" style={{ animationDelay: '0.8s' }}>
+            <div className="pt-4">
               <Link
                 href="/stylists/contact"
                 className="group inline-flex items-center justify-center gap-3 bg-[#06B6D4] hover:bg-[#06B6D4]/90 text-[#0F172A] font-semibold px-10 py-5 rounded-full text-lg transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#06B6D4]/50"
@@ -85,7 +83,7 @@ export default function StylistsPage() {
             </div>
 
             {/* Trust Badges - Refined */}
-            <div className="flex flex-wrap items-center gap-6 pt-8 opacity-0 animate-fade-in" style={{ animationDelay: '1s' }}>
+            <div className="flex flex-wrap items-center gap-6 pt-8">
               <div className="flex items-center gap-2 text-sm text-gray-400">
                 <div className="flex -space-x-1">
                   {[1, 2, 3, 4, 5].map((i) => (
@@ -104,7 +102,7 @@ export default function StylistsPage() {
           </div>
 
           {/* Right: Premium iPhone Mockup */}
-          <div className="relative opacity-0 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+          <div className="relative">
             {/* Organic Shape Accents */}
             <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#06B6D4]/10 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-[#6D28D9]/10 blur-3xl" />
@@ -324,49 +322,7 @@ export default function StylistsPage() {
         </div>
       </section>
 
-      {/* 4) SOCIAL PROOF - Testimonials */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
-            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">Trusted by Stylists</p>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-              What Stylists Are Saying
-            </h2>
-          </div>
-
-          {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto scroll-animate">
-            {[
-              {
-                quote: "This system changed everything. I'm fully booked and my DMs aren't a nightmare anymore.",
-                name: "Maya R.",
-                role: "Hair Stylist, LA"
-              },
-              {
-                quote: "The AI assistant sounds exactly like me. Clients love how fast they get responses.",
-                name: "Sarah K.",
-                role: "Salon Owner, NYC"
-              },
-              {
-                quote: "Best investment I've made. My booking site looks premium and books clients automatically.",
-                name: "Jessica T.",
-                role: "Freelance Stylist, Miami"
-              }
-            ].map((testimonial, idx) => (
-              <div key={idx} className="group relative rounded-3xl border border-white/5 bg-white/5 p-8 backdrop-blur-sm hover:border-[#06B6D4]/20 hover:bg-white/8 transition-all duration-500 hover:-translate-y-2">
-                <Quote className="w-8 h-8 text-[#06B6D4]/30 mb-4" />
-                <p className="text-base text-gray-300 leading-relaxed mb-6">{testimonial.quote}</p>
-                <div>
-                  <p className="text-sm font-semibold text-white">{testimonial.name}</p>
-                  <p className="text-xs text-gray-400">{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5) THE OFFER - Split Premium Cards */}
+      {/* 4) THE OFFER - Split Premium Cards */}
       <section className="relative max-w-6xl mx-auto px-6 py-20 md:py-28">
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto scroll-animate">
           {/* Card 1: Price + Urgency */}
@@ -429,6 +385,70 @@ export default function StylistsPage() {
                 No long contracts. No course. Just a done-for-you system.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) FAQ - Essential Questions */}
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
+            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">Common Questions</p>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          {/* FAQ Items */}
+          <div className="space-y-4 scroll-animate">
+            {[
+              {
+                question: "Do I need to be tech-savvy to use this?",
+                answer: "Not at all. I handle all the tech setup and walk you through everything step by step. If you can use Instagram, you can use this system. I'll show you exactly how during the setup call."
+              },
+              {
+                question: "How fast can I go live with my system?",
+                answer: "Most stylists are live within 3-5 business days once I have your info, photos, and policies. The quick call helps me understand your brand and booking style so I can build it right the first time."
+              },
+              {
+                question: "Will this work if I already have a booking app?",
+                answer: "Yes. I can connect your AI assistant and booking site to your existing booking app, or we can use a simple request form that works with your current workflow. Either way, you get a seamless booking experience."
+              },
+              {
+                question: "Is the $497 founding price really limited?",
+                answer: "Yes. This is a one-time founding offer for my first 10 stylists while I build case studies. After these spots fill, the price increases to $1,497. The founding offer includes the exact same system at a fraction of the cost."
+              },
+              {
+                question: "What if I need changes after launch?",
+                answer: "You get 30 days of support included for light tweaks and questions. After that, you can request updates for things like price changes, new services, or policy updates. I make it easy to keep your system current."
+              }
+            ].map((faq, idx) => (
+              <div
+                key={idx}
+                className="group relative rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm hover:border-white/10 hover:bg-white/8 transition-all duration-300 overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full flex items-center justify-between p-6 text-left gap-4"
+                >
+                  <h3 className="text-lg font-semibold text-white pr-8">{faq.question}</h3>
+                  <ChevronDown
+                    className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300 ${
+                      openFaq === idx ? 'transform rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaq === idx ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-6 pb-6">
+                    <p className="text-base text-gray-300 leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
