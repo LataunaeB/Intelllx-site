@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Scissors, CheckCircle2, ArrowRight, Sparkles, Star } from "lucide-react";
+import { Scissors, CheckCircle2, ArrowRight, Sparkles, MessageSquare, Star, Crown } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 export default function StylistsPage() {
@@ -32,17 +32,18 @@ export default function StylistsPage() {
 
   return (
     <main className="min-h-screen bg-[#0F172A] text-white overflow-hidden relative">
-      {/* Ultra-Soft Premium Gradient Background */}
+      {/* Soft Purple/Teal Gradient Background - More Visible */}
       <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] bg-gradient-to-b from-[#6D28D9]/8 via-[#06B6D4]/5 to-transparent blur-[250px] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-gradient-to-t from-[#06B6D4]/6 to-transparent blur-[220px] rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1400px] h-[1400px] bg-gradient-to-b from-[#6D28D9]/12 via-[#06B6D4]/8 to-transparent blur-[300px] rounded-full" />
+        <div className="absolute bottom-0 right-1/4 w-[900px] h-[900px] bg-gradient-to-t from-[#06B6D4]/10 via-[#6D28D9]/6 to-transparent blur-[280px] rounded-full" />
+        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-[#6D28D9]/8 to-[#06B6D4]/6 blur-[250px] rounded-full" />
       </div>
 
-      {/* SECTION 1: HERO - Luxury Boutique Experience */}
+      {/* SECTION 1: HERO - Premium Luxury Experience (60% of page) */}
       <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-40 pb-40 md:pt-56 md:pb-56 overflow-hidden">
-        {/* Soft Hero Background Glow */}
+        {/* Enhanced Soft Gradient Glow Behind Hero */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[1400px] bg-gradient-to-r from-[#06B6D4]/8 via-[#6D28D9]/8 to-[#06B6D4]/8 rounded-full blur-3xl animate-pulse-hero" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 rounded-full blur-3xl animate-pulse-hero" />
         </div>
         
         <div className="relative max-w-6xl mx-auto">
@@ -54,91 +55,142 @@ export default function StylistsPage() {
             <span className="text-xs font-semibold text-gray-400 tracking-[0.3em] uppercase">INTELLLX</span>
           </div>
 
-          {/* Premium Headline - Elegant & Magnetic */}
+          {/* Premium Headline - Enhanced Animation */}
           <div className="text-center mb-16 md:mb-24 space-y-10 relative">
-            <div className="absolute -inset-12 bg-gradient-to-r from-[#06B6D4]/8 via-[#6D28D9]/8 to-[#06B6D4]/8 blur-3xl rounded-full -z-10 animate-pulse-glow" />
+            <div className="absolute -inset-16 bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 blur-3xl rounded-full -z-10 animate-pulse-glow" />
             <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black leading-[0.88] tracking-[-0.02em] relative animate-headline-fade" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-              <span className="block text-white drop-shadow-[0_0_50px_rgba(6,182,212,0.15)]">Get Fully</span>
-              <span className="block mt-6 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent animate-gradient-shift drop-shadow-[0_0_60px_rgba(109,40,217,0.25)]">
+              <span className="block text-white drop-shadow-[0_0_60px_rgba(6,182,212,0.2)]">Get Fully</span>
+              <span className="block mt-6 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent animate-gradient-shift drop-shadow-[0_0_70px_rgba(109,40,217,0.3)]">
                 Booked
               </span>
-              <span className="block mt-6 text-white text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] drop-shadow-[0_0_50px_rgba(6,182,212,0.15)]">Without the DMs</span>
+              <span className="block mt-6 text-white text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] drop-shadow-[0_0_60px_rgba(6,182,212,0.2)]">Without the DMs</span>
             </h1>
             <p className="text-2xl md:text-3xl lg:text-4xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
               The stylist lifestyle you deserve
             </p>
           </div>
 
-          {/* Premium Glam Salon Website Mockup - Aspirational */}
-          <div className="relative mb-20 md:mb-28 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          {/* Visual Showcase: Salon Website + Floating Chat Card */}
+          <div className="relative mb-20 md:mb-28">
             <div className="relative max-w-5xl mx-auto">
-              {/* Desktop Browser Frame - Luxury */}
-              <div className="rounded-[2rem] bg-gradient-to-br from-white/12 via-white/10 to-white/12 backdrop-blur-3xl border border-white/25 shadow-[0_40px_120px_rgba(0,0,0,0.6)] overflow-hidden">
-                {/* Elegant Browser Bar */}
-                <div className="flex items-center gap-3 px-8 py-5 bg-white/8 border-b border-white/15">
-                  <div className="flex gap-2.5">
-                    <div className="w-4 h-4 rounded-full bg-red-500/30" />
-                    <div className="w-4 h-4 rounded-full bg-yellow-500/30" />
-                    <div className="w-4 h-4 rounded-full bg-green-500/30" />
+              {/* Premium Glam Salon Website Mockup */}
+              <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <div className="rounded-[2rem] bg-gradient-to-br from-white/15 via-white/12 to-white/15 backdrop-blur-3xl border border-white/30 shadow-[0_50px_150px_rgba(0,0,0,0.7)] overflow-hidden">
+                  {/* Elegant Browser Bar */}
+                  <div className="flex items-center gap-3 px-8 py-5 bg-white/10 border-b border-white/20">
+                    <div className="flex gap-2.5">
+                      <div className="w-4 h-4 rounded-full bg-red-500/30" />
+                      <div className="w-4 h-4 rounded-full bg-yellow-500/30" />
+                      <div className="w-4 h-4 rounded-full bg-green-500/30" />
+                    </div>
+                    <div className="flex-1 mx-8">
+                      <div className="h-3.5 bg-white/15 rounded-full max-w-lg mx-auto" />
+                    </div>
                   </div>
-                  <div className="flex-1 mx-8">
-                    <div className="h-3.5 bg-white/12 rounded-full max-w-lg mx-auto" />
+                  
+                  {/* Glam Salon Website Content */}
+                  <div className="p-10 md:p-16 space-y-10 bg-gradient-to-b from-[#0F172A] via-[#1B2A45] to-[#0F172A]">
+                    {/* Elegant Header */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-5">
+                        <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] flex items-center justify-center shadow-2xl shadow-[#06B6D4]/30">
+                          <Scissors className="h-10 w-10 text-white" />
+                        </div>
+                        <div>
+                          <div className="h-5 w-40 bg-white/40 rounded mb-2.5" />
+                          <div className="h-3 w-32 bg-white/30 rounded" />
+                        </div>
+                      </div>
+                      <div className="h-12 w-32 rounded-full bg-gradient-to-r from-[#06B6D4]/30 to-[#6D28D9]/30 border border-[#06B6D4]/50 flex items-center justify-center backdrop-blur-sm">
+                        <span className="text-xs text-[#A5F3FC] font-semibold tracking-wide">Book Now</span>
+                      </div>
+                    </div>
+
+                    {/* Glam Hero Section - Beauty-Focused */}
+                    <div className="relative h-56 md:h-72 rounded-3xl bg-gradient-to-br from-[#06B6D4]/30 via-[#6D28D9]/30 to-[#06B6D4]/30 border border-white/20 overflow-hidden">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center space-y-4">
+                          <div className="h-8 w-80 bg-white/45 rounded mx-auto shadow-xl" />
+                          <div className="h-5 w-60 bg-white/35 rounded mx-auto" />
+                        </div>
+                      </div>
+                      {/* Elegant Gradient Orbs */}
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-[#06B6D4]/50 rounded-full blur-3xl opacity-70" />
+                      <div className="absolute bottom-0 left-0 w-56 h-56 bg-[#6D28D9]/50 rounded-full blur-3xl opacity-70" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/15 rounded-full blur-2xl" />
+                    </div>
+
+                    {/* Premium Services Grid */}
+                    <div className="grid grid-cols-3 gap-5">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="h-32 md:h-40 rounded-2xl bg-white/10 border border-white/20 flex flex-col items-center justify-center gap-3 backdrop-blur-sm hover:bg-white/15 hover:border-white/30 transition-all duration-500">
+                          <div className="h-4 w-28 bg-white/45 rounded mb-1" />
+                          <div className="h-2.5 w-20 bg-white/35 rounded" />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Glam Portfolio Gallery */}
+                    <div className="grid grid-cols-4 gap-4">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="aspect-square rounded-xl bg-gradient-to-br from-[#06B6D4]/35 via-[#6D28D9]/35 to-[#06B6D4]/35 border border-white/20 shadow-xl" />
+                      ))}
+                    </div>
+
+                    {/* Premium Booking CTA */}
+                    <div className="flex items-center justify-center pt-6">
+                      <div className="h-14 w-56 rounded-full bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] border-2 border-white/40 shadow-2xl flex items-center justify-center backdrop-blur-sm">
+                        <span className="text-sm font-bold text-white tracking-wide">Book Appointment</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                {/* Glam Salon Website Content */}
-                <div className="p-10 md:p-16 space-y-10 bg-gradient-to-b from-[#0F172A] via-[#1B2A45] to-[#0F172A]">
-                  {/* Elegant Header */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-5">
-                      <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] flex items-center justify-center shadow-2xl shadow-[#06B6D4]/30">
-                        <Scissors className="h-10 w-10 text-white" />
+              </div>
+
+              {/* Floating Glass Chat Assistant Card - NEW */}
+              <div className="absolute -right-8 md:-right-16 top-1/2 -translate-y-1/2 hidden lg:block animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                <div className="relative w-80 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500 hover:-translate-y-2">
+                  {/* Glossy shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Chat Header */}
+                  <div className="relative px-6 py-4 border-b border-white/15 bg-white/5">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg">
+                        <MessageSquare className="h-5 w-5 text-white" />
                       </div>
                       <div>
-                        <div className="h-5 w-40 bg-white/35 rounded mb-2.5" />
-                        <div className="h-3 w-32 bg-white/25 rounded" />
+                        <p className="text-xs font-semibold text-white">AI Assistant</p>
+                        <p className="text-[10px] text-gray-400">Online 24/7</p>
+                      </div>
+                      <div className="ml-auto flex items-center gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
+                        <span className="text-[10px] text-[#A5F3FC] font-medium">Live</span>
                       </div>
                     </div>
-                    <div className="h-12 w-32 rounded-full bg-gradient-to-r from-[#06B6D4]/25 to-[#6D28D9]/25 border border-[#06B6D4]/40 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-xs text-[#A5F3FC] font-semibold tracking-wide">Book Now</span>
-                    </div>
                   </div>
 
-                  {/* Glam Hero Section - Beauty-Focused */}
-                  <div className="relative h-56 md:h-72 rounded-3xl bg-gradient-to-br from-[#06B6D4]/25 via-[#6D28D9]/25 to-[#06B6D4]/25 border border-white/15 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center space-y-4">
-                        <div className="h-8 w-80 bg-white/40 rounded mx-auto shadow-lg" />
-                        <div className="h-5 w-60 bg-white/30 rounded mx-auto" />
+                  {/* Chat Messages */}
+                  <div className="relative p-5 space-y-3 bg-gradient-to-b from-transparent to-[#0F172A]/50">
+                    <div className="flex justify-start">
+                      <div className="max-w-[80%] rounded-2xl bg-white/10 border border-white/10 px-4 py-3 backdrop-blur-sm">
+                        <p className="text-sm text-gray-200 leading-relaxed">Hey, do you have anything open Saturday for a silk press?</p>
                       </div>
                     </div>
-                    {/* Elegant Gradient Orbs */}
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-[#06B6D4]/40 rounded-full blur-3xl opacity-60" />
-                    <div className="absolute bottom-0 left-0 w-56 h-56 bg-[#6D28D9]/40 rounded-full blur-3xl opacity-60" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
-                  </div>
-
-                  {/* Premium Services Grid */}
-                  <div className="grid grid-cols-3 gap-5">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="h-32 md:h-40 rounded-2xl bg-white/8 border border-white/15 flex flex-col items-center justify-center gap-3 backdrop-blur-sm hover:bg-white/12 hover:border-white/25 transition-all duration-500">
-                        <div className="h-4 w-28 bg-white/40 rounded mb-1" />
-                        <div className="h-2.5 w-20 bg-white/30 rounded" />
+                    <div className="flex justify-end">
+                      <div className="max-w-[85%] rounded-2xl bg-gradient-to-r from-[#6D28D9] to-[#06B6D4] px-4 py-3 shadow-lg">
+                        <p className="text-sm text-white font-medium leading-relaxed">
+                          Yes! I have <strong className="font-bold">10:30am</strong> or <strong className="font-bold">1:00pm</strong> available. Which works for you?
+                        </p>
                       </div>
-                    ))}
-                  </div>
-
-                  {/* Glam Portfolio Gallery */}
-                  <div className="grid grid-cols-4 gap-4">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="aspect-square rounded-xl bg-gradient-to-br from-[#06B6D4]/30 via-[#6D28D9]/30 to-[#06B6D4]/30 border border-white/15 shadow-lg" />
-                    ))}
-                  </div>
-
-                  {/* Premium Booking CTA */}
-                  <div className="flex items-center justify-center pt-6">
-                    <div className="h-14 w-56 rounded-full bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] border-2 border-white/30 shadow-2xl flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-sm font-bold text-white tracking-wide">Book Appointment</span>
+                    </div>
+                    <div className="flex gap-2 pt-1">
+                      <button className="flex-1 rounded-full bg-white/10 hover:bg-[#06B6D4]/20 border border-white/15 hover:border-[#06B6D4]/40 px-3 py-2 text-[11px] text-white font-medium transition-all duration-200">
+                        Book 10:30am
+                      </button>
+                      <button className="flex-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-2 text-[11px] text-white font-medium transition-all duration-200">
+                        More Times
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -146,35 +198,107 @@ export default function StylistsPage() {
             </div>
           </div>
 
-          {/* Ultra-Luxury Glassmorphic CTA Button */}
-          <div className="text-center animate-fade-in" style={{ animationDelay: '1s' }}>
+          {/* ONE Glowing Luxury CTA Button - Much More Prominent */}
+          <div className="text-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <Link
               href="/stylists/contact"
-              className="group inline-flex items-center justify-center gap-4 bg-white/10 hover:bg-white/15 backdrop-blur-2xl border-2 border-white/30 hover:border-white/40 text-white font-bold px-20 py-7 md:px-24 md:py-8 rounded-full text-xl md:text-2xl shadow-[0_0_60px_rgba(6,182,212,0.4),inset_0_0_60px_rgba(109,40,217,0.2)] hover:shadow-[0_0_80px_rgba(6,182,212,0.6),inset_0_0_80px_rgba(109,40,217,0.3)] transition-all duration-700 hover:scale-[1.03] relative overflow-hidden"
+              className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-24 py-8 md:px-32 md:py-10 rounded-full text-2xl md:text-3xl shadow-[0_0_80px_rgba(6,182,212,0.6),0_0_120px_rgba(109,40,217,0.4)] hover:shadow-[0_0_100px_rgba(6,182,212,0.8),0_0_150px_rgba(109,40,217,0.6)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.05] relative overflow-hidden"
             >
-              {/* Glassmorphic shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span className="relative z-10">Reserve Your Luxury System</span>
-              <ArrowRight className="w-7 h-7 md:w-8 md:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+              {/* Glowing effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+              {/* Shine sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <span className="relative z-10">Reserve Your VIP Spot</span>
+              <ArrowRight className="w-8 h-8 md:w-10 md:h-10 relative z-10 group-hover:translate-x-3 transition-transform duration-300" />
             </Link>
-            <div className="mt-8 space-y-2">
-              <p className="text-lg text-gray-400 font-light">
-                <span className="text-[#A5F3FC] font-semibold">$497</span> founding offer · <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
+            <div className="mt-10 space-y-3">
+              <p className="text-xl text-gray-300 font-light">
+                <span className="text-[#A5F3FC] font-semibold">$497</span> VIP Founding Offer · <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
               </p>
-              <p className="text-sm text-gray-500 font-light">Limited time · Premium setup included</p>
+              <p className="text-sm text-gray-500 font-light">First 10 stylists get personal customization</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: Benefits + Offer - Ultra-Compact Luxury */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-40 md:py-56">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-start scroll-animate">
-            {/* Left: Minimal Luxury Benefits */}
-            <div className="space-y-8">
-              <p className="text-xs font-semibold tracking-[0.4em] uppercase text-gray-500 mb-10">What You Get</p>
-              <ul className="space-y-6">
+      {/* SECTION 2: Transformation - Emotional Benefits (15% of page) */}
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-32 md:py-40">
+        <div className="max-w-5xl mx-auto px-6 scroll-animate">
+          <div className="text-center mb-16 space-y-6">
+            <p className="text-xs font-semibold tracking-[0.4em] uppercase text-gray-500">The Transformation</p>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+              You'll Look Like<br />The Top Stylists in Your City
+            </h2>
+          </div>
+
+          {/* Emotional Benefits - Beauty Industry Triggers */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/8 group-hover:to-[#6D28D9]/8 transition-all duration-700" />
+              <div className="relative z-10">
+                <Sparkles className="h-8 w-8 text-[#06B6D4] mb-4" />
+                <h3 className="text-2xl font-semibold text-white mb-3">Your Brand Instantly Feels High-End</h3>
+                <p className="text-base text-gray-300 leading-relaxed font-light">
+                  A luxury online studio that makes you look as professional online as your work truly is. No more embarrassing double-bookings.
+                </p>
+              </div>
+            </div>
+
+            <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/8 group-hover:to-[#6D28D9]/8 transition-all duration-700" />
+              <div className="relative z-10">
+                <Crown className="h-8 w-8 text-[#06B6D4] mb-4" />
+                <h3 className="text-2xl font-semibold text-white mb-3">No More Chasing Clients</h3>
+                <p className="text-base text-gray-300 leading-relaxed font-light">
+                  Your AI assistant handles every inquiry while you focus on hair. Your weekends free, your book full. The freedom you deserve.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: VIP Offer (20% of page) */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32 md:py-40">
+        <div className="relative rounded-3xl border border-white/15 bg-white/8 backdrop-blur-2xl p-12 md:p-16 shadow-[0_50px_150px_rgba(0,0,0,0.8)] overflow-hidden scroll-animate">
+          <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-br from-[#06B6D4]/25 to-[#6D28D9]/25 rounded-full blur-3xl" />
+          <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-[#6D28D9]/25 to-transparent rounded-full blur-3xl" />
+          
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <div className="text-center mb-12 space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06B6D4]/15 border border-[#06B6D4]/30 backdrop-blur-sm">
+                <Crown className="w-4 h-4 text-[#06B6D4]" />
+                <p className="text-xs font-semibold text-[#06B6D4] uppercase tracking-[0.3em]">VIP Founding Stylist Program</p>
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+                Apply to Join<br />The First 10
+              </h2>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                First 10 stylists get personal customization and the founding price locked in forever.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Pricing */}
+              <div className="text-center md:text-left">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.3em] mb-4">Founding Offer</p>
+                <div className="space-y-3 mb-6">
+                  <p className="text-sm text-gray-500 line-through font-light">$1,497</p>
+                  <h3 className="text-8xl md:text-9xl font-black tracking-tight text-white" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+                    $497
+                  </h3>
+                </div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06B6D4]/15 border border-[#06B6D4]/30 backdrop-blur-sm">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#06B6D4] animate-pulse" />
+                  <p className="text-sm text-gray-300 font-light">
+                    <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
+                  </p>
+                </div>
+              </div>
+
+              {/* Benefits */}
+              <div className="space-y-5">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.3em] mb-6">What You Get</p>
                 {[
                   "Fully booked chairs with premium clients",
                   "Your DMs quiet, your book full",
@@ -182,49 +306,48 @@ export default function StylistsPage() {
                   "More time for what pays you most",
                   "Done-for-you setup with ongoing support"
                 ].map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-5">
-                    <CheckCircle2 className="h-7 w-7 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                    <span className="text-xl text-gray-200 leading-relaxed font-light tracking-wide">{benefit}</span>
-                  </li>
+                  <div key={idx} className="flex items-start gap-4">
+                    <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
+                    <span className="text-lg text-gray-200 leading-relaxed font-light">{benefit}</span>
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-            {/* Right: Pricing + Luxury CTA */}
-            <div className="relative rounded-3xl border border-white/15 bg-white/8 backdrop-blur-2xl p-12 md:p-14 shadow-[0_40px_100px_rgba(0,0,0,0.7)] overflow-hidden">
-              <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-br from-[#06B6D4]/20 to-[#6D28D9]/20 rounded-full blur-3xl" />
-              <div className="relative z-10 space-y-10">
-                <div>
-                  <p className="text-xs font-semibold text-[#06B6D4] uppercase tracking-[0.4em] mb-8">Founding Offer</p>
-                  <div className="space-y-3 mb-10">
-                    <p className="text-sm text-gray-500 line-through font-light">$1,497</p>
-                    <h2 className="text-8xl md:text-9xl font-black tracking-tight text-white" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-                      $497
-                    </h2>
-                  </div>
-                  <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#06B6D4]/15 border border-[#06B6D4]/30 backdrop-blur-sm">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#06B6D4] animate-pulse" />
-                    <p className="text-sm text-gray-300 font-light">
-                      <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
-                    </p>
-                  </div>
-                </div>
-
-                <Link
-                  href="/stylists/contact"
-                  className="group w-full inline-flex items-center justify-center gap-3 bg-white/10 hover:bg-white/15 backdrop-blur-2xl border-2 border-white/30 hover:border-white/40 text-white font-bold px-10 py-6 rounded-full text-lg shadow-[0_0_50px_rgba(6,182,212,0.4),inset_0_0_50px_rgba(109,40,217,0.2)] hover:shadow-[0_0_70px_rgba(6,182,212,0.6),inset_0_0_70px_rgba(109,40,217,0.3)] transition-all duration-700 hover:scale-[1.02] relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                  <span className="relative z-10">Reserve Your Spot</span>
-                  <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
-                </Link>
-
-                <p className="text-xs text-gray-500 text-center leading-relaxed font-light tracking-wide">
-                  No long contracts. No course. Just a done-for-you system.
-                </p>
               </div>
             </div>
+
+            {/* ONE CTA */}
+            <div className="mt-12 text-center">
+              <Link
+                href="/stylists/contact"
+                className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-20 py-7 md:px-28 md:py-8 rounded-full text-xl md:text-2xl shadow-[0_0_70px_rgba(6,182,212,0.5),0_0_110px_rgba(109,40,217,0.3)] hover:shadow-[0_0_90px_rgba(6,182,212,0.7),0_0_140px_rgba(109,40,217,0.5)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.03] relative overflow-hidden w-full md:w-auto"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <span className="relative z-10">Apply to Join VIP Program</span>
+                <ArrowRight className="w-7 h-7 md:w-8 md:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+              </Link>
+              <p className="text-xs text-gray-500 text-center mt-6 font-light tracking-wide">
+                No long contracts. No course. Just a done-for-you luxury system.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: Final CTA - Minimal Close (5% of page) */}
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-[#06B6D4]/5 to-transparent py-24 md:py-32">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 scroll-animate">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+            Ready to Look as Professional<br />Online as Your Work Truly Is?
+          </h2>
+          <Link
+            href="/stylists/contact"
+            className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-20 py-7 md:px-28 md:py-8 rounded-full text-xl md:text-2xl shadow-[0_0_70px_rgba(6,182,212,0.5),0_0_110px_rgba(109,40,217,0.3)] hover:shadow-[0_0_90px_rgba(6,182,212,0.7),0_0_140px_rgba(109,40,217,0.5)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.03] relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <span className="relative z-10">Apply Now</span>
+            <ArrowRight className="w-7 h-7 md:w-8 md:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+          </Link>
         </div>
       </section>
 
@@ -243,7 +366,7 @@ export default function StylistsPage() {
         @keyframes headline-fade {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
@@ -253,21 +376,21 @@ export default function StylistsPage() {
         
         @keyframes pulse-hero {
           0%, 100% {
-            opacity: 0.3;
+            opacity: 0.4;
             transform: translate(-50%, -50%) scale(1);
           }
           50% {
-            opacity: 0.5;
+            opacity: 0.6;
             transform: translate(-50%, -50%) scale(1.03);
           }
         }
         
         @keyframes pulse-glow {
           0%, 100% {
-            opacity: 0.15;
+            opacity: 0.2;
           }
           50% {
-            opacity: 0.3;
+            opacity: 0.4;
           }
         }
         
