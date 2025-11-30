@@ -58,19 +58,19 @@ export default function StylistsPage() {
           {/* Premium Headline - Enhanced Animation */}
           <div className="text-center mb-16 md:mb-24 space-y-10 relative">
             <div className="absolute -inset-16 bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 blur-3xl rounded-full -z-10 animate-pulse-glow" />
-            <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black leading-[0.88] tracking-[-0.02em] relative animate-headline-fade" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-black leading-[0.88] tracking-[-0.02em] relative animate-headline-fade" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               <span className="block text-white drop-shadow-[0_0_60px_rgba(6,182,212,0.2)]">Get Fully</span>
-              <span className="block mt-6 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent animate-gradient-shift drop-shadow-[0_0_70px_rgba(109,40,217,0.3)]">
+              <span className="block mt-4 sm:mt-6 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] bg-clip-text text-transparent animate-gradient-shift drop-shadow-[0_0_70px_rgba(109,40,217,0.3)]">
                 Booked
               </span>
-              <span className="block mt-6 text-white text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] drop-shadow-[0_0_60px_rgba(6,182,212,0.2)]">Without the DMs</span>
+              <span className="block mt-4 sm:mt-6 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[8rem] drop-shadow-[0_0_60px_rgba(6,182,212,0.2)]">Without the DMs</span>
             </h1>
-            <p className="text-2xl md:text-3xl lg:text-4xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
               The stylist lifestyle you deserve
             </p>
           </div>
 
-          {/* Visual Showcase: Salon Website + Floating Chat Card */}
+          {/* Visual Showcase: Salon Website + Chat Card */}
           <div className="relative mb-20 md:mb-28">
             <div className="relative max-w-5xl mx-auto">
               {/* Premium Glam Salon Website Mockup */}
@@ -147,9 +147,9 @@ export default function StylistsPage() {
                 </div>
               </div>
 
-              {/* Floating Glass Chat Assistant Card - NEW */}
-              <div className="absolute -right-8 md:-right-16 top-1/2 -translate-y-1/2 hidden lg:block animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                <div className="relative w-80 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500 hover:-translate-y-2">
+              {/* Glass Chat Assistant Card - Visible on All Screens */}
+              <div className="mt-8 lg:mt-0 lg:absolute lg:-right-8 xl:-right-16 lg:top-1/2 lg:-translate-y-1/2 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                <div className="relative w-full max-w-sm lg:w-80 mx-auto lg:mx-0 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500 hover:-translate-y-2">
                   {/* Glossy shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
                   
@@ -161,7 +161,7 @@ export default function StylistsPage() {
                       </div>
                       <div>
                         <p className="text-xs font-semibold text-white">AI Assistant</p>
-                        <p className="text-[10px] text-gray-400">Online 24/7</p>
+                        <p className="text-[10px] text-gray-300">Online 24/7</p>
                       </div>
                       <div className="ml-auto flex items-center gap-1.5">
                         <div className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
@@ -202,20 +202,20 @@ export default function StylistsPage() {
           <div className="text-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
             <Link
               href="/stylists/contact"
-              className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-24 py-8 md:px-32 md:py-10 rounded-full text-2xl md:text-3xl shadow-[0_0_80px_rgba(6,182,212,0.6),0_0_120px_rgba(109,40,217,0.4)] hover:shadow-[0_0_100px_rgba(6,182,212,0.8),0_0_150px_rgba(109,40,217,0.6)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.05] relative overflow-hidden"
+              className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-8 py-6 md:px-24 md:py-8 lg:px-32 lg:py-10 rounded-full text-lg md:text-2xl lg:text-3xl shadow-[0_0_80px_rgba(6,182,212,0.6),0_0_120px_rgba(109,40,217,0.4)] hover:shadow-[0_0_100px_rgba(6,182,212,0.8),0_0_150px_rgba(109,40,217,0.6)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.05] relative overflow-hidden"
             >
               {/* Glowing effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
               {/* Shine sweep */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span className="relative z-10">Reserve Your VIP Spot</span>
-              <ArrowRight className="w-8 h-8 md:w-10 md:h-10 relative z-10 group-hover:translate-x-3 transition-transform duration-300" />
+              <span className="relative z-10">Get My AI Booking System</span>
+              <ArrowRight className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 relative z-10 group-hover:translate-x-3 transition-transform duration-300" />
             </Link>
             <div className="mt-10 space-y-3">
-              <p className="text-xl text-gray-300 font-light">
-                <span className="text-[#A5F3FC] font-semibold">$497</span> VIP Founding Offer · <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
+              <p className="text-lg md:text-xl text-gray-200 font-light">
+                <span className="text-[#A5F3FC] font-semibold">$497</span> Founding Offer · <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
               </p>
-              <p className="text-sm text-gray-500 font-light">First 10 stylists get personal customization</p>
+              <p className="text-sm text-gray-400 font-light">First 10 stylists get personal customization</p>
             </div>
           </div>
         </div>
@@ -225,7 +225,7 @@ export default function StylistsPage() {
       <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-32 md:py-40">
         <div className="max-w-5xl mx-auto px-6 scroll-animate">
           <div className="text-center mb-16 space-y-6">
-            <p className="text-xs font-semibold tracking-[0.4em] uppercase text-gray-500">The Transformation</p>
+            <p className="text-xs font-semibold tracking-[0.4em] uppercase text-gray-400">The Transformation</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               You'll Look Like<br />The Top Stylists in Your City
             </h2>
@@ -238,9 +238,23 @@ export default function StylistsPage() {
               <div className="relative z-10">
                 <Sparkles className="h-8 w-8 text-[#06B6D4] mb-4" />
                 <h3 className="text-2xl font-semibold text-white mb-3">Your Brand Instantly Feels High-End</h3>
-                <p className="text-base text-gray-300 leading-relaxed font-light">
-                  A luxury online studio that makes you look as professional online as your work truly is. No more embarrassing double-bookings.
+                <p className="text-base text-gray-200 leading-relaxed font-light">
+                  A luxury booking website that makes you look as professional online as your work truly is. No more embarrassing double-bookings or missed messages.
                 </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#06B6D4] mt-1">•</span>
+                    <span>Custom branded booking site</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#06B6D4] mt-1">•</span>
+                    <span>Professional portfolio showcase</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#06B6D4] mt-1">•</span>
+                    <span>Mobile-optimized for client bookings</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -249,9 +263,23 @@ export default function StylistsPage() {
               <div className="relative z-10">
                 <Crown className="h-8 w-8 text-[#06B6D4] mb-4" />
                 <h3 className="text-2xl font-semibold text-white mb-3">No More Chasing Clients</h3>
-                <p className="text-base text-gray-300 leading-relaxed font-light">
+                <p className="text-base text-gray-200 leading-relaxed font-light">
                   Your AI assistant handles every inquiry while you focus on hair. Your weekends free, your book full. The freedom you deserve.
                 </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#06B6D4] mt-1">•</span>
+                    <span>24/7 automated DM responses</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#06B6D4] mt-1">•</span>
+                    <span>Instant booking confirmations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#06B6D4] mt-1">•</span>
+                    <span>Automated reminder system</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -273,24 +301,29 @@ export default function StylistsPage() {
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                 Apply to Join<br />The First 10
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
-                First 10 stylists get personal customization and the founding price locked in forever.
-              </p>
+            <p className="text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">
+              First 10 stylists get personal customization and the founding price locked in forever.
+            </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Pricing */}
               <div className="text-center md:text-left">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.3em] mb-4">Founding Offer</p>
-                <div className="space-y-3 mb-6">
-                  <p className="text-sm text-gray-500 line-through font-light">$1,497</p>
-                  <h3 className="text-8xl md:text-9xl font-black tracking-tight text-white" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+                <p className="text-xs font-semibold text-gray-300 uppercase tracking-[0.3em] mb-4">Founding Offer</p>
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-center justify-center md:justify-start gap-3">
+                    <p className="text-base md:text-lg text-gray-400 line-through font-light">$1,497</p>
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-[#06B6D4]/20 to-[#6D28D9]/20 border border-[#06B6D4]/40 text-sm font-semibold text-[#A5F3FC]">
+                      Save $1,000
+                    </span>
+                  </div>
+                  <h3 className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                     $497
                   </h3>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06B6D4]/15 border border-[#06B6D4]/30 backdrop-blur-sm">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#06B6D4] animate-pulse" />
-                  <p className="text-sm text-gray-300 font-light">
+                  <p className="text-sm text-gray-200 font-light">
                     <span className="text-[#A5F3FC] font-semibold">10 spots</span> remaining
                   </p>
                 </div>
@@ -298,7 +331,7 @@ export default function StylistsPage() {
 
               {/* Benefits */}
               <div className="space-y-5">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.3em] mb-6">What You Get</p>
+                <p className="text-xs font-semibold text-gray-300 uppercase tracking-[0.3em] mb-6">What You Get</p>
                 {[
                   "Fully booked chairs with premium clients",
                   "Your DMs quiet, your book full",
@@ -308,7 +341,7 @@ export default function StylistsPage() {
                 ].map((benefit, idx) => (
                   <div key={idx} className="flex items-start gap-4">
                     <CheckCircle2 className="h-6 w-6 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                    <span className="text-lg text-gray-200 leading-relaxed font-light">{benefit}</span>
+                    <span className="text-lg text-gray-100 leading-relaxed font-light">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -318,14 +351,14 @@ export default function StylistsPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/stylists/contact"
-                className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-20 py-7 md:px-28 md:py-8 rounded-full text-xl md:text-2xl shadow-[0_0_70px_rgba(6,182,212,0.5),0_0_110px_rgba(109,40,217,0.3)] hover:shadow-[0_0_90px_rgba(6,182,212,0.7),0_0_140px_rgba(109,40,217,0.5)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.03] relative overflow-hidden w-full md:w-auto"
+                className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-8 py-6 md:px-20 md:py-7 lg:px-28 lg:py-8 rounded-full text-lg md:text-xl lg:text-2xl shadow-[0_0_70px_rgba(6,182,212,0.5),0_0_110px_rgba(109,40,217,0.3)] hover:shadow-[0_0_90px_rgba(6,182,212,0.7),0_0_140px_rgba(109,40,217,0.5)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.03] relative overflow-hidden w-full md:w-auto"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <span className="relative z-10">Apply to Join VIP Program</span>
-                <ArrowRight className="w-7 h-7 md:w-8 md:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+                <span className="relative z-10">Get My AI Booking System</span>
+                <ArrowRight className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
-              <p className="text-xs text-gray-500 text-center mt-6 font-light tracking-wide">
+              <p className="text-xs text-gray-400 text-center mt-6 font-light tracking-wide">
                 No long contracts. No course. Just a done-for-you luxury system.
               </p>
             </div>
@@ -341,12 +374,12 @@ export default function StylistsPage() {
           </h2>
           <Link
             href="/stylists/contact"
-            className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-20 py-7 md:px-28 md:py-8 rounded-full text-xl md:text-2xl shadow-[0_0_70px_rgba(6,182,212,0.5),0_0_110px_rgba(109,40,217,0.3)] hover:shadow-[0_0_90px_rgba(6,182,212,0.7),0_0_140px_rgba(109,40,217,0.5)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.03] relative overflow-hidden"
+            className="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] hover:from-[#06B6D4]/90 hover:to-[#6D28D9]/90 text-white font-bold px-8 py-6 md:px-20 md:py-7 lg:px-28 lg:py-8 rounded-full text-lg md:text-xl lg:text-2xl shadow-[0_0_70px_rgba(6,182,212,0.5),0_0_110px_rgba(109,40,217,0.3)] hover:shadow-[0_0_90px_rgba(6,182,212,0.7),0_0_140px_rgba(109,40,217,0.5)] border-2 border-white/40 transition-all duration-700 hover:scale-[1.03] relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            <span className="relative z-10">Apply Now</span>
-            <ArrowRight className="w-7 h-7 md:w-8 md:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+            <span className="relative z-10">Get My AI Booking System</span>
+            <ArrowRight className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
           </Link>
         </div>
       </section>
