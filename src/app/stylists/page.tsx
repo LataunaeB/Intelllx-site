@@ -41,23 +41,15 @@ export default function StylistsPage() {
       </div>
 
       {/* SECTION 1: HERO - Premium Luxury Experience (60% of page) */}
-      <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-40 pb-40 md:pt-56 md:pb-56 overflow-hidden">
+      <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
         {/* Enhanced Soft Gradient Glow Behind Hero */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 rounded-full blur-3xl animate-pulse-hero" />
         </div>
         
         <div className="relative max-w-6xl mx-auto">
-          {/* Minimal Brand Badge */}
-          <div className="flex items-center justify-center gap-3 mb-16 md:mb-20">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20">
-              <span className="text-white text-xs font-bold">IX</span>
-            </div>
-            <span className="text-xs font-semibold text-gray-400 tracking-[0.3em] uppercase">INTELLLX</span>
-          </div>
-
           {/* Premium Headline - Enhanced Animation */}
-          <div className="text-center mb-16 md:mb-24 space-y-10 relative">
+          <div className="text-center mb-12 md:mb-16 space-y-8 relative">
             <div className="absolute -inset-16 bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 blur-3xl rounded-full -z-10 animate-pulse-glow" />
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-black leading-[0.88] tracking-[-0.02em] relative animate-headline-fade" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               <span className="block text-white drop-shadow-[0_0_60px_rgba(6,182,212,0.2)]">Get Fully</span>
@@ -69,10 +61,14 @@ export default function StylistsPage() {
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
               The stylist lifestyle you deserve
             </p>
+            {/* Trust Signal - Founder Story */}
+            <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed font-light mt-4">
+              Built by an AI consultant helping stylists book 3x more clients without living in their DMs
+            </p>
           </div>
 
           {/* Visual Showcase: Salon Website + Chat Card */}
-          <div className="relative mb-20 md:mb-28">
+          <div className="relative mb-16 md:mb-20">
             <div className="relative max-w-5xl mx-auto">
               {/* Premium Glam Salon Website Mockup */}
               <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
@@ -184,7 +180,7 @@ export default function StylistsPage() {
           <div className="text-center mb-16 space-y-6">
             <p className="text-xs font-semibold tracking-[0.4em] uppercase text-gray-400">The Transformation</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-              You'll Look Like<br />The Top Stylists in Your City
+              Stop Losing Clients<br />To Slow Replies
             </h2>
           </div>
 
@@ -256,10 +252,10 @@ export default function StylistsPage() {
                 <p className="text-xs font-semibold text-[#06B6D4] uppercase tracking-[0.3em]">VIP Founding Stylist Program</p>
               </div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-                Apply to Join<br />The First 10
+                Reserve Your<br />$497 Founding Spot
               </h2>
             <p className="text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">
-              First 10 stylists get personal customization and the founding price locked in forever.
+              Limited to the first 10 stylists. Get personal customization and lock in this price forever.
             </p>
             </div>
 
