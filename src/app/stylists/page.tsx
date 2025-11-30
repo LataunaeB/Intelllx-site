@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Scissors, CheckCircle2, ArrowRight, Sparkles, MessageSquare, Star, Crown } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -88,61 +89,17 @@ export default function StylistsPage() {
                     </div>
                   </div>
                   
-                  {/* Glam Salon Website Content */}
-                  <div className="p-10 md:p-16 space-y-10 bg-gradient-to-b from-[#0F172A] via-[#1B2A45] to-[#0F172A]">
-                    {/* Elegant Header */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-5">
-                        <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-[#06B6D4] via-[#6D28D9] to-[#06B6D4] flex items-center justify-center shadow-2xl shadow-[#06B6D4]/30">
-                          <Scissors className="h-10 w-10 text-white" />
-                        </div>
-                        <div>
-                          <div className="h-5 w-40 bg-white/40 rounded mb-2.5" />
-                          <div className="h-3 w-32 bg-white/30 rounded" />
-                        </div>
-                      </div>
-                      <div className="h-12 w-32 rounded-full bg-gradient-to-r from-[#06B6D4]/30 to-[#6D28D9]/30 border border-[#06B6D4]/50 flex items-center justify-center backdrop-blur-sm">
-                        <span className="text-xs text-[#A5F3FC] font-semibold tracking-wide">Book Now</span>
-                      </div>
-                    </div>
-
-                    {/* Glam Hero Section - Beauty-Focused */}
-                    <div className="relative h-56 md:h-72 rounded-3xl bg-gradient-to-br from-[#06B6D4]/30 via-[#6D28D9]/30 to-[#06B6D4]/30 border border-white/20 overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center space-y-4">
-                          <div className="h-8 w-80 bg-white/45 rounded mx-auto shadow-xl" />
-                          <div className="h-5 w-60 bg-white/35 rounded mx-auto" />
-                        </div>
-                      </div>
-                      {/* Elegant Gradient Orbs */}
-                      <div className="absolute top-0 right-0 w-48 h-48 bg-[#06B6D4]/50 rounded-full blur-3xl opacity-70" />
-                      <div className="absolute bottom-0 left-0 w-56 h-56 bg-[#6D28D9]/50 rounded-full blur-3xl opacity-70" />
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/15 rounded-full blur-2xl" />
-                    </div>
-
-                    {/* Premium Services Grid */}
-                    <div className="grid grid-cols-3 gap-5">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="h-32 md:h-40 rounded-2xl bg-white/10 border border-white/20 flex flex-col items-center justify-center gap-3 backdrop-blur-sm hover:bg-white/15 hover:border-white/30 transition-all duration-500">
-                          <div className="h-4 w-28 bg-white/45 rounded mb-1" />
-                          <div className="h-2.5 w-20 bg-white/35 rounded" />
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Glam Portfolio Gallery */}
-                    <div className="grid grid-cols-4 gap-4">
-                      {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="aspect-square rounded-xl bg-gradient-to-br from-[#06B6D4]/35 via-[#6D28D9]/35 to-[#06B6D4]/35 border border-white/20 shadow-xl" />
-                      ))}
-                    </div>
-
-                    {/* Premium Booking CTA */}
-                    <div className="flex items-center justify-center pt-6">
-                      <div className="h-14 w-56 rounded-full bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] border-2 border-white/40 shadow-2xl flex items-center justify-center backdrop-blur-sm">
-                        <span className="text-sm font-bold text-white tracking-wide">Book Appointment</span>
-                      </div>
-                    </div>
+                  {/* Glam Salon Website Content - Using Real Mockup Image */}
+                  <div className="relative bg-gradient-to-b from-[#0F172A] via-[#1B2A45] to-[#0F172A] overflow-hidden">
+                    <Image
+                      src="/images/stylists/mockup1chat.png"
+                      alt="AI Booking System Mockup - Salon Website with Chat Interface"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto object-contain"
+                      priority
+                      quality={95}
+                    />
                   </div>
                 </div>
               </div>
