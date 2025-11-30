@@ -41,17 +41,17 @@ export default function StylistsPage() {
       </div>
 
       {/* SECTION 1: HERO - Premium Luxury Experience (60% of page) */}
-      <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+      <section ref={heroRef} className="relative max-w-[90rem] mx-auto px-6 lg:px-12 xl:px-16 pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32 overflow-hidden">
         {/* Enhanced Soft Gradient Glow Behind Hero */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1600px] h-[1600px] bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 rounded-full blur-3xl animate-pulse-hero" />
         </div>
         
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-[90rem] mx-auto">
           {/* Asymmetrical Hero Layout: Left Copy, Right Visual */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 xl:gap-24 items-center">
             {/* LEFT: Headline + Subheadline + CTA */}
-            <div className="space-y-8 lg:space-y-10 relative">
+            <div className="space-y-6 lg:space-y-10 relative">
               <div className="absolute -inset-16 bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 blur-3xl rounded-full -z-10 animate-pulse-glow opacity-50" />
               
               {/* Headline - Left Aligned on Desktop */}
@@ -100,13 +100,13 @@ export default function StylistsPage() {
             <div className="relative lg:pl-8">
               <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 {/* Mockup Image - Direct Display, No Browser Frame */}
-                <div className="relative">
+                <div className="relative w-full lg:max-w-none">
                   <Image
                     src="/images/stylists/mockup1chat.png"
                     alt="AI Booking System Mockup - Salon Website with Chat Interface"
                     width={1200}
                     height={800}
-                    className="w-full h-auto object-contain rounded-2xl"
+                    className="w-full h-auto object-contain rounded-2xl lg:scale-105 xl:scale-110"
                     priority
                     quality={95}
                   />
@@ -167,17 +167,17 @@ export default function StylistsPage() {
       </section>
 
       {/* SECTION 2: Transformation - Emotional Benefits (15% of page) */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-32 md:py-40">
-        <div className="max-w-5xl mx-auto px-6 scroll-animate">
-          <div className="text-center mb-16 space-y-6">
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28 lg:py-32 xl:py-40">
+        <div className="max-w-6xl lg:max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 scroll-animate">
+          <div className="text-center mb-12 lg:mb-16 space-y-4 lg:space-y-6">
             <p className="text-sm md:text-base font-semibold tracking-[0.4em] uppercase text-gray-300">The Transformation</p>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               Stop Losing Clients<br />To Slow Replies
             </h2>
           </div>
 
           {/* Emotional Benefits - Beauty Industry Triggers */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-10 xl:gap-12 max-w-5xl lg:max-w-6xl mx-auto">
             <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/8 group-hover:to-[#6D28D9]/8 transition-all duration-700" />
               <div className="relative z-10">
@@ -232,26 +232,26 @@ export default function StylistsPage() {
       </section>
 
       {/* SECTION 3: VIP Offer (20% of page) */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 md:py-40">
-        <div className="relative rounded-3xl border border-white/15 bg-white/8 backdrop-blur-2xl p-12 md:p-16 shadow-[0_50px_150px_rgba(0,0,0,0.8)] overflow-hidden scroll-animate">
+      <section className="relative max-w-7xl lg:max-w-[90rem] mx-auto px-6 lg:px-12 xl:px-16 py-20 md:py-28 lg:py-32 xl:py-40">
+        <div className="relative rounded-3xl border border-white/15 bg-white/8 backdrop-blur-2xl p-8 md:p-12 lg:p-16 xl:p-20 shadow-[0_50px_150px_rgba(0,0,0,0.8)] overflow-hidden scroll-animate">
           <div className="absolute -top-48 -right-48 w-96 h-96 bg-gradient-to-br from-[#06B6D4]/25 to-[#6D28D9]/25 rounded-full blur-3xl" />
           <div className="absolute -bottom-48 -left-48 w-96 h-96 bg-gradient-to-tr from-[#6D28D9]/25 to-transparent rounded-full blur-3xl" />
           
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <div className="text-center mb-12 space-y-6">
+          <div className="relative z-10 max-w-5xl lg:max-w-6xl mx-auto">
+            <div className="text-center mb-10 lg:mb-12 space-y-4 lg:space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06B6D4]/15 border border-[#06B6D4]/30 backdrop-blur-sm">
                 <Crown className="w-4 h-4 text-[#06B6D4]" />
                 <p className="text-sm md:text-base font-semibold text-[#06B6D4] uppercase tracking-[0.3em]">VIP Founding Stylist Program</p>
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                 Reserve Your<br />$497 Founding Spot
               </h2>
-            <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-light">
               Limited to the first 10 stylists. Get personal customization and lock in this price forever.
             </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
               {/* Pricing */}
               <div className="text-center md:text-left">
                 <p className="text-sm md:text-base font-semibold text-gray-300 uppercase tracking-[0.3em] mb-4">Founding Offer</p>
@@ -312,9 +312,9 @@ export default function StylistsPage() {
       </section>
 
       {/* SECTION 4: Final CTA - Minimal Close (5% of page) */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-[#06B6D4]/5 to-transparent py-24 md:py-32">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 scroll-animate">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-[#06B6D4]/5 to-transparent py-16 md:py-24 lg:py-32">
+        <div className="max-w-5xl lg:max-w-6xl mx-auto px-6 lg:px-12 xl:px-16 text-center space-y-6 lg:space-y-8 scroll-animate">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
             Ready to Look as Professional<br />Online as Your Work Truly Is?
           </h2>
           <Link
