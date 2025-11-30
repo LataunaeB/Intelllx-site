@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Scissors, CheckCircle2, ArrowRight, MessageSquare, Sparkles, Zap, Shield, Star, ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Scissors, CheckCircle2, ArrowRight, Sparkles, Star, Calendar, Heart, Clock } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function StylistsPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,14 +32,14 @@ export default function StylistsPage() {
 
   return (
     <main className="min-h-screen bg-[#0F172A] text-white overflow-hidden relative">
-      {/* Premium Ambient Glow - More Subtle */}
+      {/* Premium Ambient Glow */}
       <div className="fixed inset-0 pointer-events-none -z-10">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#6D28D9]/8 blur-[180px] rounded-full" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#06B6D4]/6 blur-[150px] rounded-full" />
         <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-[#6D28D9]/5 blur-[120px] rounded-full" />
       </div>
 
-      {/* 1) HERO - Premium Luxury with Enhanced Visuals */}
+      {/* SECTION 1: HERO - Premium Luxury with Salon Website Mockup */}
       <section ref={heroRef} className="relative max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
         {/* Enhanced Hero Background Glow */}
         <div className="absolute inset-0 pointer-events-none">
@@ -48,7 +47,7 @@ export default function StylistsPage() {
         </div>
         
         <div className="relative grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Left: Hero Copy - Refined Spacing */}
+          {/* Left: Hero Copy - Aspirational */}
           <div className="space-y-6 md:space-y-8">
             {/* Minimal brand badge */}
             <div className="flex items-center gap-3">
@@ -58,9 +57,8 @@ export default function StylistsPage() {
               <span className="text-xs font-semibold text-gray-400 tracking-[0.2em] uppercase">INTELLLX</span>
             </div>
 
-            {/* Premium Serif-Style Headline - Enhanced with Animation */}
+            {/* Premium Headline - Enhanced */}
             <div className="space-y-6 relative">
-              {/* Glow effect behind headline */}
               <div className="absolute -inset-4 bg-gradient-to-r from-[#06B6D4]/20 via-[#6D28D9]/20 to-[#06B6D4]/20 blur-2xl rounded-3xl -z-10 animate-pulse-glow" />
               <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.95] tracking-tight relative" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                 <span className="block text-white drop-shadow-[0_0_30px_rgba(6,182,212,0.3)]">Get Fully</span>
@@ -71,17 +69,17 @@ export default function StylistsPage() {
               </h1>
             </div>
 
-            {/* Refined Subheadline with Emotional Touch */}
+            {/* Aspirational Subheadline */}
             <div>
               <p className="text-xl md:text-2xl text-gray-300 max-w-xl leading-relaxed font-light">
-                Your AI assistant handles every booking inquiry instantly, professionally, and automatically so you can stay behind the chair, not the phone.
+                The stylist lifestyle you deserve. Fully booked chairs. Premium clients who value quality, not price shoppers.
               </p>
               <p className="text-lg md:text-xl text-[#A5F3FC] max-w-xl leading-relaxed font-light mt-4">
-                Imagine your DMs quiet, your book full, and your focus where it belongs - on the hair.
+                Your weekends free, your book full. Experience the freedom of a fully booked chair and quiet DMs.
               </p>
             </div>
 
-            {/* Single Primary CTA - Enhanced for Mobile */}
+            {/* Single Primary CTA - Enhanced */}
             <div className="pt-4">
               <Link
                 href="/stylists/contact"
@@ -92,7 +90,7 @@ export default function StylistsPage() {
               </Link>
             </div>
 
-            {/* Trust Badges - Refined */}
+            {/* Trust Badges */}
             <div className="flex flex-wrap items-center gap-6 pt-8">
               <div className="flex items-center gap-2 text-sm text-gray-400">
                 <div className="flex -space-x-1">
@@ -111,70 +109,98 @@ export default function StylistsPage() {
             </div>
           </div>
 
-          {/* Right: Premium iPhone Mockup */}
+          {/* Right: Premium Salon Website Mockup + Chat Preview */}
           <div className="relative">
             {/* Organic Shape Accents */}
             <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#06B6D4]/10 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-[#6D28D9]/10 blur-3xl" />
 
-            {/* Premium iPhone-Style Mockup */}
-            <div className="relative mx-auto max-w-sm">
-              {/* iPhone Frame */}
-              <div className="relative rounded-[3rem] bg-gradient-to-b from-gray-900 to-black p-2 shadow-2xl">
-                {/* Notch */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-full z-20" />
+            {/* Desktop Salon Website Mockup */}
+            <div className="relative mb-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <div className="relative rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden">
+                {/* Browser Bar */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/10">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="h-2 bg-white/10 rounded-full max-w-xs" />
+                  </div>
+                </div>
                 
-                {/* Screen */}
-                <div className="relative rounded-[2.5rem] bg-[#020617] border border-white/10 overflow-hidden">
-                  {/* Status Bar */}
-                  <div className="flex items-center justify-between px-6 pt-12 pb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg">
-                        <Scissors className="h-4 w-4 text-white" />
+                {/* Salon Website Content */}
+                <div className="p-6 space-y-4">
+                  {/* Header */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center">
+                        <Scissors className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <p className="text-[9px] uppercase tracking-wider text-gray-400">Live Preview</p>
-                        <p className="text-xs font-semibold text-white">Stylist AI</p>
+                        <div className="h-3 w-24 bg-white/20 rounded mb-2" />
+                        <div className="h-2 w-16 bg-white/10 rounded" />
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#06B6D4]/15 border border-[#06B6D4]/30 px-2.5 py-1 text-[9px] font-medium text-[#A5F3FC]">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] animate-pulse" />
-                      24/7
-                    </span>
+                    <div className="h-8 w-20 bg-[#06B6D4]/20 rounded-full border border-[#06B6D4]/30" />
                   </div>
 
-                  {/* Chat Messages - Animated */}
-                  <div className="px-4 pb-6 space-y-3">
+                  {/* Hero Section */}
+                  <div className="relative h-32 rounded-xl bg-gradient-to-br from-[#06B6D4]/20 via-[#6D28D9]/20 to-[#06B6D4]/20 border border-white/10 overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="h-4 w-48 bg-white/30 rounded mx-auto mb-2" />
+                        <div className="h-3 w-32 bg-white/20 rounded mx-auto" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Services Grid */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="h-20 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-2">
+                        <div className="h-2 w-16 bg-white/20 rounded" />
+                        <div className="h-1.5 w-12 bg-white/10 rounded" />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Booking CTA */}
+                  <div className="flex items-center justify-center pt-2">
+                    <div className="h-10 w-40 rounded-full bg-gradient-to-r from-[#06B6D4] to-[#6D28D9] border border-white/20" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Chat Mockup - Compact */}
+            <div className="relative mx-auto max-w-xs animate-fade-in" style={{ animationDelay: '1s' }}>
+              <div className="relative rounded-[2rem] bg-gradient-to-b from-gray-900 to-black p-1.5 shadow-2xl">
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-20" />
+                <div className="relative rounded-[1.75rem] bg-[#020617] border border-white/10 overflow-hidden">
+                  <div className="flex items-center justify-between px-4 pt-10 pb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 w-6 rounded-lg bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center">
+                        <Scissors className="h-3 w-3 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-[8px] uppercase tracking-wider text-gray-400">AI Assistant</p>
+                        <p className="text-[10px] font-semibold text-white">24/7 Active</p>
+                      </div>
+                    </div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] animate-pulse" />
+                  </div>
+                  <div className="px-3 pb-4 space-y-2">
                     <div className="flex justify-start animate-slide-in-left" style={{ animationDelay: '1.2s' }}>
-                      <div className="max-w-[75%] rounded-2xl bg-white/10 border border-white/5 px-4 py-3 backdrop-blur-sm">
-                        <p className="text-sm text-gray-100 leading-relaxed">Hey, do you have anything open Saturday for a silk press?</p>
+                      <div className="max-w-[80%] rounded-xl bg-white/10 px-3 py-2">
+                        <p className="text-[10px] text-gray-100">Available Saturday?</p>
                       </div>
                     </div>
-
                     <div className="flex justify-end animate-slide-in-right" style={{ animationDelay: '1.5s' }}>
-                      <div className="max-w-[80%] rounded-2xl bg-gradient-to-r from-[#6D28D9] to-[#06B6D4] px-4 py-3 shadow-lg shadow-[#06B6D4]/20">
-                        <p className="text-sm text-white font-medium leading-relaxed">
-                          Yes! I have <strong className="font-bold">10:30am</strong> or <strong className="font-bold">1:00pm</strong> available. Which works for you?
-                        </p>
+                      <div className="max-w-[85%] rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#06B6D4] px-3 py-2">
+                        <p className="text-[10px] text-white font-medium">Yes! 10:30am or 1pm works</p>
                       </div>
-                    </div>
-
-                    <div className="flex gap-2 pt-1 animate-fade-in" style={{ animationDelay: '1.8s' }}>
-                      <button className="flex-1 rounded-full bg-white/10 hover:bg-[#06B6D4]/20 border border-white/15 hover:border-[#06B6D4]/40 px-3 py-2 text-[10px] text-white font-medium transition-all duration-200">
-                        Book 10:30am
-                      </button>
-                      <button className="flex-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-2 text-[10px] text-white font-medium transition-all duration-200">
-                        More Times
-                      </button>
-                    </div>
-
-                    <div className="flex items-center gap-2 pt-2 animate-fade-in" style={{ animationDelay: '2s' }}>
-                      <div className="flex gap-1">
-                        <div className="w-1 h-1 rounded-full bg-[#06B6D4] animate-pulse" style={{ animationDelay: '0s' }} />
-                        <div className="w-1 h-1 rounded-full bg-[#06B6D4] animate-pulse" style={{ animationDelay: '0.2s' }} />
-                        <div className="w-1 h-1 rounded-full bg-[#06B6D4] animate-pulse" style={{ animationDelay: '0.4s' }} />
-                      </div>
-                      <p className="text-[9px] text-gray-400">Every message in your voice</p>
                     </div>
                   </div>
                 </div>
@@ -184,10 +210,11 @@ export default function StylistsPage() {
         </div>
       </section>
 
-      {/* 2) BEFORE/AFTER - Soft Elegant Contrast */}
+      {/* SECTION 2: PAIN → DESIRE → BENEFITS (Merged, Benefit-Focused) */}
       <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
+          {/* Header */}
+          <div className="text-center mb-16 md:mb-20 space-y-6 scroll-animate">
             <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">The Transformation</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
               You're Tired of Doing Hair<br />And Customer Service
@@ -197,10 +224,10 @@ export default function StylistsPage() {
             </p>
           </div>
 
-          {/* Before/After - Soft Grays, No Red */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto scroll-animate">
-            {/* Before - Soft Gray */}
-            <div className="group relative rounded-3xl border border-white/5 bg-gradient-to-br from-gray-800/20 via-gray-800/10 to-transparent px-8 py-10 backdrop-blur-sm transition-all duration-700 hover:border-white/10 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/20">
+          {/* Before/After Cards */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16 scroll-animate">
+            {/* Before - Pain */}
+            <div className="group relative rounded-3xl border border-white/5 bg-gradient-to-br from-gray-800/20 via-gray-800/10 to-transparent px-8 py-10 backdrop-blur-sm transition-all duration-700 hover:border-white/10 hover:-translate-y-2">
               <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gray-700/20 blur-2xl" />
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-400 mb-6 flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-gray-400" />
@@ -226,8 +253,8 @@ export default function StylistsPage() {
               </ul>
             </div>
 
-            {/* After - Elegant Solution */}
-            <div className="group relative rounded-3xl border border-[#06B6D4]/20 bg-gradient-to-br from-[#06B6D4]/10 via-[#6D28D9]/5 to-transparent px-8 py-10 backdrop-blur-sm transition-all duration-700 hover:border-[#06B6D4]/30 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
+            {/* After - Desire */}
+            <div className="group relative rounded-3xl border border-[#06B6D4]/20 bg-gradient-to-br from-[#06B6D4]/10 via-[#6D28D9]/5 to-transparent px-8 py-10 backdrop-blur-sm transition-all duration-700 hover:border-[#06B6D4]/30 hover:-translate-y-2">
               <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-[#06B6D4]/20 blur-2xl" />
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[#A5F3FC] mb-6 flex items-center gap-2">
                 <Sparkles className="w-3 h-3 text-[#06B6D4]" />
@@ -257,86 +284,80 @@ export default function StylistsPage() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 3) THE SYSTEM - Premium Features */}
-      <section className="relative max-w-6xl mx-auto px-6 py-20 md:py-28">
-        <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">Signature System</p>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-            A Premium Online Home<br />And Booking Assistant
-          </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
-            Everything you need to get fully booked without living in your DMs
-          </p>
-        </div>
-
-        {/* Features Grid - Massive Spacing */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto scroll-animate">
-          <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
-                  <MessageSquare className="h-7 w-7 text-white" />
+          {/* Benefits Grid - Result-Focused (Not Features) */}
+          <div className="max-w-5xl mx-auto scroll-animate">
+            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500 text-center mb-8">What You Get</p>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Benefit 1: Fully Booked Chairs */}
+              <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
+                      <Calendar className="h-7 w-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">Fully Booked Chairs</h3>
+                  </div>
+                  <p className="text-base text-gray-300 leading-relaxed">
+                    Your AI handles every inquiry while you focus on hair. No missed clients, no late-night DMs. Clients who value quality, not price shoppers.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-semibold text-white">AI DM Assistant</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
-                Replies instantly, 24/7, in your voice. Handles FAQs, shares openings, and books appointments automatically.
-              </p>
-            </div>
-          </div>
 
-          <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
-                  <Sparkles className="h-7 w-7 text-white" />
+              {/* Benefit 2: Premium Brand Presence */}
+              <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
+                      <Sparkles className="h-7 w-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">Premium Brand Presence</h3>
+                  </div>
+                  <p className="text-base text-gray-300 leading-relaxed">
+                    A luxury online studio that attracts clients who pay premium prices. Your brand, elevated. The stylist lifestyle you deserve.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-semibold text-white">Custom Booking Site</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
-                One beautiful, luxury page that matches your brand. Services, portfolio, policies, and booking - all in one place.
-              </p>
-            </div>
-          </div>
 
-          <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
-                  <Zap className="h-7 w-7 text-white" />
+              {/* Benefit 3: Your Time Back */}
+              <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
+                      <Clock className="h-7 w-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">Your Time Back</h3>
+                  </div>
+                  <p className="text-base text-gray-300 leading-relaxed">
+                    Seamless booking that works with your flow. More time for what pays you most. Your weekends free, your book full.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-semibold text-white">Booking Integration</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
-                Connects to your existing booking app or uses a clean request form. Seamless flow from inquiry to appointment.
-              </p>
-            </div>
-          </div>
 
-          <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
-                  <Shield className="h-7 w-7 text-white" />
+              {/* Benefit 4: Zero Tech Headaches */}
+              <div className="group relative rounded-3xl border border-white/5 bg-white/5 p-10 backdrop-blur-sm hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#06B6D4]/20">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/5 group-hover:to-[#6D28D9]/5 transition-all duration-700" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg shadow-[#06B6D4]/20 group-hover:scale-110 transition-transform duration-500">
+                      <Heart className="h-7 w-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">Zero Tech Headaches</h3>
+                  </div>
+                  <p className="text-base text-gray-300 leading-relaxed">
+                    Done-for-you setup. You focus on hair, we handle the tech. Always. Experience the freedom of a fully booked chair and quiet DMs.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-semibold text-white">30 Days Support</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
-                Setup call, screen share, and ongoing support. We make sure you're confident using your new system.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4) THE OFFER - Split Premium Cards */}
+      {/* SECTION 3: THE OFFER - Result-Focused Benefits */}
       <section className="relative max-w-6xl mx-auto px-6 py-20 md:py-28">
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto scroll-animate">
           {/* Card 1: Price + Urgency */}
@@ -364,24 +385,24 @@ export default function StylistsPage() {
             </div>
           </div>
 
-          {/* Card 2: Features + CTA */}
+          {/* Card 2: Result-Focused Benefits + CTA */}
           <div className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/5 to-white/3 backdrop-blur-xl p-10 shadow-[0_30px_80px_rgba(0,0,0,0.8)] overflow-hidden">
             <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-[#6D28D9]/20 to-transparent rounded-full blur-2xl" />
             <div className="relative z-10 space-y-8">
               <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.3em] mb-6">What's Included</p>
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.3em] mb-6">What You'll Achieve</p>
                 <div className="space-y-4">
                   {[
-                    "Custom luxury booking site",
-                    "AI DM assistant (your voice)",
-                    "Booking app integration",
-                    "Reminder flows setup",
-                    "Setup call + screen share",
-                    "30 days of support"
-                  ].map((feature, idx) => (
+                    "Fully booked chairs with premium clients",
+                    "Your DMs quiet, your book full",
+                    "A luxury online studio that elevates your brand",
+                    "More time for what pays you most - the hair",
+                    "Seamless booking that works with your flow",
+                    "Done-for-you setup with ongoing support"
+                  ].map((benefit, idx) => (
                     <div key={idx} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-[#06B6D4] flex-shrink-0 mt-0.5" />
-                      <p className="text-sm text-gray-200 leading-relaxed">{feature}</p>
+                      <p className="text-sm text-gray-200 leading-relaxed">{benefit}</p>
                     </div>
                   ))}
                 </div>
@@ -403,78 +424,14 @@ export default function StylistsPage() {
         </div>
       </section>
 
-      {/* 5) FAQ - Essential Questions */}
-      <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent py-20 md:py-28">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12 md:mb-16 space-y-6 scroll-animate">
-            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gray-500">Common Questions</p>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          {/* FAQ Items */}
-          <div className="space-y-4 scroll-animate">
-            {[
-              {
-                question: "Do I need to be tech-savvy to use this?",
-                answer: "Not at all. I handle all the tech setup and walk you through everything step by step. If you can use Instagram, you can use this system. I'll show you exactly how during the setup call."
-              },
-              {
-                question: "How fast can I go live with my system?",
-                answer: "Most stylists are live within 3-5 business days once I have your info, photos, and policies. The quick call helps me understand your brand and booking style so I can build it right the first time."
-              },
-              {
-                question: "Will this work if I already have a booking app?",
-                answer: "Yes. I can connect your AI assistant and booking site to your existing booking app, or we can use a simple request form that works with your current workflow. Either way, you get a seamless booking experience."
-              },
-              {
-                question: "Is the $497 founding price really limited?",
-                answer: "Yes. This is a one-time founding offer for my first 10 stylists while I build case studies. After these spots fill, the price increases to $1,497. The founding offer includes the exact same system at a fraction of the cost."
-              },
-              {
-                question: "What if I need changes after launch?",
-                answer: "You get 30 days of support included for light tweaks and questions. After that, you can request updates for things like price changes, new services, or policy updates. I make it easy to keep your system current."
-              }
-            ].map((faq, idx) => (
-              <div
-                key={idx}
-                className="group relative rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm hover:border-white/10 hover:bg-white/8 transition-all duration-300 overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-6 text-left gap-4"
-                >
-                  <h3 className="text-lg font-semibold text-white pr-8">{faq.question}</h3>
-                  <ChevronDown
-                    className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300 ${
-                      openFaq === idx ? 'transform rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaq === idx ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <div className="px-6 pb-6">
-                    <p className="text-base text-gray-300 leading-relaxed">{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6) FINAL CTA - Single Powerful Close */}
+      {/* SECTION 4: FINAL CTA - Single Powerful Close */}
       <section className="relative border-t border-white/5 bg-gradient-to-b from-transparent via-[#06B6D4]/5 to-transparent py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-10 scroll-animate">
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-            Ready to Stop Losing<br />Clients in Your DMs?
+            Ready to Experience<br />The Stylist Lifestyle You Deserve?
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
-            Get your luxury booking site and AI assistant. Let your system handle inquiries while you focus on the hair.
+            Get your luxury booking site and AI assistant. Fully booked chairs. Premium clients. Your time back.
           </p>
           <Link
             href="/stylists/contact"
