@@ -99,32 +99,17 @@ export default function StylistsPage() {
             {/* RIGHT: Mockup + Floating Chat Card */}
             <div className="relative lg:pl-8">
               <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                {/* Premium Glam Salon Website Mockup */}
-                <div className="rounded-[2rem] bg-gradient-to-br from-white/15 via-white/12 to-white/15 backdrop-blur-3xl border border-white/30 shadow-[0_50px_150px_rgba(0,0,0,0.7)] overflow-hidden">
-                  {/* Elegant Browser Bar */}
-                  <div className="flex items-center gap-3 px-8 py-5 bg-white/10 border-b border-white/20">
-                    <div className="flex gap-2.5">
-                      <div className="w-4 h-4 rounded-full bg-red-500/30" />
-                      <div className="w-4 h-4 rounded-full bg-yellow-500/30" />
-                      <div className="w-4 h-4 rounded-full bg-green-500/30" />
-                    </div>
-                    <div className="flex-1 mx-8">
-                      <div className="h-3.5 bg-white/15 rounded-full max-w-lg mx-auto" />
-                    </div>
-                  </div>
-                  
-                  {/* Glam Salon Website Content - Using Real Mockup Image */}
-                  <div className="relative bg-gradient-to-b from-[#0F172A] via-[#1B2A45] to-[#0F172A] overflow-hidden">
-                    <Image
-                      src="/images/stylists/mockup1chat.png"
-                      alt="AI Booking System Mockup - Salon Website with Chat Interface"
-                      width={1200}
-                      height={800}
-                      className="w-full h-auto object-contain"
-                      priority
-                      quality={95}
-                    />
-                  </div>
+                {/* Mockup Image - Direct Display, No Browser Frame */}
+                <div className="relative">
+                  <Image
+                    src="/images/stylists/mockup1chat.png"
+                    alt="AI Booking System Mockup - Salon Website with Chat Interface"
+                    width={1200}
+                    height={800}
+                    className="w-full h-auto object-contain rounded-2xl"
+                    priority
+                    quality={95}
+                  />
                 </div>
 
                 {/* Glass Chat Assistant Card - Floating on Right */}
