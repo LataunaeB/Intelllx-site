@@ -114,7 +114,7 @@ export default function StylistsPage() {
               </div>
 
               {/* Glass Chat Assistant Card - Floating on Right, Outside Image Container */}
-              <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:-right-20 xl:-right-28 2xl:-right-36 lg:top-1/2 lg:-translate-y-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+              <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:-right-16 xl:-right-24 2xl:-right-30 lg:top-1/2 lg:-translate-y-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                   <div className="relative w-full max-w-sm lg:w-64 xl:w-72 2xl:w-80 mx-auto lg:mx-0 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500 hover:-translate-y-2">
                     {/* Glossy shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
