@@ -97,7 +97,7 @@ export default function StylistsPage() {
             </div>
 
             {/* RIGHT: Mockup + Floating Chat Card */}
-            <div className="relative md:pl-4 lg:pl-8">
+            <div className="relative md:pl-4 lg:pl-8 overflow-visible">
               <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 {/* Mockup Image - Direct Display, No Browser Frame */}
                 <div className="relative w-full">
@@ -106,14 +106,15 @@ export default function StylistsPage() {
                     alt="AI Booking System Mockup - Salon Website with Chat Interface"
                     width={1200}
                     height={800}
-                    className="w-full h-auto object-contain rounded-2xl md:scale-105 lg:scale-110 xl:scale-115"
+                    className="w-full h-auto object-contain rounded-2xl md:scale-100 lg:scale-105 xl:scale-110"
                     priority
                     quality={95}
                   />
                 </div>
+              </div>
 
-                {/* Glass Chat Assistant Card - Floating on Right */}
-                <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:-right-8 xl:-right-12 2xl:-right-16 lg:top-1/2 lg:-translate-y-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+              {/* Glass Chat Assistant Card - Floating on Right, Outside Image Container */}
+              <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:-right-20 xl:-right-28 2xl:-right-36 lg:top-1/2 lg:-translate-y-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                   <div className="relative w-full max-w-sm lg:w-64 xl:w-72 2xl:w-80 mx-auto lg:mx-0 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500 hover:-translate-y-2">
                     {/* Glossy shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
@@ -160,7 +161,6 @@ export default function StylistsPage() {
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
