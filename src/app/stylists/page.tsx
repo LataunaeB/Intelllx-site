@@ -98,7 +98,7 @@ export default function StylistsPage() {
 
             {/* RIGHT: Mockup + Floating Chat Card */}
             <div className="relative md:pl-4 lg:pl-8 overflow-visible">
-              <div className="relative animate-fade-in overflow-hidden" style={{ animationDelay: '0.4s' }}>
+              <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 {/* Mockup Image - Direct Display, No Browser Frame */}
                 <div className="relative w-full max-w-full">
                   <Image
@@ -111,11 +111,10 @@ export default function StylistsPage() {
                     quality={95}
                   />
                 </div>
-              </div>
 
-              {/* Glass Chat Assistant Card - Floating on Right, Touching Mockup Edge */}
-              <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s', transform: 'translateY(-50%) perspective(1000px) rotateY(-4deg)' }}>
-                  <div className="relative w-full max-w-sm lg:w-64 xl:w-72 2xl:w-80 mx-auto lg:mx-0 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500 hover:-translate-y-2">
+                {/* Glass Chat Assistant Card - Floating on Right, Touching Mockup Edge */}
+                <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                  <div className="relative w-full max-w-sm lg:w-64 xl:w-72 2xl:w-80 mx-auto lg:mx-0 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500" style={{ transform: 'perspective(1000px) rotateY(-3deg)', transformStyle: 'preserve-3d' }}>
                     {/* Glossy shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
                     
@@ -161,6 +160,7 @@ export default function StylistsPage() {
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
