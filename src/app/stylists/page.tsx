@@ -49,9 +49,9 @@ export default function StylistsPage() {
         
         <div className="relative w-full max-w-[95rem] 2xl:max-w-[100rem] mx-auto">
           {/* Asymmetrical Hero Layout: Left Copy, Right Visual */}
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 xl:gap-20 2xl:gap-24 items-center">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
             {/* LEFT: Headline + Subheadline + CTA */}
-            <div className="space-y-4 md:space-y-6 lg:space-y-8 relative">
+            <div className="space-y-4 md:space-y-6 lg:space-y-8 relative z-10">
               <div className="absolute -inset-16 bg-gradient-to-r from-[#06B6D4]/12 via-[#6D28D9]/12 to-[#06B6D4]/12 blur-3xl rounded-full -z-10 animate-pulse-glow opacity-50" />
               
               {/* Headline - Left Aligned on Desktop */}
@@ -98,15 +98,15 @@ export default function StylistsPage() {
 
             {/* RIGHT: Mockup + Floating Chat Card */}
             <div className="relative md:pl-4 lg:pl-8 overflow-visible">
-              <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="relative animate-fade-in overflow-hidden" style={{ animationDelay: '0.4s' }}>
                 {/* Mockup Image - Direct Display, No Browser Frame */}
-                <div className="relative w-full">
+                <div className="relative w-full max-w-full">
                   <Image
                     src="/images/stylists/mockup1chat.png"
                     alt="AI Booking System Mockup - Salon Website with Chat Interface"
                     width={1200}
                     height={800}
-                    className="w-full h-auto object-contain rounded-2xl md:scale-100 lg:scale-105 xl:scale-110"
+                    className="w-full h-auto object-contain rounded-2xl md:scale-100 lg:scale-[0.95] xl:scale-100"
                     priority
                     quality={95}
                   />
@@ -214,7 +214,7 @@ export default function StylistsPage() {
                 <ul className="mt-3 md:mt-4 lg:mt-5 space-y-2 md:space-y-3 lg:space-y-4 text-base md:text-lg lg:text-xl xl:text-xl text-gray-200">
                   <li className="flex items-start gap-2 lg:gap-3">
                     <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
-                    <span>24/7 automated DM responses</span>
+                    <span>Smart booking concierge that guides your clients 24/7</span>
                   </li>
                   <li className="flex items-start gap-2 lg:gap-3">
                     <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
