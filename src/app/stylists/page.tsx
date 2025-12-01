@@ -96,8 +96,9 @@ export default function StylistsPage() {
               </div>
             </div>
 
-            {/* RIGHT: Hero Mockup Image */}
-            <div className="relative md:pl-4 lg:pl-8">
+            {/* RIGHT: Hero Mockup Image + Floating Chatbot Assistant */}
+            <div className="relative md:pl-4 lg:pl-8 overflow-visible">
+              {/* Laptop Mockup - Base Layer */}
               <div className="relative w-full animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <Image
                   src="/images/stylists/salonlaptopmockup.png"
@@ -108,6 +109,22 @@ export default function StylistsPage() {
                   priority
                   quality={95}
                 />
+              </div>
+
+              {/* Floating AI Chatbot Assistant - Strategic Positioning */}
+              <div className="absolute top-0 right-0 lg:-top-8 lg:-right-4 xl:-top-12 xl:-right-8 2xl:-top-16 2xl:-right-12 w-[40%] sm:w-[35%] md:w-[30%] lg:w-[28%] xl:w-[26%] 2xl:w-[24%] max-w-xs lg:max-w-sm z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                <div className="relative transform hover:scale-105 transition-transform duration-700" style={{ transform: 'perspective(1000px) rotateY(-5deg) rotateX(2deg)', transformStyle: 'preserve-3d' }}>
+                  {/* Subtle glow effect */}
+                  <div className="absolute -inset-2 bg-gradient-to-br from-[#06B6D4]/20 to-[#6D28D9]/20 rounded-2xl blur-xl -z-10" />
+                  <Image
+                    src="/images/stylists/aichatbotassistant.png"
+                    alt="AI Chatbot Assistant - 24/7 Booking Support"
+                    width={600}
+                    height={600}
+                    className="w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(6,182,212,0.3)]"
+                    quality={95}
+                  />
+                </div>
               </div>
             </div>
           </div>
