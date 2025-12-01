@@ -111,17 +111,17 @@ export default function StylistsPage() {
                 />
               </div>
 
-              {/* Floating AI Chatbot Assistant - Strategic Positioning */}
-              <div className="absolute top-0 right-0 lg:-top-8 lg:-right-4 xl:-top-12 xl:-right-8 2xl:-top-16 2xl:-right-12 w-[40%] sm:w-[35%] md:w-[30%] lg:w-[28%] xl:w-[26%] 2xl:w-[24%] max-w-xs lg:max-w-sm z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+              {/* Floating AI Chatbot Assistant - Desktop Only, Strategic Positioning */}
+              <div className="hidden lg:block absolute lg:-top-12 lg:-right-6 xl:-top-16 xl:-right-8 2xl:-top-20 2xl:-right-10 lg:w-[35%] xl:w-[38%] 2xl:w-[40%] lg:max-w-md xl:max-w-lg 2xl:max-w-xl z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                 <div className="relative transform hover:scale-105 transition-transform duration-700" style={{ transform: 'perspective(1000px) rotateY(-5deg) rotateX(2deg)', transformStyle: 'preserve-3d' }}>
-                  {/* Subtle glow effect */}
-                  <div className="absolute -inset-2 bg-gradient-to-br from-[#06B6D4]/20 to-[#6D28D9]/20 rounded-2xl blur-xl -z-10" />
+                  {/* Enhanced glow effect for better visibility */}
+                  <div className="absolute -inset-3 bg-gradient-to-br from-[#06B6D4]/25 to-[#6D28D9]/25 rounded-2xl blur-2xl -z-10" />
                   <Image
                     src="/images/stylists/aichatbotassistant.png"
                     alt="AI Chatbot Assistant - 24/7 Booking Support"
-                    width={600}
-                    height={600}
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(6,182,212,0.3)]"
+                    width={800}
+                    height={800}
+                    className="w-full h-auto object-contain drop-shadow-[0_30px_80px_rgba(6,182,212,0.4)]"
                     quality={95}
                   />
                 </div>
