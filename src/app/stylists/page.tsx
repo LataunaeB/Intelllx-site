@@ -178,50 +178,50 @@ export default function StylistsPage() {
 
           {/* Emotional Benefits - Beauty Industry Triggers */}
           <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-10 xl:gap-12 max-w-6xl lg:max-w-7xl mx-auto">
-            <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 lg:p-10 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
+            <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 lg:p-12 xl:p-14 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/8 group-hover:to-[#6D28D9]/8 transition-all duration-700" />
               <div className="relative z-10">
-                <Sparkles className="h-8 w-8 text-[#06B6D4] mb-3 md:mb-4" />
-                <h3 className="text-2xl md:text-3xl font-semibold text-white mb-3 md:mb-4">Your Brand Instantly Feels High-End</h3>
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
+                <Sparkles className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-[#06B6D4] mb-3 md:mb-4 lg:mb-5" />
+                <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white mb-3 md:mb-4 lg:mb-5 xl:mb-6">Your Brand Instantly Feels High-End</h3>
+                <p className="text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light mb-4 lg:mb-5">
                   A luxury booking website that makes you look as professional online as your work truly is. No more embarrassing double-bookings or missed messages.
                 </p>
-                <ul className="mt-3 md:mt-4 space-y-2 md:space-y-3 text-base md:text-lg text-gray-200">
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#06B6D4] mt-1">•</span>
+                <ul className="mt-3 md:mt-4 lg:mt-5 space-y-2 md:space-y-3 lg:space-y-4 text-base md:text-lg lg:text-xl xl:text-xl text-gray-200">
+                  <li className="flex items-start gap-2 lg:gap-3">
+                    <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
                     <span>Custom branded booking site</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#06B6D4] mt-1">•</span>
+                  <li className="flex items-start gap-2 lg:gap-3">
+                    <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
                     <span>Professional portfolio showcase</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#06B6D4] mt-1">•</span>
+                  <li className="flex items-start gap-2 lg:gap-3">
+                    <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
                     <span>Mobile-optimized for client bookings</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 lg:p-10 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
+            <div className="group relative rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 lg:p-12 xl:p-14 backdrop-blur-xl hover:border-[#06B6D4]/30 hover:bg-white/8 transition-all duration-700 hover:-translate-y-2">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#06B6D4]/0 to-[#06B6D4]/0 group-hover:from-[#06B6D4]/8 group-hover:to-[#6D28D9]/8 transition-all duration-700" />
               <div className="relative z-10">
-                <Crown className="h-8 w-8 text-[#06B6D4] mb-3 md:mb-4" />
-                <h3 className="text-2xl md:text-3xl font-semibold text-white mb-3 md:mb-4">No More Chasing Clients</h3>
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
+                <Crown className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-[#06B6D4] mb-3 md:mb-4 lg:mb-5" />
+                <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white mb-3 md:mb-4 lg:mb-5 xl:mb-6">No More Chasing Clients</h3>
+                <p className="text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light mb-4 lg:mb-5">
                   Your AI assistant handles every inquiry while you focus on hair. Your weekends free, your book full. The freedom you deserve.
                 </p>
-                <ul className="mt-3 md:mt-4 space-y-2 md:space-y-3 text-base md:text-lg text-gray-200">
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#06B6D4] mt-1">•</span>
+                <ul className="mt-3 md:mt-4 lg:mt-5 space-y-2 md:space-y-3 lg:space-y-4 text-base md:text-lg lg:text-xl xl:text-xl text-gray-200">
+                  <li className="flex items-start gap-2 lg:gap-3">
+                    <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
                     <span>24/7 automated DM responses</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#06B6D4] mt-1">•</span>
+                  <li className="flex items-start gap-2 lg:gap-3">
+                    <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
                     <span>Instant booking confirmations</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#06B6D4] mt-1">•</span>
+                  <li className="flex items-start gap-2 lg:gap-3">
+                    <span className="text-[#06B6D4] mt-1 lg:mt-1.5 text-lg lg:text-xl">•</span>
                     <span>Automated reminder system</span>
                   </li>
                 </ul>
