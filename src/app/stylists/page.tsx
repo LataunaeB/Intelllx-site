@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Scissors, CheckCircle2, ArrowRight, Sparkles, MessageSquare, Star, Crown } from "lucide-react";
+import { Scissors, CheckCircle2, ArrowRight, Sparkles, Star, Crown } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 export default function StylistsPage() {
@@ -96,68 +96,18 @@ export default function StylistsPage() {
               </div>
             </div>
 
-            {/* RIGHT: Mockup + Floating Chat Card */}
-            <div className="relative md:pl-4 lg:pl-8 overflow-visible">
-              {/* Mockup Image Container - Positioning Context for Chatbox */}
+            {/* RIGHT: Hero Mockup Image */}
+            <div className="relative md:pl-4 lg:pl-8">
               <div className="relative w-full animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <Image
-                  src="/images/stylists/mockup1chat.png"
-                  alt="AI Booking System Mockup - Salon Website with Chat Interface"
+                  src="/images/stylists/salonlaptopmockup.png"
+                  alt="Salon Laptop Mockup - AI Booking System"
                   width={1200}
                   height={800}
                   className="w-full h-auto object-contain rounded-2xl md:scale-100 lg:scale-[0.95] xl:scale-100"
                   priority
                   quality={95}
                 />
-
-                {/* Glass Chat Assistant Card - Floating on Right, Touching Mockup Edge */}
-                <div className="mt-4 md:mt-6 lg:mt-0 lg:absolute lg:left-full lg:ml-2 xl:ml-3 2xl:ml-4 lg:top-1/2 lg:-translate-y-1/2 lg:z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                  <div className="relative w-full max-w-sm lg:w-64 xl:w-72 2xl:w-80 mx-auto lg:mx-0 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/25 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden hover:shadow-[0_40px_120px_rgba(6,182,212,0.3)] transition-all duration-500" style={{ transform: 'perspective(1000px) rotateY(-3deg)', transformStyle: 'preserve-3d' }}>
-                    {/* Glossy shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
-                    
-                    {/* Chat Header */}
-                    <div className="relative px-6 py-4 border-b border-white/15 bg-white/5">
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#6D28D9] flex items-center justify-center shadow-lg">
-                          <MessageSquare className="h-5 w-5 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm md:text-base font-semibold text-white">AI Assistant</p>
-                          <p className="text-xs md:text-sm text-gray-200">Online 24/7</p>
-                        </div>
-                        <div className="ml-auto flex items-center gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-[#06B6D4] animate-pulse" />
-                          <span className="text-xs md:text-sm text-[#A5F3FC] font-medium">Live</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Chat Messages */}
-                    <div className="relative p-5 space-y-3 bg-gradient-to-b from-transparent to-[#0F172A]/50">
-                      <div className="flex justify-start">
-                        <div className="max-w-[80%] rounded-2xl bg-white/10 border border-white/10 px-4 py-3 backdrop-blur-sm">
-                          <p className="text-base md:text-lg text-gray-200 leading-relaxed">Hey, do you have anything open Saturday for a silk press?</p>
-                        </div>
-                      </div>
-                      <div className="flex justify-end">
-                        <div className="max-w-[85%] rounded-2xl bg-gradient-to-r from-[#6D28D9] to-[#06B6D4] px-4 py-3 shadow-lg">
-                          <p className="text-base md:text-lg text-white font-medium leading-relaxed">
-                            Yes! I have <strong className="font-bold">10:30am</strong> or <strong className="font-bold">1:00pm</strong> available. Which works for you?
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 pt-1">
-                        <button className="flex-1 rounded-full bg-white/10 hover:bg-[#06B6D4]/20 border border-white/15 hover:border-[#06B6D4]/40 px-3 py-2 text-sm md:text-base text-white font-medium transition-all duration-200">
-                          Book 10:30am
-                        </button>
-                        <button className="flex-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-2 text-sm md:text-base text-white font-medium transition-all duration-200">
-                          More Times
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
