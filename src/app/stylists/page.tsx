@@ -113,17 +113,22 @@ export default function StylistsPage() {
 
               {/* Floating AI Chatbot Assistant - Desktop Only, Strategic Positioning */}
               <div className="hidden lg:block absolute lg:-top-12 lg:-right-6 xl:-top-16 xl:-right-8 2xl:-top-20 2xl:-right-10 lg:w-[35%] xl:w-[38%] 2xl:w-[40%] lg:max-w-md xl:max-w-lg 2xl:max-w-xl z-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                <div className="relative transform hover:scale-105 transition-transform duration-700" style={{ transform: 'perspective(1000px) rotateY(-5deg) rotateX(2deg)', transformStyle: 'preserve-3d' }}>
-                  {/* Enhanced glow effect for better visibility */}
-                  <div className="absolute -inset-3 bg-gradient-to-br from-[#06B6D4]/25 to-[#6D28D9]/25 rounded-2xl blur-2xl -z-10" />
-                  <Image
-                    src="/images/stylists/aichatbotassistant.png"
-                    alt="AI Chatbot Assistant - 24/7 Booking Support"
-                    width={800}
-                    height={800}
-                    className="w-full h-auto object-contain drop-shadow-[0_30px_80px_rgba(6,182,212,0.4)]"
-                    quality={95}
-                  />
+                <div className="relative hover:scale-105 transition-transform duration-700">
+                  {/* Subtle glow effect positioned behind - reduced interference */}
+                  <div className="absolute -inset-4 bg-gradient-to-br from-[#06B6D4]/15 to-[#6D28D9]/15 rounded-2xl blur-3xl -z-10 pointer-events-none opacity-60" />
+                  <div className="relative">
+                    <Image
+                      src="/images/stylists/aichatbotassistant.png"
+                      alt="AI Chatbot Assistant - 24/7 Booking Support"
+                      width={1200}
+                      height={1200}
+                      sizes="(max-width: 1024px) 0vw, 35vw"
+                      className="w-full h-auto object-contain"
+                      quality={100}
+                      style={{ imageRendering: 'crisp-edges' }}
+                      priority={false}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
