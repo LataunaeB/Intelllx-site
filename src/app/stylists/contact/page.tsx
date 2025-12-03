@@ -355,11 +355,6 @@ ${formData.situation}`;
                           >
                             <div className="text-center">
                               <div className="font-semibold">{formatDay(day.date, day.isToday, day.isTomorrow)}</div>
-                              {day.hasSlots && (
-                                <div className="text-[10px] text-[#06B6D4] mt-1">
-                                  {day.slots.length} slots
-                                </div>
-                              )}
                             </div>
                           </button>
                         );
